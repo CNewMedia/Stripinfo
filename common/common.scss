@@ -1,4 +1,8 @@
-// Stripinfo Kleuren
+// ============================================
+// STRIPINFO DISCOURSE THEME - COMPLETE CSS
+// ============================================
+
+// === KLEUREN ===
 $cyaan: #1EC1CE;
 $geel: #FFC107;
 $oranje: #FFB300;
@@ -6,22 +10,62 @@ $roze: #E91E63;
 $zwart: #000000;
 $wit: #FFFFFF;
 
-// Comic font
+// === FONTS ===
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Outfit:wght@400;600;800&display=swap');
 
-// === RESET DISCOURSE DEFAULTS ===
-// Verwijder rare borders en styling
-.btn, button, a {
-  box-shadow: none !important;
-}
+// ============================================
+// GLOBAL RESETS & BASE
+// ============================================
 
-// === GLOBAL ===
 body {
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   background: #f5f5f5;
 }
 
-// === TOP BANNER ===
+// Verwijder rare default Discourse borders
+* {
+  box-shadow: none !important;
+}
+
+.btn, button, a, .icon {
+  box-shadow: none !important;
+}
+
+// ============================================
+// VERBERG "AAN DE SLAG" & DEFAULT LAYOUTS
+// ============================================
+
+// Verberg de "Aan de slag" admin wizard
+.admin-wizard-controls,
+.wizard-container,
+.getting-started,
+.user-tips,
+.user-tips-topic-summary,
+.bootstrap-mode-notice {
+  display: none !important;
+}
+
+// Verberg het eerste "Welcome" topic
+.topic-list-item[data-topic-id="1"],
+[data-topic-id="1"] {
+  display: none !important;
+}
+
+// Verberg default category layout op homepage
+body.categories-list {
+  .category-list.with-topics {
+    display: none !important;
+  }
+  
+  .latest-topic-list {
+    display: none !important;
+  }
+}
+
+// ============================================
+// TOP BANNER
+// ============================================
+
 .stripinfo-top-banner {
   background: repeating-linear-gradient(
     45deg,
@@ -32,7 +76,6 @@ body {
   );
   padding: 25px 20px;
   text-align: center;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
   border-bottom: 4px solid $zwart;
   
   .banner-title {
@@ -57,12 +100,14 @@ body {
   }
 }
 
-// === SECONDARY NAV ===
+// ============================================
+// SECONDARY NAVIGATION
+// ============================================
+
 .stripinfo-secondary-nav {
   background: $zwart;
   padding: 0;
   text-align: center;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -90,10 +135,12 @@ body {
   }
 }
 
-// === DISCOURSE HEADER - CLEAN ICONS ===
+// ============================================
+// DISCOURSE HEADER
+// ============================================
+
 .d-header {
   background: $cyaan !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
   border-bottom: 3px solid $zwart !important;
   
   .title a {
@@ -101,17 +148,16 @@ body {
     font-weight: 700 !important;
   }
   
-  // FIX: Clean header icons - geen rare borders!
+  // FIX: Header icons - geen borders, betere spacing
   .d-header-icons {
     .icon {
       color: $zwart !important;
       background: none !important;
       border: none !important;
       border-radius: 8px !important;
-      padding: 8px !important;
+      padding: 8px 10px !important;
       margin: 0 4px !important;
       transition: all 0.2s ease;
-      box-shadow: none !important;
       
       &:hover {
         background: rgba(0,0,0,0.1) !important;
@@ -124,8 +170,9 @@ body {
     }
   }
   
-  // FIX: Hamburger menu
-  .hamburger-panel {
+  // Hamburger menu
+  .hamburger-panel,
+  .hamburger-dropdown {
     background: none !important;
     border: none !important;
     
@@ -138,17 +185,19 @@ body {
     }
   }
   
-  // FIX: Search button - verwijder tekst
+  // Search button - verwijder "Zoeken" tekst
   #search-button {
     background: none !important;
     border: none !important;
     
     .d-button-label {
-      display: none !important; // Verberg "Zoeken" tekst
+      display: none !important;
     }
   }
   
-  .login-button, .sign-up-button {
+  // Login & Signup buttons
+  .login-button, 
+  .sign-up-button {
     background: $zwart !important;
     color: $wit !important;
     border-radius: 20px !important;
@@ -165,12 +214,14 @@ body {
   }
 }
 
-// === SIDEBAR - CLEAN STYLING ===
+// ============================================
+// SIDEBAR
+// ============================================
+
 .sidebar-wrapper {
   background: $wit;
   border-radius: 12px;
   border: 2px solid #e0e0e0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
   
   .sidebar-section-wrapper {
     border: none !important;
@@ -212,11 +263,8 @@ body {
     }
   }
   
-  // FIX: Verwijder tooltip bij hover
+  // Verberg tooltips
   .sidebar-section-link-wrapper {
-    position: relative;
-    
-    // Verberg tooltips
     [data-tooltip], [title] {
       &::after, &::before {
         display: none !important;
@@ -225,22 +273,10 @@ body {
   }
 }
 
-// === VERWIJDER "AAN DE SLAG" GUIDE ===
-// Deze default Discourse onboarding guide verbergen
-.user-tips-topic-summary,
-.user-tips,
-.topic-list-item.suggested-topics,
-body.archetype-regular .topic-body .user-tip {
-  display: none !important;
-}
+// ============================================
+// MAIN CONTENT
+// ============================================
 
-// Verberg de "Aan de slag" admin guide
-.user-nav .user-nav-pills .user-nav-dropdown,
-.admin-getting-started {
-  display: none !important;
-}
-
-// === MAIN CONTENT ===
 #main-outlet {
   background: transparent;
   padding: 30px 15px;
@@ -248,7 +284,10 @@ body.archetype-regular .topic-body .user-tip {
   margin: 0 auto;
 }
 
-// === CATEGORY LIST ===
+// ============================================
+// CATEGORY LIST
+// ============================================
+
 .category-list {
   tbody {
     border: none;
@@ -260,13 +299,12 @@ body.archetype-regular .topic-body .user-tip {
     border-radius: 12px;
     margin-bottom: 20px;
     padding: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.06);
     transition: all 0.2s ease;
     border-left: 5px solid $cyaan;
     
     &:hover {
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12);
       transform: translateY(-2px);
+      border-color: $cyaan;
     }
   }
   
@@ -281,9 +319,38 @@ body.archetype-regular .topic-body .user-tip {
     line-height: 1.6;
     margin-top: 8px;
   }
+  
+  .category-logo {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+  }
+  
+  .subcategories {
+    margin-top: 15px;
+    padding-top: 15px;
+    border-top: 1px solid #e0e0e0;
+    
+    .subcategory {
+      display: inline-block;
+      background: lighten($cyaan, 45%);
+      padding: 6px 12px;
+      border-radius: 16px;
+      margin: 4px;
+      font-size: 13px;
+      font-weight: 600;
+      color: darken($cyaan, 10%);
+      
+      &:hover {
+        background: lighten($cyaan, 35%);
+      }
+    }
+  }
 }
 
-// === TOPIC LIST ===
+// ============================================
+// TOPIC LIST
+// ============================================
+
 .topic-list {
   background: transparent;
   
@@ -297,12 +364,10 @@ body.archetype-regular .topic-body .user-tip {
     border-radius: 10px;
     margin-bottom: 12px;
     padding: 16px;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.05);
     transition: all 0.2s ease;
     display: block;
     
     &:hover {
-      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
       transform: translateY(-1px);
       border-color: $cyaan;
     }
@@ -337,10 +402,29 @@ body.archetype-regular .topic-body .user-tip {
     padding: 4px 10px;
     font-size: 11px;
     font-weight: 700;
+    border: none;
+  }
+  
+  .num {
+    font-weight: 700;
+    color: #666;
+  }
+  
+  .posts-map, 
+  .num.posts, 
+  .num.views {
+    background: lighten($geel, 25%);
+    border-radius: 16px;
+    padding: 6px 12px;
+    border: 2px solid #e0e0e0;
+    font-weight: 700;
   }
 }
 
-// === BUTTONS ===
+// ============================================
+// BUTTONS
+// ============================================
+
 .btn {
   border-radius: 20px !important;
   font-weight: 700 !important;
@@ -348,8 +432,6 @@ body.archetype-regular .topic-body .user-tip {
   letter-spacing: 0.3px;
   transition: all 0.2s ease !important;
   padding: 10px 22px !important;
-  background: none !important;
-  box-shadow: none !important;
   
   &.btn-primary {
     background: $zwart !important;
@@ -374,15 +456,22 @@ body.archetype-regular .topic-body .user-tip {
       border-color: $cyaan !important;
     }
   }
+  
+  &.btn-icon-text {
+    border: none !important;
+    background: none !important;
+  }
 }
 
-// === POST CONTENT ===
+// ============================================
+// POST CONTENT
+// ============================================
+
 .topic-post {
   background: $wit;
   border: 2px solid #e0e0e0;
   border-radius: 12px;
   margin-bottom: 20px;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
   
   article {
     padding: 24px;
@@ -392,6 +481,13 @@ body.archetype-regular .topic-body .user-tip {
       line-height: 1.7;
       font-size: 15px;
       
+      h1, h2, h3 {
+        color: $zwart;
+        font-weight: 700;
+        margin-top: 24px;
+        margin-bottom: 12px;
+      }
+      
       a {
         color: $cyaan;
         font-weight: 600;
@@ -400,24 +496,132 @@ body.archetype-regular .topic-body .user-tip {
           color: $roze;
         }
       }
+      
+      blockquote {
+        border-left: 4px solid $cyaan;
+        background: lighten($cyaan, 47%);
+        padding: 16px 20px;
+        margin: 20px 0;
+        border-radius: 6px;
+      }
+      
+      code {
+        background: #f5f5f5;
+        border: 1px solid #ddd;
+        padding: 2px 6px;
+        border-radius: 4px;
+        font-size: 14px;
+      }
+      
+      pre {
+        background: #2d2d2d;
+        border: 2px solid $zwart;
+        border-radius: 8px;
+        padding: 15px;
+        
+        code {
+          background: transparent;
+          border: none;
+          color: #f8f8f2;
+        }
+      }
+    }
+  }
+  
+  .topic-avatar {
+    border: 2px solid #e0e0e0;
+    border-radius: 50%;
+  }
+  
+  .names {
+    font-weight: 700;
+    
+    .username {
+      color: $zwart !important;
+      font-size: 15px;
+      font-weight: 700;
     }
   }
 }
 
-// === SEARCH ===
+// ============================================
+// BADGES & NOTIFICATIONS
+// ============================================
+
+.badge-notification {
+  background: $roze !important;
+  color: $wit !important;
+  font-weight: 700;
+  border-radius: 12px;
+  border: none;
+}
+
+.badge-wrapper.box {
+  background: $cyaan !important;
+  color: $wit !important;
+  border: none;
+}
+
+// ============================================
+// SEARCH
+// ============================================
+
 #search-term {
   border: 2px solid #e0e0e0 !important;
   border-radius: 20px !important;
   padding: 10px 18px !important;
-  box-shadow: none !important;
   
   &:focus {
     border-color: $cyaan !important;
-    box-shadow: 0 0 0 3px rgba($cyaan, 0.1) !important;
+    outline: 3px solid rgba($cyaan, 0.1) !important;
   }
 }
 
-// === FOOTER ===
+.search-menu {
+  border: 2px solid #e0e0e0 !important;
+  border-radius: 12px !important;
+}
+
+// ============================================
+// USER MENU
+// ============================================
+
+.user-menu {
+  border: 2px solid #e0e0e0 !important;
+  border-radius: 12px !important;
+  
+  .menu-links-header {
+    background: $cyaan !important;
+    color: $zwart !important;
+    font-weight: 700 !important;
+  }
+}
+
+// ============================================
+// COMPOSER (nieuwe post maken)
+// ============================================
+
+.d-editor-button-bar {
+  .btn {
+    border-radius: 6px !important;
+    border: 1px solid #e0e0e0 !important;
+  }
+}
+
+#reply-control {
+  border: 2px solid #e0e0e0;
+  border-radius: 12px 12px 0 0;
+  
+  .d-editor-textarea-wrapper {
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+  }
+}
+
+// ============================================
+// FOOTER
+// ============================================
+
 .stripinfo-footer {
   background: repeating-linear-gradient(
     45deg,
@@ -444,7 +648,6 @@ body.archetype-regular .topic-body .user-tip {
     padding: 24px;
     border: 3px solid $zwart;
     border-radius: 12px;
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
     
     h3 {
       color: $zwart;
@@ -484,7 +687,6 @@ body.archetype-regular .topic-body .user-tip {
     background: rgba(255,255,255,0.95);
     border: 3px solid $zwart;
     border-radius: 12px;
-    box-shadow: 4px 4px 0px rgba(0,0,0,0.2);
     max-width: 700px;
     margin: 0 auto;
     
@@ -505,7 +707,10 @@ body.archetype-regular .topic-body .user-tip {
   }
 }
 
-// === COPYRIGHT ===
+// ============================================
+// COPYRIGHT BAR
+// ============================================
+
 .stripinfo-copyright {
   background: $zwart;
   color: $wit;
@@ -513,9 +718,21 @@ body.archetype-regular .topic-body .user-tip {
   padding: 20px;
   font-size: 14px;
   font-weight: 600;
+  
+  a {
+    color: $cyaan;
+    text-decoration: none;
+    
+    &:hover {
+      color: $wit;
+    }
+  }
 }
 
-// === RESPONSIVE ===
+// ============================================
+// RESPONSIVE
+// ============================================
+
 @media (max-width: 768px) {
   .stripinfo-top-banner .banner-title {
     font-size: 26px;
@@ -532,5 +749,14 @@ body.archetype-regular .topic-body .user-tip {
     .separator {
       display: none;
     }
+  }
+  
+  .d-header-icons .icon {
+    padding: 6px 8px !important;
+    margin: 0 2px !important;
+  }
+  
+  .stripinfo-footer .footer-content {
+    grid-template-columns: 1fr;
   }
 }
