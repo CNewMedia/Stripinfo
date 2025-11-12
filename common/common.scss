@@ -123,3 +123,174 @@
 body:not(.discovery-categories) .stripinfo-homepage-hero {
   display: none;
 }
+// ============================================
+// SIMPELE HOMEPAGE HERO
+// ============================================
+
+.stripinfo-simple-hero {
+  display: none; // Standaard verborgen
+  margin: 0 -15px 40px -15px;
+  
+  .hero-content {
+    background: repeating-linear-gradient(
+      45deg,
+      $geel,
+      $geel 15px,
+      $oranje 15px,
+      $oranje 30px
+    );
+    padding: 50px 30px;
+    text-align: center;
+    border-bottom: 5px solid $zwart;
+    
+    .hero-emoji {
+      font-size: 60px;
+      margin-bottom: 15px;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    h1 {
+      font-family: 'Bangers', cursive;
+      font-size: 42px;
+      color: $zwart;
+      margin: 0 0 15px 0;
+      text-shadow: 3px 3px 0px $wit, 4px 4px 0px rgba(0,0,0,0.2);
+      letter-spacing: 2px;
+    }
+    
+    p {
+      font-size: 18px;
+      color: $roze;
+      font-weight: 700;
+      margin: 0 0 25px 0;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .hero-actions {
+      display: flex;
+      gap: 15px;
+      justify-content: center;
+      flex-wrap: wrap;
+      
+      .hero-btn {
+        padding: 12px 28px;
+        border-radius: 25px;
+        font-weight: 700;
+        text-decoration: none;
+        text-transform: uppercase;
+        font-size: 15px;
+        transition: all 0.2s ease;
+        
+        &.primary {
+          background: $zwart;
+          color: $wit;
+          border: 3px solid $zwart;
+          
+          &:hover {
+            background: $roze;
+            border-color: $roze;
+            transform: translateY(-2px);
+          }
+        }
+        
+        &.secondary {
+          background: $wit;
+          color: $zwart;
+          border: 3px solid $zwart;
+          
+          &:hover {
+            background: $cyaan;
+            color: $wit;
+            border-color: $cyaan;
+            transform: translateY(-2px);
+          }
+        }
+      }
+    }
+  }
+  
+  .quick-links {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 20px;
+    padding: 35px 25px;
+    background: $wit;
+    max-width: 1200px;
+    margin: 0 auto;
+    
+    .quick-card {
+      background: $wit;
+      border: 3px solid $zwart;
+      border-radius: 12px;
+      padding: 25px 20px;
+      text-align: center;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 4px 4px 0px $zwart;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      
+      &:hover {
+        transform: translate(-3px, -3px);
+        box-shadow: 7px 7px 0px $zwart;
+        
+        span {
+          transform: scale(1.15);
+        }
+      }
+      
+      span {
+        font-size: 40px;
+        transition: transform 0.3s ease;
+      }
+      
+      strong {
+        font-family: 'Bangers', cursive;
+        font-size: 20px;
+        color: $zwart;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+      
+      small {
+        color: #666;
+        font-size: 13px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// Toon alleen op categories/homepage
+body.categories-list .stripinfo-simple-hero {
+  display: block;
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+// Responsive
+@media (max-width: 768px) {
+  .stripinfo-simple-hero {
+    .hero-content {
+      padding: 40px 20px;
+      
+      h1 {
+        font-size: 32px;
+      }
+      
+      p {
+        font-size: 15px;
+      }
+    }
+    
+    .quick-links {
+      grid-template-columns: 1fr;
+      padding: 25px 15px;
+    }
+  }
+}
