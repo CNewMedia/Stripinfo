@@ -6,16 +6,33 @@ $roze: #E91E63;
 $zwart: #000000;
 $wit: #FFFFFF;
 
-// Comic font stack
+// Comic font
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Outfit:wght@400;600;800&display=swap');
 
-// === GLOBAL STYLING ===
+// === HIDE CUSTOM HOMEPAGE EXCEPT ON CATEGORIES PAGE ===
+body:not(.categories-list) .stripinfo-custom-homepage {
+  display: none;
+}
+
+body.categories-list {
+  // Hide default category list when custom homepage is shown
+  .category-list {
+    display: none;
+  }
+  
+  .stripinfo-custom-homepage {
+    display: block;
+    margin: -20px -20px 40px -20px;
+  }
+}
+
+// === GLOBAL ===
 body {
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
   background: #f8f9fa;
 }
 
-// === TOP BANNER - COMIC STYLE ===
+// === TOP BANNER ===
 .stripinfo-top-banner {
   background: repeating-linear-gradient(
     45deg,
@@ -29,22 +46,6 @@ body {
   box-shadow: 0 4px 12px rgba(0,0,0,0.2);
   position: relative;
   border-bottom: 4px solid $zwart;
-  
-  // Comic effect
-  &::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 0;
-    right: 0;
-    height: 4px;
-    background: linear-gradient(90deg, 
-      $zwart 0%, $zwart 25%, 
-      transparent 25%, transparent 50%, 
-      $zwart 50%, $zwart 75%, 
-      transparent 75%, transparent 100%);
-    background-size: 20px 4px;
-  }
   
   .banner-title {
     color: $zwart;
@@ -70,7 +71,7 @@ body {
   }
 }
 
-// === SECONDARY NAVIGATION - COMIC TABS ===
+// === SECONDARY NAV ===
 .stripinfo-secondary-nav {
   background: $zwart;
   padding: 0;
@@ -123,7 +124,189 @@ body {
   }
 }
 
-// === DISCOURSE HEADER - COMIC STYLE ===
+// === CUSTOM HOMEPAGE ===
+.stripinfo-hero {
+  background: repeating-linear-gradient(
+    45deg,
+    $geel,
+    $geel 15px,
+    $oranje 15px,
+    $oranje 30px
+  );
+  padding: 80px 40px;
+  text-align: center;
+  position: relative;
+  border-bottom: 5px solid $zwart;
+  
+  &::before {
+    content: '📚';
+    font-size: 80px;
+    display: block;
+    margin-bottom: 20px;
+    filter: drop-shadow(5px 5px 0px $zwart);
+    animation: float 3s ease-in-out infinite;
+  }
+  
+  h1 {
+    font-family: 'Bangers', cursive;
+    font-size: 56px;
+    color: $zwart;
+    margin: 0 0 20px 0;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 4px 4px 0px $wit, 5px 5px 0px $zwart;
+  }
+  
+  p {
+    font-size: 24px;
+    color: $roze;
+    font-weight: 800;
+    margin: 0 0 30px 0;
+    text-transform: uppercase;
+    text-shadow: 2px 2px 0px $wit;
+  }
+  
+  .hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    
+    .btn {
+      font-size: 18px !important;
+      padding: 15px 40px !important;
+    }
+  }
+}
+
+.stripinfo-featured-categories {
+  background: $wit;
+  padding: 50px 40px;
+  
+  h2 {
+    font-family: 'Bangers', cursive;
+    font-size: 42px;
+    text-align: center;
+    color: $zwart;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    
+    &::before {
+      content: '⭐ ';
+    }
+    
+    &::after {
+      content: ' ⭐';
+    }
+  }
+  
+  .category-boxes {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-bottom: 50px;
+    max-width: 1200px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  
+  .category-box {
+    background: $wit;
+    border: 4px solid $zwart;
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    box-shadow: 6px 6px 0px $zwart;
+    transition: all 0.3s ease;
+    cursor: pointer;
+    position: relative;
+    text-decoration: none;
+    display: block;
+    
+    &:hover {
+      transform: translate(-4px, -4px);
+      box-shadow: 10px 10px 0px $zwart;
+      
+      .category-icon {
+        transform: scale(1.2) rotate(5deg);
+      }
+    }
+    
+    .category-icon {
+      font-size: 60px;
+      margin-bottom: 20px;
+      display: block;
+      transition: transform 0.3s ease;
+    }
+    
+    h3 {
+      font-family: 'Bangers', cursive;
+      font-size: 28px;
+      color: $zwart;
+      margin: 0 0 15px 0;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    
+    p {
+      color: #666;
+      font-size: 15px;
+      line-height: 1.6;
+      margin: 0 0 20px 0;
+      font-weight: 500;
+    }
+    
+    .topic-count {
+      display: inline-block;
+      background: $cyaan;
+      color: $wit;
+      padding: 8px 20px;
+      border-radius: 20px;
+      font-weight: 800;
+      font-size: 14px;
+      border: 2px solid $zwart;
+      box-shadow: 2px 2px 0px $zwart;
+    }
+  }
+}
+
+.stripinfo-quick-links {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 20px;
+  max-width: 1200px;
+  margin: 0 auto;
+  
+  a {
+    background: $geel;
+    border: 3px solid $zwart;
+    border-radius: 10px;
+    padding: 25px 20px;
+    text-align: center;
+    text-decoration: none;
+    color: $zwart;
+    font-weight: 800;
+    font-size: 16px;
+    box-shadow: 4px 4px 0px $zwart;
+    transition: all 0.2s ease;
+    display: block;
+    
+    &:hover {
+      transform: translate(-2px, -2px);
+      box-shadow: 6px 6px 0px $zwart;
+      background: $oranje;
+    }
+    
+    .icon {
+      display: block;
+      font-size: 36px;
+      margin-bottom: 12px;
+    }
+  }
+}
+
+// === DISCOURSE HEADER ===
 .d-header {
   background: $cyaan !important;
   box-shadow: 0 4px 12px rgba(0,0,0,0.2) !important;
@@ -132,42 +315,30 @@ body {
   .title a {
     color: $zwart !important;
     font-weight: 800 !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
   }
   
   .d-icon, .icon {
     color: $zwart !important;
-    transition: all 0.2s ease;
     
     &:hover {
       color: $wit !important;
-      transform: scale(1.1);
     }
   }
   
-  // Comic style buttons
   .login-button, .sign-up-button {
     background: $zwart !important;
     color: $wit !important;
     border-radius: 25px !important;
     padding: 10px 24px !important;
     font-weight: 800 !important;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    box-shadow: 3px 3px 0px rgba(0,0,0,0.3);
-    border: 2px solid $zwart !important;
-    transition: all 0.2s ease !important;
     
     &:hover {
       background: $roze !important;
-      transform: translate(-2px, -2px);
-      box-shadow: 5px 5px 0px rgba(0,0,0,0.3);
     }
   }
 }
 
-// === MAIN CONTENT AREA ===
+// === MAIN CONTENT ===
 #main-outlet {
   background: $wit;
   padding: 30px 20px;
@@ -175,143 +346,7 @@ body {
   margin: 0 auto;
 }
 
-// === CATEGORY BOXES - COMIC PANELS ===
-.category-list {
-  .category-list-item {
-    background: $wit;
-    border: 3px solid $zwart;
-    border-radius: 12px;
-    margin-bottom: 20px;
-    padding: 20px;
-    box-shadow: 5px 5px 0px $zwart;
-    transition: all 0.3s ease;
-    position: relative;
-    
-    &:hover {
-      transform: translate(-3px, -3px);
-      box-shadow: 8px 8px 0px $zwart;
-    }
-    
-    &::before {
-      content: '💥';
-      position: absolute;
-      top: -15px;
-      right: 20px;
-      font-size: 30px;
-      opacity: 0;
-      transition: all 0.3s ease;
-    }
-    
-    &:hover::before {
-      opacity: 1;
-      top: -20px;
-    }
-  }
-  
-  .category-logo {
-    border: 3px solid $zwart !important;
-    box-shadow: 2px 2px 0px $zwart;
-  }
-  
-  .category-name {
-    font-weight: 800 !important;
-    font-size: 20px !important;
-    color: $zwart !important;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-  
-  .category-description {
-    color: #555 !important;
-    font-weight: 500;
-    line-height: 1.6;
-  }
-}
-
-// === TOPIC LIST - COMIC CARDS ===
-.topic-list {
-  background: transparent;
-  
-  tbody {
-    border: none;
-  }
-  
-  .topic-list-item {
-    background: $wit;
-    border: 3px solid $zwart !important;
-    border-radius: 10px;
-    margin-bottom: 15px;
-    padding: 20px !important;
-    box-shadow: 4px 4px 0px $zwart;
-    transition: all 0.2s ease;
-    display: block !important;
-    
-    &:hover {
-      transform: translate(-2px, -2px);
-      box-shadow: 6px 6px 0px $zwart;
-      background: lighten($cyaan, 45%);
-    }
-    
-    // Remove default table styling
-    td {
-      border: none !important;
-      padding: 5px 10px !important;
-    }
-  }
-  
-  .main-link {
-    .link-top-line {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      
-      a.title {
-        color: $zwart !important;
-        font-weight: 800 !important;
-        font-size: 18px !important;
-        text-decoration: none;
-        transition: color 0.2s ease;
-        
-        &:hover {
-          color: $cyaan !important;
-        }
-        
-        &:visited {
-          color: #555 !important;
-        }
-      }
-      
-      // Badges
-      .badge-wrapper {
-        background: $roze !important;
-        color: $wit !important;
-        border-radius: 15px;
-        padding: 4px 10px;
-        font-size: 12px;
-        font-weight: 700;
-        text-transform: uppercase;
-        box-shadow: 2px 2px 0px $zwart;
-      }
-    }
-  }
-  
-  // Post count, views etc
-  .num {
-    font-weight: 700 !important;
-    color: $roze !important;
-    font-size: 16px;
-  }
-  
-  .posts-map, .num.posts, .num.views {
-    background: lighten($geel, 20%);
-    border-radius: 20px;
-    padding: 8px 15px;
-    border: 2px solid $zwart;
-    font-weight: 800 !important;
-  }
-}
-
-// === BUTTONS - COMIC STYLE ===
+// === BUTTONS ===
 .btn {
   border-radius: 25px !important;
   font-weight: 800 !important;
@@ -339,721 +374,81 @@ body {
     &:hover {
       background: $cyaan !important;
       color: $wit !important;
+    }
+  }
+}
+
+// === TOPIC LIST ===
+.topic-list {
+  .topic-list-item {
+    background: $wit;
+    border: 3px solid $zwart !important;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding: 20px !important;
+    box-shadow: 4px 4px 0px $zwart;
+    transition: all 0.2s ease;
+    
+    &:hover {
       transform: translate(-2px, -2px);
-      box-shadow: 5px 5px 0px $zwart !important;
+      box-shadow: 6px 6px 0px $zwart;
+      background: lighten($cyaan, 45%);
+    }
+    
+    td {
+      border: none !important;
     }
   }
   
-  &.create {
-    background: $geel !important;
+  a.title {
     color: $zwart !important;
-    font-size: 16px !important;
-    padding: 12px 30px !important;
+    font-weight: 800 !important;
+    font-size: 18px !important;
     
     &:hover {
-      background: $oranje !important;
-      transform: translate(-2px, -2px) scale(1.05);
+      color: $cyaan !important;
     }
   }
-}
-
-// === BADGES - COMIC STYLE ===
-.badge-notification {
-  background: $roze !important;
-  color: $wit !important;
-  border: 2px solid $zwart !important;
-  box-shadow: 2px 2px 0px $zwart;
-  font-weight: 800;
-}
-
-.badge-wrapper.box {
-  background: $cyaan !important;
-  color: $wit !important;
-  border: 2px solid $zwart !important;
-  box-shadow: 2px 2px 0px $zwart;
 }
 
 // === LINKS ===
 a {
   color: $cyaan;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.2s ease;
   
   &:hover {
     color: $roze;
-    text-decoration: underline;
   }
 }
 
-// === POST CONTENT - COMIC PANELS ===
-.topic-post {
-  background: $wit;
-  border: 3px solid $zwart;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  box-shadow: 5px 5px 0px $zwart;
-  overflow: hidden;
-  
-  article {
-    padding: 20px;
-    
-    .cooked {
-      color: #333;
-      line-height: 1.8;
-      font-size: 16px;
-      
-      h1, h2, h3 {
-        font-family: 'Bangers', cursive;
-        color: $zwart;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-      
-      blockquote {
-        border-left: 5px solid $cyaan;
-        background: lighten($cyaan, 45%);
-        padding: 15px 20px;
-        margin: 20px 0;
-        border-radius: 8px;
-        font-style: italic;
-      }
-      
-      code {
-        background: lighten($geel, 25%);
-        border: 2px solid $zwart;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-weight: 600;
-      }
-      
-      pre {
-        background: #2d2d2d;
-        border: 3px solid $zwart;
-        border-radius: 8px;
-        padding: 15px;
-        box-shadow: 3px 3px 0px $zwart;
-        
-        code {
-          background: transparent;
-          border: none;
-          color: #f8f8f2;
-        }
-      }
-    }
-  }
-  
-  .topic-avatar {
-    border: 3px solid $zwart;
-    border-radius: 50%;
-    box-shadow: 3px 3px 0px $zwart;
-  }
-  
-  .names {
-    font-weight: 800;
-    
-    .username {
-      color: $zwart !important;
-      font-size: 16px;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-  }
-}
-
-// === FOOTER - COMIC STYLE ===
-.stripinfo-footer {
-  background: repeating-linear-gradient(
-    45deg,
-    $geel,
-    $geel 10px,
-    $oranje 10px,
-    $oranje 20px
-  );
-  padding: 60px 20px 40px;
-  margin-top: 60px;
-  border-top: 5px solid $zwart;
-  position: relative;
-  
-  &::before {
-    content: '💬';
-    position: absolute;
-    top: -30px;
-    left: 50%;
-    transform: translateX(-50%);
-    font-size: 60px;
-    filter: drop-shadow(3px 3px 0px $zwart);
-  }
-  
-  .footer-content {
-    max-width: 1200px;
-    margin: 0 auto;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-    gap: 40px;
-    margin-bottom: 40px;
-  }
-  
-  .footer-section {
-    background: rgba(255,255,255,0.9);
-    padding: 20px;
-    border: 3px solid $zwart;
-    border-radius: 12px;
-    box-shadow: 4px 4px 0px $zwart;
-    
-    h3 {
-      color: $zwart;
-      font-family: 'Bangers', cursive;
-      font-size: 22px;
-      margin-bottom: 20px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      border-bottom: 3px solid $zwart;
-      padding-bottom: 10px;
-    }
-    
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      
-      li {
-        margin-bottom: 12px;
-        
-        a {
-          color: $zwart;
-          text-decoration: none;
-          font-weight: 600;
-          font-size: 15px;
-          transition: all 0.2s ease;
-          display: inline-block;
-          
-          &::before {
-            content: '▶';
-            color: $cyaan;
-            margin-right: 8px;
-            transition: margin 0.2s ease;
-          }
-          
-          &:hover {
-            color: $roze;
-            transform: translateX(5px);
-            
-            &::before {
-              margin-right: 12px;
-            }
-          }
-        }
-      }
-    }
-  }
-  
-  .footer-tagline {
-    text-align: center;
-    padding: 30px 20px;
-    background: rgba(255,255,255,0.95);
-    border: 4px solid $zwart;
-    border-radius: 15px;
-    box-shadow: 5px 5px 0px $zwart;
-    max-width: 800px;
-    margin: 0 auto;
-    
-    h2 {
-      color: $zwart;
-      font-family: 'Bangers', cursive;
-      font-size: 32px;
-      margin-bottom: 12px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 2px 2px 0px $cyaan;
-    }
-    
-    p {
-      color: $roze;
-      font-size: 18px;
-      font-weight: 700;
-      margin: 0;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-  }
-}
-
-// === COPYRIGHT BAR ===
-.stripinfo-copyright {
-  background: $zwart;
-  color: $wit;
-  text-align: center;
-  padding: 25px;
-  font-size: 15px;
-  font-weight: 700;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  border-top: 4px solid $wit;
-  
-  a {
-    color: $cyaan;
-    text-decoration: none;
-    font-weight: 800;
-    
-    &:hover {
-      color: $geel;
-      text-decoration: none;
-    }
-  }
-}
-
-// === SEARCH BOX - COMIC STYLE ===
-.search-menu {
-  border: 3px solid $zwart !important;
-  box-shadow: 5px 5px 0px $zwart !important;
-  border-radius: 12px !important;
-}
-
-#search-term {
-  border: 3px solid $zwart !important;
-  border-radius: 25px !important;
-  font-weight: 600 !important;
-  padding: 12px 20px !important;
-  
-  &:focus {
-    border-color: $cyaan !important;
-    box-shadow: 0 0 0 3px rgba($cyaan, 0.3) !important;
-  }
-}
-
-// === USER MENU - COMIC STYLE ===
-.user-menu {
-  border: 3px solid $zwart !important;
-  box-shadow: 5px 5px 0px $zwart !important;
-  border-radius: 12px !important;
-  
-  .menu-links-header {
-    background: $cyaan !important;
-    color: $zwart !important;
-    font-weight: 800 !important;
-  }
-}
-
-// === RESPONSIVE ===
-@media (max-width: 768px) {
-  .stripinfo-top-banner {
-    .banner-title {
-      font-size: 28px;
-    }
-    
-    .banner-subtitle {
-      font-size: 14px;
-    }
-  }
-  
-  .stripinfo-secondary-nav {
-    flex-direction: column;
-    
-    a {
-      padding: 12px 15px;
-      width: 100%;
-    }
-    
-    .separator {
-      display: none;
-    }
-  }
-  
-  .stripinfo-footer {
-    .footer-content {
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-  }
-  
-  .topic-list .topic-list-item {
-    box-shadow: 3px 3px 0px $zwart;
-    
-    &:hover {
-      box-shadow: 4px 4px 0px $zwart;
-    }
-  }
-}
-
-// === POW! EFFECT ===
-@keyframes pow {
-  0%, 100% { transform: scale(1); }
-  50% { transform: scale(1.05); }
-}
-
-.create:hover {
-  animation: pow 0.5s ease;
-}
-// === CUSTOM HOMEPAGE LAYOUT ===
-body.categories-list {
-  
-  // Hero Section - Featured Area
-  .stripinfo-hero {
-    background: repeating-linear-gradient(
-      45deg,
-      $geel,
-      $geel 15px,
-      $oranje 15px,
-      $oranje 30px
-    );
-    padding: 80px 40px;
-    text-align: center;
-    position: relative;
-    margin: -20px -20px 40px -20px;
-    border-bottom: 5px solid $zwart;
-    
-    &::before {
-      content: '📚';
-      font-size: 80px;
-      display: block;
-      margin-bottom: 20px;
-      filter: drop-shadow(5px 5px 0px $zwart);
-      animation: float 3s ease-in-out infinite;
-    }
-    
-    h1 {
-      font-family: 'Bangers', cursive;
-      font-size: 56px;
-      color: $zwart;
-      margin: 0 0 20px 0;
-      text-transform: uppercase;
-      letter-spacing: 3px;
-      text-shadow: 4px 4px 0px $wit, 5px 5px 0px $zwart;
-    }
-    
-    p {
-      font-size: 24px;
-      color: $roze;
-      font-weight: 800;
-      margin: 0 0 30px 0;
-      text-transform: uppercase;
-      text-shadow: 2px 2px 0px $wit;
-    }
-    
-    .hero-buttons {
-      display: flex;
-      gap: 20px;
-      justify-content: center;
-      flex-wrap: wrap;
-      
-      .btn {
-        font-size: 18px !important;
-        padding: 15px 40px !important;
-      }
-    }
-  }
-  
-  // Featured Categories Grid
-  .stripinfo-featured-categories {
-    margin: 50px 0;
-    
-    h2 {
-      font-family: 'Bangers', cursive;
-      font-size: 42px;
-      text-align: center;
-      color: $zwart;
-      margin-bottom: 40px;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      
-      &::before {
-        content: '⭐ ';
-      }
-      
-      &::after {
-        content: ' ⭐';
-      }
-    }
-    
-    .category-boxes {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 30px;
-      margin-bottom: 50px;
-    }
-    
-    .category-box {
-      background: $wit;
-      border: 4px solid $zwart;
-      border-radius: 15px;
-      padding: 30px;
-      text-align: center;
-      box-shadow: 6px 6px 0px $zwart;
-      transition: all 0.3s ease;
-      cursor: pointer;
-      position: relative;
-      overflow: hidden;
-      
-      &::before {
-        content: '';
-        position: absolute;
-        top: -50%;
-        left: -50%;
-        width: 200%;
-        height: 200%;
-        background: radial-gradient(circle, rgba($cyaan, 0.1) 0%, transparent 70%);
-        opacity: 0;
-        transition: opacity 0.3s ease;
-      }
-      
-      &:hover {
-        transform: translate(-4px, -4px);
-        box-shadow: 10px 10px 0px $zwart;
-        
-        &::before {
-          opacity: 1;
-        }
-        
-        .category-icon {
-          transform: scale(1.2) rotate(5deg);
-        }
-      }
-      
-      .category-icon {
-        font-size: 60px;
-        margin-bottom: 20px;
-        display: block;
-        transition: transform 0.3s ease;
-      }
-      
-      h3 {
-        font-family: 'Bangers', cursive;
-        font-size: 28px;
-        color: $zwart;
-        margin: 0 0 15px 0;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-      
-      p {
-        color: #666;
-        font-size: 15px;
-        line-height: 1.6;
-        margin: 0 0 20px 0;
-        font-weight: 500;
-      }
-      
-      .topic-count {
-        display: inline-block;
-        background: $cyaan;
-        color: $wit;
-        padding: 8px 20px;
-        border-radius: 20px;
-        font-weight: 800;
-        font-size: 14px;
-        border: 2px solid $zwart;
-        box-shadow: 2px 2px 0px $zwart;
-      }
-    }
-  }
-  
-  // Two Column Layout
-  .stripinfo-two-column {
-    display: grid;
-    grid-template-columns: 2fr 1fr;
-    gap: 40px;
-    margin: 50px 0;
-    
-    @media (max-width: 968px) {
-      grid-template-columns: 1fr;
-    }
-  }
-  
-  // Latest Topics Section
-  .stripinfo-latest {
-    h2 {
-      font-family: 'Bangers', cursive;
-      font-size: 36px;
-      color: $zwart;
-      margin-bottom: 30px;
-      text-transform: uppercase;
-      border-bottom: 4px solid $cyaan;
-      padding-bottom: 15px;
-      
-      &::before {
-        content: '🔥 ';
-      }
-    }
-    
-    .latest-topic {
-      background: $wit;
-      border: 3px solid $zwart;
-      border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 20px;
-      box-shadow: 4px 4px 0px $zwart;
-      transition: all 0.2s ease;
-      
-      &:hover {
-        transform: translate(-2px, -2px);
-        box-shadow: 6px 6px 0px $zwart;
-        background: lighten($cyaan, 45%);
-      }
-      
-      .topic-title {
-        font-size: 20px;
-        font-weight: 800;
-        color: $zwart;
-        margin-bottom: 10px;
-        
-        a {
-          color: $zwart;
-          text-decoration: none;
-          
-          &:hover {
-            color: $cyaan;
-          }
-        }
-      }
-      
-      .topic-meta {
-        display: flex;
-        gap: 15px;
-        font-size: 13px;
-        color: #666;
-        font-weight: 600;
-        
-        span {
-          display: flex;
-          align-items: center;
-          gap: 5px;
-        }
-      }
-    }
-  }
-  
-  // Sidebar Widgets
-  .stripinfo-sidebar {
-    .widget {
-      background: $wit;
-      border: 3px solid $zwart;
-      border-radius: 12px;
-      padding: 25px;
-      margin-bottom: 25px;
-      box-shadow: 4px 4px 0px $zwart;
-      
-      h3 {
-        font-family: 'Bangers', cursive;
-        font-size: 24px;
-        color: $zwart;
-        margin: 0 0 20px 0;
-        text-transform: uppercase;
-        border-bottom: 3px solid $zwart;
-        padding-bottom: 10px;
-      }
-      
-      ul {
-        list-style: none;
-        padding: 0;
-        margin: 0;
-        
-        li {
-          padding: 12px 0;
-          border-bottom: 1px solid #eee;
-          
-          &:last-child {
-            border-bottom: none;
-          }
-          
-          a {
-            color: $zwart;
-            font-weight: 600;
-            text-decoration: none;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            
-            &:hover {
-              color: $cyaan;
-            }
-            
-            .count {
-              background: $roze;
-              color: $wit;
-              padding: 4px 10px;
-              border-radius: 12px;
-              font-size: 12px;
-              font-weight: 800;
-            }
-          }
-        }
-      }
-      
-      &.stats-widget {
-        background: linear-gradient(135deg, $cyaan 0%, lighten($cyaan, 20%) 100%);
-        color: $wit;
-        
-        h3 {
-          color: $wit;
-          border-bottom-color: $wit;
-        }
-        
-        .stat-item {
-          display: flex;
-          justify-content: space-between;
-          padding: 15px 0;
-          border-bottom: 1px solid rgba(255,255,255,0.2);
-          
-          &:last-child {
-            border-bottom: none;
-          }
-          
-          .stat-label {
-            font-weight: 600;
-          }
-          
-          .stat-value {
-            font-family: 'Bangers', cursive;
-            font-size: 24px;
-            text-shadow: 2px 2px 0px rgba(0,0,0,0.2);
-          }
-        }
-      }
-    }
-  }
-  
-  // Quick Links Widget
-  .stripinfo-quick-links {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 15px;
-    margin: 40px 0;
-    
-    a {
-      background: $geel;
-      border: 3px solid $zwart;
-      border-radius: 10px;
-      padding: 20px;
-      text-align: center;
-      text-decoration: none;
-      color: $zwart;
-      font-weight: 800;
-      font-size: 16px;
-      box-shadow: 3px 3px 0px $zwart;
-      transition: all 0.2s ease;
-      
-      &:hover {
-        transform: translate(-2px, -2px);
-        box-shadow: 5px 5px 0px $zwart;
-        background: $oranje;
-      }
-      
-      .icon {
-        display: block;
-        font-size: 32px;
-        margin-bottom: 10px;
-      }
-    }
-  }
-}
-
-// Float animation
+// === ANIMATIONS ===
 @keyframes float {
   0%, 100% {
     transform: translateY(0px);
   }
   50% {
     transform: translateY(-20px);
+  }
+}
+
+// === RESPONSIVE ===
+@media (max-width: 768px) {
+  .stripinfo-top-banner .banner-title {
+    font-size: 28px;
+  }
+  
+  .stripinfo-hero h1 {
+    font-size: 36px;
+  }
+  
+  .stripinfo-secondary-nav {
+    flex-direction: column;
+    
+    a {
+      width: 100%;
+    }
+    
+    .separator {
+      display: none;
+    }
   }
 }
