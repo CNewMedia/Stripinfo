@@ -1,0 +1,21 @@
+{
+  "name": "Stripinfo Community Theme",
+  "about_url": "https://github.com/[jouw-username]/stripinfo-discourse-theme",
+  "license_url": "https://github.com/[jouw-username]/stripinfo-discourse-theme/blob/main/LICENSE",
+  "assets": {
+  },
+  "color_schemes": {
+    "Stripinfo": {
+      "primary": "#1EC1CE",
+      "secondary": "#FFFFFF",
+      "tertiary": "#FFC107",
+      "quaternary": "#E91E63",
+      "header_background": "#1EC1CE",
+      "header_primary": "#000000",
+      "highlight": "#FFC107",
+      "danger": "#E91E63",
+      "success": "#1EC1CE",
+      "love": "#E91E63"
+    }
+  }
+}
