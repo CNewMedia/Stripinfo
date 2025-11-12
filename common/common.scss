@@ -6,8 +6,8 @@ $roze: #E91E63;
 $zwart: #000000;
 $wit: #FFFFFF;
 
-// Gestreept patroon mixin
-@mixin diagonal-stripes {
+// === TOP BANNER ===
+.stripinfo-top-banner {
   background: repeating-linear-gradient(
     45deg,
     $geel,
@@ -15,84 +15,41 @@ $wit: #FFFFFF;
     $oranje 10px,
     $oranje 20px
   );
-}
-
-// Body en basis
-body {
-  background: $wit;
-}
-
-// Top Banner
-.stripinfo-top-banner {
-  @include diagonal-stripes;
-  padding: 20px;
+  padding: 25px 20px;
   text-align: center;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
   
   .banner-title {
     color: $zwart;
-    font-size: 24px;
-    font-weight: bold;
-    margin: 0;
-    letter-spacing: 1px;
+    font-size: 28px;
+    font-weight: 800;
+    margin: 0 0 10px 0;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
   }
   
   .banner-subtitle {
     color: $roze;
     font-size: 16px;
-    margin: 8px 0 0 0;
-    font-weight: 500;
-  }
-  
-  .welcome-user {
-    color: $zwart;
-    font-size: 14px;
-    margin-top: 10px;
+    margin: 0;
+    font-weight: 600;
   }
 }
 
-// Header styling
-.d-header {
-  background: $cyaan !important;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
-  
-  .d-header-icons .icon {
-    color: $zwart;
-    
-    &:hover {
-      color: $roze;
-    }
-  }
-  
-  .title {
-    img {
-      max-height: 50px;
-    }
-  }
-}
-
-// Navigatie links in header
-.d-header .nav-link {
-  color: $zwart !important;
-  font-weight: 500;
-  
-  &:hover {
-    color: $roze !important;
-  }
-}
-
-// Secondary navigatie
+// === SECONDARY NAVIGATION ===
 .stripinfo-secondary-nav {
   background: $zwart;
-  padding: 12px 0;
+  padding: 15px 0;
   text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
   
   a {
     color: $wit;
-    margin: 0 15px;
+    margin: 0 12px;
     text-decoration: none;
-    font-weight: 500;
-    transition: color 0.3s ease;
+    font-weight: 600;
+    font-size: 14px;
+    transition: color 0.2s ease;
     
     &:hover {
       color: $cyaan;
@@ -100,76 +57,168 @@ body {
   }
   
   .separator {
-    color: $wit;
+    color: rgba(255,255,255,0.3);
     margin: 0 5px;
   }
 }
 
-// Buttons
-.btn, button {
-  background: $zwart !important;
-  color: $wit !important;
-  border-radius: 20px !important;
-  font-weight: bold !important;
-  border: none !important;
-  padding: 10px 24px !important;
-  transition: all 0.3s ease !important;
+// === DISCOURSE HEADER ===
+.d-header {
+  background: $cyaan !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
   
-  &:hover {
-    background: #333 !important;
-    transform: translateY(-1px);
+  .title a {
+    color: $zwart !important;
   }
+  
+  .d-icon {
+    color: $zwart !important;
+  }
+  
+  .icon {
+    color: $zwart !important;
+    
+    &:hover {
+      color: $wit !important;
+    }
+  }
+  
+  // Login button
+  .login-button {
+    background: $zwart !important;
+    color: $wit !important;
+    border-radius: 20px !important;
+    padding: 8px 20px !important;
+    
+    &:hover {
+      background: #333 !important;
+    }
+  }
+  
+  // Signup button
+  .sign-up-button {
+    background: $zwart !important;
+    color: $wit !important;
+    border-radius: 20px !important;
+    
+    &:hover {
+      background: #333 !important;
+    }
+  }
+}
+
+// === MAIN CONTENT AREA ===
+#main-outlet {
+  background: $wit;
+  padding-top: 20px;
+}
+
+// === BUTTONS ===
+.btn {
+  border-radius: 20px !important;
+  font-weight: 600 !important;
+  transition: all 0.2s ease !important;
   
   &.btn-primary {
     background: $zwart !important;
+    color: $wit !important;
+    border: none !important;
+    
+    &:hover {
+      background: #333 !important;
+      transform: translateY(-1px);
+    }
   }
-}
-
-// Outline buttons
-.btn-outline {
-  background: transparent !important;
-  border: 2px solid $wit !important;
-  color: $wit !important;
   
-  &:hover {
-    background: $wit !important;
+  &.btn-default {
+    background: transparent !important;
+    border: 2px solid $zwart !important;
     color: $zwart !important;
+    
+    &:hover {
+      background: $zwart !important;
+      color: $wit !important;
+    }
   }
 }
 
-// Topic lijst styling
+// === TOPIC LIJST ===
 .topic-list {
-  .topic-list-item {
-    border-bottom: 1px solid #eee;
+  tr {
+    border-bottom: 1px solid #e9ecef;
     
     &:hover {
       background: rgba($cyaan, 0.05);
     }
   }
   
-  .link-top-line {
-    a.title {
-      color: $zwart;
-      
-      &:hover {
-        color: $cyaan;
-      }
+  .topic-list-item-separator {
+    border-top: 2px solid $cyaan;
+  }
+  
+  a.title {
+    color: $zwart;
+    font-weight: 600;
+    
+    &:visited {
+      color: #666;
+    }
+    
+    &:hover {
+      color: $cyaan;
     }
   }
 }
 
-// Footer
+// === CATEGORIES ===
+.category-list {
+  .category {
+    border-left: 4px solid $cyaan;
+    
+    &:hover {
+      background: rgba($cyaan, 0.05);
+    }
+  }
+}
+
+// === BADGES ===
+.badge-notification {
+  background: $roze !important;
+  color: $wit !important;
+}
+
+.badge-wrapper.box {
+  background: $cyaan !important;
+  color: $wit !important;
+}
+
+// === LINKS ===
+a {
+  color: $cyaan;
+  
+  &:hover {
+    color: $roze;
+  }
+}
+
+// === FOOTER ===
 .stripinfo-footer {
-  @include diagonal-stripes;
-  padding: 40px 20px 20px;
-  margin-top: 40px;
+  background: repeating-linear-gradient(
+    45deg,
+    $geel,
+    $geel 10px,
+    $oranje 10px,
+    $oranje 20px
+  );
+  padding: 50px 20px 30px;
+  margin-top: 60px;
   
   .footer-content {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 30px;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 40px;
     margin-bottom: 30px;
   }
   
@@ -177,8 +226,10 @@ body {
     h3 {
       color: $zwart;
       font-size: 18px;
-      font-weight: bold;
+      font-weight: 800;
       margin-bottom: 15px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
     }
     
     ul {
@@ -187,12 +238,14 @@ body {
       margin: 0;
       
       li {
-        margin-bottom: 8px;
+        margin-bottom: 10px;
         
         a {
           color: $zwart;
           text-decoration: none;
-          transition: color 0.3s ease;
+          font-weight: 500;
+          font-size: 14px;
+          transition: color 0.2s ease;
           
           &:hover {
             color: $roze;
@@ -204,55 +257,95 @@ body {
   
   .footer-tagline {
     text-align: center;
-    padding-top: 20px;
-    border-top: 2px solid $oranje;
+    padding-top: 30px;
+    border-top: 3px solid $oranje;
     
     h2 {
       color: $zwart;
-      font-size: 20px;
+      font-size: 22px;
+      font-weight: 800;
       margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
     }
     
     p {
       color: $roze;
-      font-size: 14px;
+      font-size: 15px;
+      font-weight: 600;
       margin: 0;
     }
   }
 }
 
-// Copyright bar
+// === COPYRIGHT BAR ===
 .stripinfo-copyright {
   background: $zwart;
   color: $wit;
   text-align: center;
-  padding: 15px;
+  padding: 20px;
   font-size: 14px;
+  font-weight: 500;
   
   a {
     color: $cyaan;
     text-decoration: none;
+    font-weight: 600;
     
     &:hover {
+      color: $wit;
       text-decoration: underline;
     }
   }
 }
 
-// Links algemeen
-a {
-  color: $cyaan;
-  
-  &:hover {
-    color: $roze;
+// === POST STYLING ===
+.topic-post {
+  article {
+    background: $wit;
+    
+    .cooked {
+      color: #333;
+      line-height: 1.6;
+    }
   }
 }
 
-// Badges en labels
-.badge-notification {
-  background: $roze;
+// === COMPOSER (nieuwe post maken) ===
+.d-editor-button-bar {
+  .btn {
+    border-radius: 4px !important;
+  }
 }
 
-.badge-wrapper.box {
-  background: $cyaan;
+// === RESPONSIVE ===
+@media (max-width: 768px) {
+  .stripinfo-top-banner {
+    .banner-title {
+      font-size: 20px;
+    }
+    
+    .banner-subtitle {
+      font-size: 14px;
+    }
+  }
+  
+  .stripinfo-secondary-nav {
+    a {
+      display: inline-block;
+      margin: 5px 8px;
+      font-size: 13px;
+    }
+    
+    .separator {
+      display: none;
+    }
+  }
+  
+  .stripinfo-footer {
+    .footer-content {
+      grid-template-columns: 1fr;
+      gap: 30px;
+    }
+  }
 }
