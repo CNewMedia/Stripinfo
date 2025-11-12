@@ -9,6 +9,12 @@ $wit: #FFFFFF;
 // Comic font
 @import url('https://fonts.googleapis.com/css2?family=Bangers&family=Outfit:wght@400;600;800&display=swap');
 
+// === RESET DISCOURSE DEFAULTS ===
+// Verwijder rare borders en styling
+.btn, button, a {
+  box-shadow: none !important;
+}
+
 // === GLOBAL ===
 body {
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
@@ -84,7 +90,7 @@ body {
   }
 }
 
-// === DISCOURSE HEADER - FIX ICON SPACING ===
+// === DISCOURSE HEADER - CLEAN ICONS ===
 .d-header {
   background: $cyaan !important;
   box-shadow: 0 2px 8px rgba(0,0,0,0.15) !important;
@@ -95,19 +101,50 @@ body {
     font-weight: 700 !important;
   }
   
-  // FIX: Betere spacing voor header icons
+  // FIX: Clean header icons - geen rare borders!
   .d-header-icons {
     .icon {
       color: $zwart !important;
-      padding: 8px 12px !important; // Meer ruimte tussen icons
-      margin: 0 3px !important;
+      background: none !important;
+      border: none !important;
+      border-radius: 8px !important;
+      padding: 8px !important;
+      margin: 0 4px !important;
       transition: all 0.2s ease;
+      box-shadow: none !important;
       
       &:hover {
+        background: rgba(0,0,0,0.1) !important;
         color: $wit !important;
-        background: rgba(0,0,0,0.1);
-        border-radius: 8px;
       }
+      
+      .d-icon {
+        color: inherit !important;
+      }
+    }
+  }
+  
+  // FIX: Hamburger menu
+  .hamburger-panel {
+    background: none !important;
+    border: none !important;
+    
+    .d-icon {
+      color: $zwart !important;
+    }
+    
+    &:hover {
+      background: rgba(0,0,0,0.1) !important;
+    }
+  }
+  
+  // FIX: Search button - verwijder tekst
+  #search-button {
+    background: none !important;
+    border: none !important;
+    
+    .d-button-label {
+      display: none !important; // Verberg "Zoeken" tekst
     }
   }
   
@@ -118,12 +155,89 @@ body {
     padding: 8px 20px !important;
     font-weight: 700 !important;
     margin-left: 8px !important;
+    border: 2px solid $zwart !important;
     
     &:hover {
       background: $roze !important;
+      border-color: $roze !important;
       transform: translateY(-1px);
     }
   }
+}
+
+// === SIDEBAR - CLEAN STYLING ===
+.sidebar-wrapper {
+  background: $wit;
+  border-radius: 12px;
+  border: 2px solid #e0e0e0;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+  
+  .sidebar-section-wrapper {
+    border: none !important;
+  }
+  
+  .sidebar-section-header {
+    font-weight: 700;
+    text-transform: uppercase;
+    font-size: 11px;
+    letter-spacing: 0.5px;
+    color: #666;
+    padding: 12px 16px 8px;
+    background: none !important;
+    border: none !important;
+    
+    .sidebar-section-header-button {
+      background: none !important;
+      border: none !important;
+    }
+  }
+  
+  .sidebar-section-link {
+    padding: 10px 16px;
+    transition: all 0.2s ease;
+    border-radius: 8px;
+    margin: 2px 8px;
+    background: none !important;
+    border: none !important;
+    
+    &:hover {
+      background: lighten($cyaan, 45%) !important;
+      color: $cyaan !important;
+    }
+    
+    &.active {
+      background: $cyaan !important;
+      color: $wit !important;
+      font-weight: 700;
+    }
+  }
+  
+  // FIX: Verwijder tooltip bij hover
+  .sidebar-section-link-wrapper {
+    position: relative;
+    
+    // Verberg tooltips
+    [data-tooltip], [title] {
+      &::after, &::before {
+        display: none !important;
+      }
+    }
+  }
+}
+
+// === VERWIJDER "AAN DE SLAG" GUIDE ===
+// Deze default Discourse onboarding guide verbergen
+.user-tips-topic-summary,
+.user-tips,
+.topic-list-item.suggested-topics,
+body.archetype-regular .topic-body .user-tip {
+  display: none !important;
+}
+
+// Verberg de "Aan de slag" admin guide
+.user-nav .user-nav-pills .user-nav-dropdown,
+.admin-getting-started {
+  display: none !important;
 }
 
 // === MAIN CONTENT ===
@@ -134,42 +248,7 @@ body {
   margin: 0 auto;
 }
 
-// === SIDEBAR IMPROVEMENTS ===
-.sidebar-wrapper {
-  background: $wit;
-  border-radius: 12px;
-  border: 2px solid #e0e0e0;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
-  
-  .sidebar-section-header {
-    font-weight: 700;
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 0.5px;
-    color: #666;
-    padding: 12px 16px 8px;
-  }
-  
-  .sidebar-section-link {
-    padding: 10px 16px;
-    transition: all 0.2s ease;
-    border-radius: 8px;
-    margin: 2px 8px;
-    
-    &:hover {
-      background: lighten($cyaan, 45%);
-      color: $cyaan !important;
-    }
-    
-    &.active {
-      background: $cyaan;
-      color: $wit !important;
-      font-weight: 700;
-    }
-  }
-}
-
-// === CATEGORY LIST - CLEAN LAYOUT ===
+// === CATEGORY LIST ===
 .category-list {
   tbody {
     border: none;
@@ -202,30 +281,9 @@ body {
     line-height: 1.6;
     margin-top: 8px;
   }
-  
-  .subcategories {
-    margin-top: 15px;
-    padding-top: 15px;
-    border-top: 1px solid #e0e0e0;
-    
-    .subcategory {
-      display: inline-block;
-      background: lighten($cyaan, 45%);
-      padding: 6px 12px;
-      border-radius: 16px;
-      margin: 4px;
-      font-size: 13px;
-      font-weight: 600;
-      color: darken($cyaan, 10%);
-      
-      &:hover {
-        background: lighten($cyaan, 35%);
-      }
-    }
-  }
 }
 
-// === TOPIC LIST - CLEAN CARDS ===
+// === TOPIC LIST ===
 .topic-list {
   background: transparent;
   
@@ -279,40 +337,36 @@ body {
     padding: 4px 10px;
     font-size: 11px;
     font-weight: 700;
-    text-transform: uppercase;
-  }
-  
-  .num {
-    font-weight: 700;
-    color: #666;
   }
 }
 
-// === BUTTONS - MODERN STYLE ===
+// === BUTTONS ===
 .btn {
   border-radius: 20px !important;
   font-weight: 700 !important;
   text-transform: uppercase;
   letter-spacing: 0.3px;
   transition: all 0.2s ease !important;
-  border: 2px solid $zwart !important;
   padding: 10px 22px !important;
+  background: none !important;
+  box-shadow: none !important;
   
   &.btn-primary {
     background: $zwart !important;
     color: $wit !important;
-    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    border: 2px solid $zwart !important;
     
     &:hover {
       background: $roze !important;
+      border-color: $roze !important;
       transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.25);
     }
   }
   
   &.btn-default {
     background: $wit !important;
     color: $zwart !important;
+    border: 2px solid $zwart !important;
     
     &:hover {
       background: $cyaan !important;
@@ -338,13 +392,6 @@ body {
       line-height: 1.7;
       font-size: 15px;
       
-      h1, h2, h3 {
-        color: $zwart;
-        font-weight: 700;
-        margin-top: 24px;
-        margin-bottom: 12px;
-      }
-      
       a {
         color: $cyaan;
         font-weight: 600;
@@ -353,42 +400,8 @@ body {
           color: $roze;
         }
       }
-      
-      blockquote {
-        border-left: 4px solid $cyaan;
-        background: lighten($cyaan, 47%);
-        padding: 16px 20px;
-        margin: 20px 0;
-        border-radius: 6px;
-      }
-      
-      code {
-        background: #f5f5f5;
-        border: 1px solid #ddd;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-size: 14px;
-      }
     }
   }
-  
-  .topic-avatar {
-    border: 2px solid #e0e0e0;
-    border-radius: 50%;
-  }
-}
-
-// === BADGES ===
-.badge-notification {
-  background: $roze !important;
-  color: $wit !important;
-  font-weight: 700;
-  border-radius: 12px;
-}
-
-.badge-wrapper.box {
-  background: $cyaan !important;
-  color: $wit !important;
 }
 
 // === SEARCH ===
@@ -396,6 +409,7 @@ body {
   border: 2px solid #e0e0e0 !important;
   border-radius: 20px !important;
   padding: 10px 18px !important;
+  box-shadow: none !important;
   
   &:focus {
     border-color: $cyaan !important;
@@ -438,7 +452,6 @@ body {
       font-size: 20px;
       margin-bottom: 16px;
       text-transform: uppercase;
-      letter-spacing: 0.5px;
       border-bottom: 2px solid $zwart;
       padding-bottom: 10px;
     }
@@ -456,7 +469,6 @@ body {
           text-decoration: none;
           font-weight: 600;
           font-size: 14px;
-          transition: color 0.2s ease;
           
           &:hover {
             color: $roze;
@@ -482,7 +494,6 @@ body {
       font-size: 28px;
       margin-bottom: 10px;
       text-transform: uppercase;
-      letter-spacing: 1px;
     }
     
     p {
@@ -494,7 +505,7 @@ body {
   }
 }
 
-// === COPYRIGHT BAR ===
+// === COPYRIGHT ===
 .stripinfo-copyright {
   background: $zwart;
   color: $wit;
@@ -502,15 +513,6 @@ body {
   padding: 20px;
   font-size: 14px;
   font-weight: 600;
-  
-  a {
-    color: $cyaan;
-    text-decoration: none;
-    
-    &:hover {
-      color: $wit;
-    }
-  }
 }
 
 // === RESPONSIVE ===
@@ -521,7 +523,6 @@ body {
   
   .stripinfo-secondary-nav {
     flex-direction: column;
-    padding: 8px 0;
     
     a {
       width: 100%;
@@ -531,9 +532,5 @@ body {
     .separator {
       display: none;
     }
-  }
-  
-  .d-header-icons .icon {
-    padding: 6px 8px !important;
   }
 }
