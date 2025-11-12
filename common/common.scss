@@ -1,0 +1,258 @@
+// Stripinfo Kleuren
+$cyaan: #1EC1CE;
+$geel: #FFC107;
+$oranje: #FFB300;
+$roze: #E91E63;
+$zwart: #000000;
+$wit: #FFFFFF;
+
+// Gestreept patroon mixin
+@mixin diagonal-stripes {
+  background: repeating-linear-gradient(
+    45deg,
+    $geel,
+    $geel 10px,
+    $oranje 10px,
+    $oranje 20px
+  );
+}
+
+// Body en basis
+body {
+  background: $wit;
+}
+
+// Top Banner
+.stripinfo-top-banner {
+  @include diagonal-stripes;
+  padding: 20px;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+  
+  .banner-title {
+    color: $zwart;
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+    letter-spacing: 1px;
+  }
+  
+  .banner-subtitle {
+    color: $roze;
+    font-size: 16px;
+    margin: 8px 0 0 0;
+    font-weight: 500;
+  }
+  
+  .welcome-user {
+    color: $zwart;
+    font-size: 14px;
+    margin-top: 10px;
+  }
+}
+
+// Header styling
+.d-header {
+  background: $cyaan !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  
+  .d-header-icons .icon {
+    color: $zwart;
+    
+    &:hover {
+      color: $roze;
+    }
+  }
+  
+  .title {
+    img {
+      max-height: 50px;
+    }
+  }
+}
+
+// Navigatie links in header
+.d-header .nav-link {
+  color: $zwart !important;
+  font-weight: 500;
+  
+  &:hover {
+    color: $roze !important;
+  }
+}
+
+// Secondary navigatie
+.stripinfo-secondary-nav {
+  background: $zwart;
+  padding: 12px 0;
+  text-align: center;
+  
+  a {
+    color: $wit;
+    margin: 0 15px;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    
+    &:hover {
+      color: $cyaan;
+    }
+  }
+  
+  .separator {
+    color: $wit;
+    margin: 0 5px;
+  }
+}
+
+// Buttons
+.btn, button {
+  background: $zwart !important;
+  color: $wit !important;
+  border-radius: 20px !important;
+  font-weight: bold !important;
+  border: none !important;
+  padding: 10px 24px !important;
+  transition: all 0.3s ease !important;
+  
+  &:hover {
+    background: #333 !important;
+    transform: translateY(-1px);
+  }
+  
+  &.btn-primary {
+    background: $zwart !important;
+  }
+}
+
+// Outline buttons
+.btn-outline {
+  background: transparent !important;
+  border: 2px solid $wit !important;
+  color: $wit !important;
+  
+  &:hover {
+    background: $wit !important;
+    color: $zwart !important;
+  }
+}
+
+// Topic lijst styling
+.topic-list {
+  .topic-list-item {
+    border-bottom: 1px solid #eee;
+    
+    &:hover {
+      background: rgba($cyaan, 0.05);
+    }
+  }
+  
+  .link-top-line {
+    a.title {
+      color: $zwart;
+      
+      &:hover {
+        color: $cyaan;
+      }
+    }
+  }
+}
+
+// Footer
+.stripinfo-footer {
+  @include diagonal-stripes;
+  padding: 40px 20px 20px;
+  margin-top: 40px;
+  
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 30px;
+    margin-bottom: 30px;
+  }
+  
+  .footer-section {
+    h3 {
+      color: $zwart;
+      font-size: 18px;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      
+      li {
+        margin-bottom: 8px;
+        
+        a {
+          color: $zwart;
+          text-decoration: none;
+          transition: color 0.3s ease;
+          
+          &:hover {
+            color: $roze;
+          }
+        }
+      }
+    }
+  }
+  
+  .footer-tagline {
+    text-align: center;
+    padding-top: 20px;
+    border-top: 2px solid $oranje;
+    
+    h2 {
+      color: $zwart;
+      font-size: 20px;
+      margin-bottom: 8px;
+    }
+    
+    p {
+      color: $roze;
+      font-size: 14px;
+      margin: 0;
+    }
+  }
+}
+
+// Copyright bar
+.stripinfo-copyright {
+  background: $zwart;
+  color: $wit;
+  text-align: center;
+  padding: 15px;
+  font-size: 14px;
+  
+  a {
+    color: $cyaan;
+    text-decoration: none;
+    
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+// Links algemeen
+a {
+  color: $cyaan;
+  
+  &:hover {
+    color: $roze;
+  }
+}
+
+// Badges en labels
+.badge-notification {
+  background: $roze;
+}
+
+.badge-wrapper.box {
+  background: $cyaan;
+}
