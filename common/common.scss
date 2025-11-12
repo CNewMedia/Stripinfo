@@ -1,130 +1,5 @@
 // ============================================
-// HOMEPAGE HERO VIA CATEGORY BANNERS
-// ============================================
-
-.stripinfo-homepage-hero {
-  margin: -20px -20px 40px -20px;
-  
-  .hero-wrapper {
-    background: repeating-linear-gradient(
-      45deg,
-      $geel,
-      $geel 15px,
-      $oranje 15px,
-      $oranje 30px
-    );
-    padding: 60px 40px;
-    text-align: center;
-    border-bottom: 5px solid $zwart;
-    
-    .hero-icon {
-      font-size: 70px;
-      margin-bottom: 20px;
-      animation: float 3s ease-in-out infinite;
-      display: inline-block;
-    }
-    
-    .hero-title {
-      font-family: 'Bangers', cursive !important;
-      font-size: 48px !important;
-      color: $zwart;
-      margin: 0 0 15px 0 !important;
-      text-transform: uppercase;
-      letter-spacing: 2px;
-      text-shadow: 
-        3px 3px 0px $wit,
-        4px 4px 0px rgba(0,0,0,0.3);
-    }
-    
-    .hero-subtitle {
-      font-size: 20px;
-      color: $roze;
-      font-weight: 800;
-      margin: 0 0 30px 0;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-    
-    .hero-buttons {
-      display: flex;
-      gap: 15px;
-      justify-content: center;
-      flex-wrap: wrap;
-      
-      .btn {
-        font-size: 16px !important;
-        padding: 12px 30px !important;
-      }
-    }
-  }
-  
-  .featured-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-    padding: 40px 20px;
-    max-width: 1200px;
-    margin: 0 auto;
-    background: $wit;
-    
-    .feature-card {
-      background: $wit;
-      border: 4px solid $zwart;
-      border-radius: 15px;
-      padding: 30px 20px;
-      text-align: center;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 5px 5px 0px $zwart;
-      display: block;
-      
-      &:hover {
-        transform: translate(-3px, -3px);
-        box-shadow: 8px 8px 0px $zwart;
-        
-        .card-icon {
-          transform: scale(1.2) rotate(5deg);
-        }
-      }
-      
-      .card-icon {
-        font-size: 48px;
-        display: block;
-        margin-bottom: 15px;
-        transition: transform 0.3s ease;
-      }
-      
-      h3 {
-        font-family: 'Bangers', cursive !important;
-        font-size: 24px !important;
-        color: $zwart;
-        margin: 0 0 10px 0 !important;
-        text-transform: uppercase;
-        letter-spacing: 1px;
-      }
-      
-      p {
-        color: #666;
-        font-size: 14px;
-        margin: 0;
-        font-weight: 600;
-        line-height: 1.4;
-      }
-    }
-  }
-}
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-15px); }
-}
-
-// Alleen tonen op categories pagina
-body:not(.discovery-categories) .stripinfo-homepage-hero {
-  display: none;
-}
-// ============================================
-// SIMPELE HOMEPAGE HERO
+// HOMEPAGE HERO - CLEAN VERSIE
 // ============================================
 
 .stripinfo-simple-hero {
@@ -146,7 +21,7 @@ body:not(.discovery-categories) .stripinfo-homepage-hero {
     .hero-emoji {
       font-size: 60px;
       margin-bottom: 15px;
-      animation: float 3s ease-in-out infinite;
+      animation: floatHero 3s ease-in-out infinite;
     }
     
     h1 {
@@ -268,7 +143,8 @@ body.categories-list .stripinfo-simple-hero {
   display: block;
 }
 
-@keyframes float {
+// Animatie voor hero emoji
+@keyframes floatHero {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-12px); }
 }
