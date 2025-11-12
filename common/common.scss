@@ -780,3 +780,50 @@ h1, h2, h3, h4, h5, h6,
     grid-template-columns: 1fr;
   }
 }
+// ============================================
+// FIX: KLEINE SCHOONHEIDSFOUTJES
+// ============================================
+
+// Verberg system gebruiker in topic lists
+.topic-list {
+  .topic-poster {
+    a[data-user-card="system"] {
+      display: none !important;
+    }
+  }
+  
+  // Als system de enige poster is, verberg hele kolom
+  .posters {
+    a[href="/u/system"] {
+      display: none !important;
+    }
+  }
+}
+
+// Extra spacing voor gele statistiek blokken
+.topic-list {
+  .posts-map, 
+  .num.posts, 
+  .num.views {
+    margin: 0 10px !important; // Van 8px naar 10px
+    padding: 8px 18px !important; // Iets meer padding
+  }
+  
+  // Eerste blok krijgt geen linker margin
+  .num:first-of-type {
+    margin-left: 0 !important;
+  }
+  
+  // Laatste blok krijgt geen rechter margin
+  .num:last-of-type {
+    margin-right: 0 !important;
+  }
+}
+
+// Extra ruimte tussen de labels "Antwoorden" en "Weergaven"
+.topic-list-header {
+  .posts,
+  .views {
+    padding: 0 12px !important;
+  }
+}
