@@ -1,0 +1,4 @@
+logo_url:
+  type: string
+  default: "https://intestmode.be/stripinfo/assets/images/logo.avif"
+  description: "URL van het Stripinfo logo"
