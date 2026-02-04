@@ -43,8 +43,11 @@ $si-card-hover-shadow: 0 4px 12px rgba(0,0,0,0.12);
 // ============================================
 // GLOBAL RESETS
 // ============================================
+$sans-stack: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+
+html,
 body {
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: $sans-stack !important;
   background: $grijs-bg;
 }
 
@@ -207,18 +210,130 @@ body {
 }
 
 // ============================================
-// VERBERG SIDEBAR OP HOMEPAGE
+// HOMEPAGE — VERBERG ZOEKBALK, FILTERS + VOLLE BREEDTE
 // ============================================
 body.navigation-categories {
+  // Verberg sidebar
   .sidebar-wrapper,
   .sidebar-container,
-  #d-sidebar {
+  #d-sidebar,
+  .sidebar-section-wrapper {
     display: none !important;
   }
 
-  .contents {
+  // Verberg zoekbalk en welkomstbanner
+  .search-container,
+  .search-banner,
+  .custom-search-banner,
+  .category-search,
+  .search-banner .search-input,
+  .search-banner input,
+  .category-search-input,
+  .search-filter,
+  #search-banner,
+  .category-boxes-filter-wrapper .search-input,
+  .category-boxes-filter-wrapper input {
+    display: none !important;
+  }
+
+  // Verberg filter/navigatie tabs (categorieën ▸ | tags ▸ | Nieuwste | Populair)
+  .navigation-container,
+  .category-breadcrumb,
+  .nav-pills,
+  .categories-filter,
+  .category-navigation,
+  .navigation-controls,
+  .category-list-header,
+  .custom-header-banner {
+    display: none !important;
+  }
+
+  // Volle breedte layout
+  #main-outlet-wrapper {
+    display: block !important;
+    max-width: 100% !important;
+  }
+
+  #main-outlet {
     max-width: 1200px;
     margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .wrap {
+    max-width: 100% !important;
+  }
+
+  .contents {
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  // Categorie-kaarten homepage verfijning
+  .category-boxes,
+  .category-boxes-with-topics {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 !important;
+
+    .category-box {
+      padding: 28px 24px !important;
+      border-radius: 10px !important;
+      box-shadow: none !important;
+
+      &:hover {
+        box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+      }
+
+      .badge-wrapper .badge-category-bg,
+      .badge-wrapper.bullet .badge-category-bg,
+      .badge-wrapper.bar .badge-category-bg {
+        display: none !important;
+      }
+
+      .category-name,
+      h3,
+      .category-box-heading {
+        font-family: $sans-stack !important;
+        text-transform: none !important;
+        font-weight: 700 !important;
+        font-size: 1.05rem !important;
+        letter-spacing: normal !important;
+        color: $si-dark !important;
+        margin-bottom: 8px;
+      }
+
+      .category-description,
+      .description {
+        color: $grijs-tekst !important;
+        font-size: 0.85rem !important;
+        line-height: 1.5 !important;
+      }
+
+      .featured-topics,
+      .category-box-count,
+      .topic-count,
+      .stat,
+      .subcategories {
+        display: none !important;
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .category-boxes,
+    .category-boxes-with-topics {
+      grid-template-columns: 1fr !important;
+    }
+  }
+
+  @media (min-width: 769px) and (max-width: 1024px) {
+    .category-boxes,
+    .category-boxes-with-topics {
+      grid-template-columns: repeat(2, 1fr) !important;
+    }
   }
 }
 
@@ -233,7 +348,90 @@ body.navigation-categories {
 }
 
 // ============================================
-// FIX ZOEKBALK UITLIJNING
+// CATEGORIE-PAGINA'S — SIDEBAR WEG + HEADER & FILTERS (Asana)
+// ============================================
+body:not(.navigation-categories) {
+  .sidebar-wrapper,
+  .sidebar-container,
+  #d-sidebar {
+    display: none !important;
+  }
+
+  #main-outlet {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    width: 100%;
+    box-sizing: border-box;
+  }
+
+  .category-logo img {
+    width: 80px;
+    height: 80px;
+    margin-right: 16px;
+    border-radius: 8px;
+  }
+
+  .category-heading {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin: 32px 0 16px 0;
+
+    h1, h2 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: $si-dark;
+      margin: 0;
+    }
+  }
+
+  .category-breadcrumb,
+  .navigation-container {
+    margin: 16px 0;
+
+    .combo-box .combo-box-header,
+    .select-kit .select-kit-header {
+      border: 1.5px solid #ddd !important;
+      border-radius: 24px !important;
+      padding: 8px 18px !important;
+      font-size: 0.85rem !important;
+      background: $wit !important;
+      color: $si-dark !important;
+
+      &:hover {
+        border-color: #bbb !important;
+      }
+    }
+  }
+
+  .nav-pills {
+    margin: 16px 0;
+
+    li a {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: $grijs-tekst;
+      padding: 8px 16px;
+      border-radius: 20px;
+      transition: all 0.15s;
+
+      &:hover {
+        background: $si-light-bg;
+        color: $si-dark;
+      }
+
+      &.active {
+        background: rgba(0, 131, 143, 0.08);
+        color: $si-teal;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+// ============================================
+// FIX ZOEKBALK UITLIJNING (alleen waar zichtbaar)
 // ============================================
 .category-boxes-filter-wrapper,
 .categories-filter,
@@ -438,15 +636,79 @@ body.navigation-categories {
   }
 }
 
-// Verwijder kaart-styling op topic-rijen
+// Verwijder kaart-styling op topic-rijen — Asana-stijl
 .topic-list-item {
-  background: transparent;
-  box-shadow: none;
-  border-radius: 0;
-  border: none;
-  border-bottom: 1px solid #f0f0f0;
-  margin: 0;
-  padding: 0;
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+  border: none !important;
+  margin: 0 !important;
+  border-bottom: 1px solid #f0f0f0 !important;
+
+  &:hover {
+    background: #fafafa !important;
+  }
+
+  td {
+    padding: 14px 8px;
+    vertical-align: middle;
+    font-size: 0.9rem;
+
+    &.main-link .link-top-line .title {
+      font-weight: 600;
+      font-size: 0.95rem;
+      color: $si-dark;
+      text-decoration: none;
+
+      &:hover {
+        color: $si-teal;
+      }
+    }
+
+    &.posters a img.avatar {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      margin-right: 2px;
+    }
+
+    &.num {
+      text-align: center;
+      color: $grijs-tekst;
+      font-size: 0.85rem;
+
+      .number {
+        font-weight: 600;
+      }
+    }
+
+    &.activity {
+      color: #999;
+      font-size: 0.8rem;
+    }
+  }
+}
+
+.topic-list thead {
+  border-bottom: 2px solid #eee;
+
+  th {
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    color: #999;
+    letter-spacing: 0.5px;
+    padding: 12px 8px;
+
+    &.posters {
+      width: 120px;
+    }
+
+    &.num {
+      text-align: center;
+      width: 80px;
+    }
+  }
 }
 
 .topic-list .num.posts-map .number,
@@ -758,6 +1020,21 @@ body.navigation-categories {
 }
 
 // ============================================
+// COMMUNITY-SECTIE + CTA — ALLEEN OP HOMEPAGE
+// ============================================
+.si-community-section,
+.stripinfo-cta-section {
+  display: none !important;
+}
+
+body.navigation-categories {
+  .si-community-section,
+  .stripinfo-cta-section {
+    display: block !important;
+  }
+}
+
+// ============================================
 // COMMUNITY SECTIE — TOP BIJDRAGERS + QUOTE
 // ============================================
 .si-community-section {
@@ -937,14 +1214,16 @@ h3.category-name,
   font-style: normal !important;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif !important;
+h1, h2, h3, h4, h5, h6,
+.topic-list .title,
+.d-header .title a,
+#topic-title h1 a {
+  font-family: $sans-stack !important;
 }
 
 // ============================================
 // FONT CONSISTENCY
 // ============================================
-body,
 .topic-list,
 .category-list,
 .nav-pills,
@@ -953,7 +1232,7 @@ button,
 input,
 textarea,
 select {
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  font-family: $sans-stack;
 }
 
 // Bangers alleen voor banner en footer (niet voor categorieën of algemene headings)
@@ -966,7 +1245,7 @@ select {
 
 .topic-list .title,
 .fancy-title {
-  font-family: 'Outfit', sans-serif;
+  font-family: $sans-stack;
   font-weight: 700;
 }
 
@@ -1070,6 +1349,36 @@ select {
 }
 .topic-post:first-child article.boxed {
   border-top: none !important;
+}
+
+.topic-post .cooked {
+  font-size: 0.95rem;
+  line-height: 1.7;
+  color: $si-dark;
+
+  aside.quote {
+    border-left: 3px solid $si-cyan;
+    background: #f8f9fa;
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 6px 6px 0;
+  }
+}
+
+#topic-title h1 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: $si-dark;
+}
+
+.post-controls .actions button.widget-button {
+  background: transparent !important;
+  border: none !important;
+  color: #bbb;
+
+  &:hover {
+    color: $si-teal;
+  }
 }
 
 // Post header — gebruiker en datum
