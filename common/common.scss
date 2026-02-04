@@ -187,7 +187,6 @@ body.admin-interface {
   .admin-wrapper,
   .admin-contents,
   .admin-body,
-  .ember-application > .ember-view,
   .wrap.body-page {
     display: flex !important;
     flex-direction: row !important;
@@ -217,8 +216,7 @@ body.admin-interface {
 
   // Content gebied: neemt rest van de ruimte
   #main-outlet,
-  .admin-main-content,
-  .contents.ember-view {
+  .admin-main-content {
     flex: 1 1 auto !important;
     min-width: 0 !important;
     width: auto !important;
