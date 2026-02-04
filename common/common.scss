@@ -177,24 +177,20 @@ body,
 // ============================================
 // ADMIN SIDEBAR — LAYOUT FIX: CONTENT NAAST SIDEBAR
 // ============================================
-// Op admin-pagina's: container flex row, sidebar links, content rechts.
-// Geen globale sidebar-CSS toepassen op admin (zie body:not(route-admin) hieronder).
+// Alleen #main-outlet-wrapper als flex container (niet .wrap of hoger:
+// die kunnen header + main bevatten; flex daarop zet content rechts van header = wit vlak).
 
 body[class*="route-admin"],
 body.admin-interface {
-  // Container die sidebar + content bevat — flex row zodat ze naast elkaar staan
-  #main-outlet-wrapper,
-  .admin-wrapper,
-  .admin-contents,
-  .admin-body,
-  .wrap.body-page {
+  // Alleen de directe container van sidebar + content — NIET .wrap.body-page (bevat vaak header)
+  #main-outlet-wrapper {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     width: 100% !important;
     max-width: 100% !important;
     margin-left: 0 !important;
-    align-items: stretch !important;
+    align-items: flex-start !important;
   }
 
   // Sidebar: vaste breedte, niet laten krimpen
@@ -214,7 +210,7 @@ body.admin-interface {
     opacity: 1 !important;
   }
 
-  // Content gebied: neemt rest van de ruimte
+  // Content: neemt rest van de ruimte, start bovenaan (geen stretch = geen grote lege ruimte)
   #main-outlet,
   .admin-main-content {
     flex: 1 1 auto !important;
@@ -222,7 +218,10 @@ body.admin-interface {
     width: auto !important;
     max-width: none !important;
     margin-left: 0 !important;
+    margin-top: 0 !important;
+    padding-top: 0 !important;
     display: block !important;
+    align-self: flex-start !important;
   }
 }
 
