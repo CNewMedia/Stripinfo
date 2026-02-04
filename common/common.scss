@@ -207,6 +207,22 @@ body {
 }
 
 // ============================================
+// VERBERG SIDEBAR OP HOMEPAGE
+// ============================================
+body.navigation-categories {
+  .sidebar-wrapper,
+  .sidebar-container,
+  #d-sidebar {
+    display: none !important;
+  }
+
+  .contents {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+}
+
+// ============================================
 // MAIN CONTENT
 // ============================================
 #main-outlet {
@@ -538,6 +554,189 @@ body {
 }
 
 // ============================================
+// TOGGLE KNOP — MEER/MINDER TONEN
+// ============================================
+.si-toggle-categories {
+  display: inline-flex;
+  align-items: center;
+  margin: 24px 0 32px 0;
+  padding: 12px 28px;
+  background: transparent;
+  border: 1.5px solid #333;
+  border-radius: 24px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #333;
+  cursor: pointer;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f5f5f5;
+  }
+}
+
+// ============================================
+// COMMUNITY SECTIE — TOP BIJDRAGERS + QUOTE
+// ============================================
+.si-community-section {
+  padding: 48px 24px;
+  background: #fff;
+
+  .si-community-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    align-items: start;
+  }
+}
+
+.si-top-contributors {
+  background: #fff;
+  border: 1px solid #e8e8e8;
+  border-radius: 12px;
+  padding: 32px;
+
+  h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #333;
+    margin: 0 0 24px 0;
+  }
+}
+
+.si-contributors-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.si-contributor {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 14px 0;
+  border-bottom: 1px solid #f0f0f0;
+
+  &:last-child {
+    border-bottom: none;
+  }
+}
+
+.si-contributor-info {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.si-contributor-avatar {
+  position: relative;
+
+  img {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+  }
+}
+
+.si-contributor-details {
+  display: flex;
+  flex-direction: column;
+
+  .si-contributor-name {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #333;
+  }
+
+  .si-contributor-role {
+    font-size: 0.8rem;
+    color: #999;
+  }
+}
+
+.si-contributor-stat {
+  text-align: right;
+
+  .si-stat-number {
+    display: block;
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #333;
+  }
+
+  .si-stat-label {
+    font-size: 0.75rem;
+    color: #999;
+    text-transform: capitalize;
+  }
+}
+
+.si-see-more-link {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 10px 24px;
+  border: 1.5px solid #333;
+  border-radius: 24px;
+  color: #333;
+  font-weight: 600;
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.2s;
+
+  &:hover {
+    background: #f5f5f5;
+  }
+}
+
+.si-community-quote {
+  background: $si-teal;
+  border-radius: 12px;
+  padding: 40px;
+  display: flex;
+  align-items: center;
+  min-height: 100%;
+
+  .si-quote-content {
+    color: #fff;
+  }
+
+  .si-quote-mark {
+    font-size: 4rem;
+    font-weight: 800;
+    line-height: 1;
+    opacity: 0.4;
+    margin-bottom: -16px;
+    font-family: Georgia, serif;
+  }
+
+  p {
+    font-size: 1.15rem;
+    line-height: 1.65;
+    color: rgba(255, 255, 255, 0.95);
+    margin: 0 0 24px 0;
+    font-style: italic;
+  }
+
+  .si-quote-author {
+    display: flex;
+    flex-direction: column;
+
+    .si-author-name {
+      font-weight: 700;
+      font-size: 0.95rem;
+      color: #fff;
+    }
+
+    .si-author-title {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.7);
+    }
+  }
+}
+
+// ============================================
 // FONT CONSISTENCY
 // ============================================
 body,
@@ -608,82 +807,295 @@ h1, h2, h3, h4, h5, h6,
 }
 
 // ============================================
-// POST CONTENT
+// CUSTOM HEADER — ALTIJD ZICHTBAAR OP ALLE PAGINA'S
+// ============================================
+.stripinfo-top-banner,
+.stripinfo-nav-bar {
+  display: block !important; /* altijd zichtbaar op alle pagina's */
+}
+
+// ============================================
+// INDIVIDUELE POSTS IN EEN TOPIC — CLEAN
 // ============================================
 .topic-post {
-  background: $wit;
-  border: 2px solid $grijs-border;
-  border-radius: 12px;
-  margin-bottom: 20px;
-  
-  article {
-    padding: 24px;
-    
-    .cooked {
-      color: $zwart;
-      line-height: 1.7;
-      font-size: 15px;
-      
-      h1, h2, h3 {
-        color: $zwart;
-        font-weight: 700;
-        margin-top: 24px;
-        margin-bottom: 12px;
-      }
-      
-      a {
-        color: $cyaan;
-        font-weight: 600;
-        
-        &:hover {
-          color: $roze;
-        }
-      }
-      
-      blockquote {
-        border-left: 4px solid $cyaan;
-        background: lighten($cyaan, 47%);
-        padding: 16px 20px;
-        margin: 20px 0;
-        border-radius: 6px;
-      }
-      
-      code {
-        background: $grijs-bg;
-        border: 1px solid #ddd;
-        padding: 2px 6px;
-        border-radius: 4px;
-        font-size: 14px;
-      }
-      
-      pre {
-        background: #2d2d2d;
-        border: 2px solid $zwart;
-        border-radius: 8px;
-        padding: 15px;
-        
-        code {
-          background: transparent;
-          border: none;
-          color: #f8f8f2;
-        }
-      }
+  background: transparent;
+  box-shadow: none;
+  border: none;
+  border-radius: 0;
+  margin: 0;
+
+  article.boxed {
+    border: none;
+    box-shadow: none;
+    background: transparent;
+    border-bottom: 1px solid #eee;
+    border-radius: 0;
+    padding: 20px 0;
+    margin: 0;
+  }
+}
+
+.topic-body {
+  box-shadow: none;
+  border: none;
+  background: transparent;
+  border-radius: 0;
+
+  .contents {
+    padding: 0;
+  }
+}
+
+.topic-post:first-child article.boxed {
+  border-top: none;
+}
+
+// Override Discourse kaart-styling indien nodig
+.topic-post,
+.topic-post article.boxed,
+.topic-body {
+  background: transparent !important;
+  box-shadow: none !important;
+  border-radius: 0 !important;
+}
+.topic-post article.boxed {
+  border-bottom: 1px solid #eee !important;
+  padding: 20px 0 !important;
+  margin: 0 !important;
+}
+.topic-post:first-child article.boxed {
+  border-top: none !important;
+}
+
+// Post header — gebruiker en datum
+.topic-meta-data {
+  padding: 0 0 8px 0;
+
+  .names span.username a {
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: $zwart;
+    text-decoration: none;
+
+    &:hover {
+      color: $si-teal;
     }
   }
-  
-  .topic-avatar {
-    border: 2px solid $grijs-border;
+
+  .post-date {
+    color: $grijs-tekst;
+    font-size: 0.8rem;
+  }
+}
+
+.topic-avatar {
+  padding-right: 16px;
+
+  .post-avatar img.avatar {
+    width: 44px;
+    height: 44px;
     border-radius: 50%;
   }
-  
-  .names {
-    font-weight: 700;
-    
-    .username {
-      color: $zwart;
-      font-size: 15px;
-      font-weight: 700;
+}
+
+// Post content — tekst leesbaar
+.topic-post .cooked {
+  font-size: 0.95rem;
+  line-height: 1.65;
+  color: $zwart;
+
+  p {
+    margin: 0 0 12px 0;
+  }
+
+  aside.quote {
+    border-left: 3px solid $si-cyan;
+    background: #f8f9fa;
+    padding: 12px 16px;
+    margin: 12px 0;
+    border-radius: 0 6px 6px 0;
+
+    .title {
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: $grijs-tekst;
+      margin-bottom: 6px;
     }
+
+    blockquote {
+      margin: 0;
+      color: #555;
+    }
+  }
+
+  a {
+    color: $si-teal;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  pre code {
+    background: $grijs-bg;
+    border: 1px solid $grijs-border;
+    border-radius: 4px;
+    padding: 12px;
+    font-size: 0.85rem;
+  }
+
+  img:not(.avatar):not(.emoji) {
+    max-width: 100%;
+    border-radius: 6px;
+    margin: 8px 0;
+  }
+
+  h1, h2, h3 {
+    color: $zwart;
+    font-weight: 700;
+    margin-top: 20px;
+    margin-bottom: 10px;
+  }
+
+  code {
+    background: $grijs-bg;
+    border: 1px solid $grijs-border;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.9rem;
+  }
+
+  pre {
+    background: #2d2d2d;
+    border-radius: 6px;
+    padding: 12px;
+
+    code {
+      background: transparent;
+      border: none;
+      color: #f8f8f2;
+    }
+  }
+}
+
+// Post acties — antwoorden, like, menu
+.post-actions .post-controls {
+  padding: 8px 0;
+
+  .actions button {
+    color: $grijs-tekst;
+    font-size: 0.8rem;
+
+    &:hover {
+      color: $si-teal;
+      background: transparent;
+    }
+  }
+}
+
+.widget-button.reply {
+  color: $grijs-tekst;
+  font-size: 0.8rem;
+
+  &:hover {
+    color: $si-teal;
+  }
+}
+
+.widget-button.like-count:hover,
+.widget-button.toggle-like:hover {
+  color: $roze;
+}
+
+.post-controls .actions button.widget-button {
+  background: transparent;
+  border: none;
+  box-shadow: none;
+
+  .d-icon {
+    color: #bbb;
+    font-size: 0.85rem;
+  }
+
+  &:hover .d-icon {
+    color: $si-teal;
+  }
+}
+
+// ============================================
+// TOPIC HEADER — TITEL BOVENAAN
+// ============================================
+#topic-title {
+  padding: 16px 0;
+  border-bottom: 1px solid #eee;
+  margin-bottom: 8px;
+
+  h1 {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: $zwart;
+    line-height: 1.3;
+
+    a {
+      color: $zwart;
+      text-decoration: none;
+    }
+  }
+
+  .badge-wrapper {
+    margin-left: 0;
+  }
+}
+
+// ============================================
+// TOPIC TIJDLIJN
+// ============================================
+.topic-navigation .timeline-container {
+  .timeline-scrollarea {
+    border-color: #ddd;
+  }
+
+  .timeline-date {
+    color: $grijs-tekst;
+    font-size: 0.75rem;
+  }
+}
+
+// ============================================
+// SUGGESTED TOPICS — ONDERAAN EEN TOPIC
+// ============================================
+.suggested-topics {
+  border-top: 2px solid #eee;
+  padding-top: 24px;
+  margin-top: 24px;
+
+  h3 {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: $zwart;
+    margin-bottom: 12px;
+  }
+
+  .topic-list .topic-list-item {
+    background: transparent !important;
+    box-shadow: none !important;
+    border: none !important;
+    border-radius: 0 !important;
+    border-bottom: 1px solid #f0f0f0 !important;
+  }
+}
+
+// ============================================
+// REPLY AREA — ANTWOORD SCHRIJVEN
+// ============================================
+.reply-area,
+#reply-control {
+  border-top: 2px solid #eee;
+
+  .reply-to {
+    font-size: 0.85rem;
+    color: $grijs-tekst;
   }
 }
 

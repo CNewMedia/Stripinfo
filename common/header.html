@@ -8,11 +8,73 @@
 <div class="stripinfo-nav-bar">
   <div class="stripinfo-nav-inner">
     <a href="https://stripinfo.be/" class="nav-item">HOME</a>
-    <a href="https://stripinfo.be/lijst/reeksen/d" class="nav-item">STRIPS</a>
-    <a href="https://stripinfo.be/lijst/auteurs/d" class="nav-item">AUTEURS</a>
-    <a href="https://stripinfo.be/lijst/uitgevers/d" class="nav-item">UITGEVERS</a>
+    <a href="https://stripinfo.be/lijst/reeksen" class="nav-item">STRIPS</a>
+    <a href="https://stripinfo.be/lijst/auteurs" class="nav-item">AUTEURS</a>
+    <a href="https://stripinfo.be/lijst/uitgevers" class="nav-item">UITGEVERS</a>
     <a href="https://stripinfo.be/nieuws/strips" class="nav-item">NIEUWS</a>
-    <a href="https://stripinfo.be/lijst/recensies/d" class="nav-item">RECENSIES</a>
+    <a href="https://stripinfo.be/lijst/recensies" class="nav-item">RECENSIES</a>
     <a href="https://stripinfo.be/agenda" class="nav-item">AGENDA</a>
   </div>
 </div>
+
+<script>
+(function() {
+  function initCollapsibleCategories() {
+    if (!document.body.classList.contains("navigation-categories")) return;
+    var container = document.querySelector(".category-boxes, .category-boxes-with-topics");
+    if (!container || container.dataset.siCollapsible === "true") return;
+    container.dataset.siCollapsible = "true";
+
+    var allBoxes = container.querySelectorAll(".category-box");
+    var maxVisible = 6;
+
+    allBoxes.forEach(function(box, index) {
+      if (index >= maxVisible) {
+        box.classList.add("si-hidden-category");
+        box.style.display = "none";
+      }
+    });
+
+    if (allBoxes.length <= maxVisible) return;
+
+    var toggleBtn = document.createElement("button");
+    toggleBtn.className = "si-toggle-categories";
+    toggleBtn.innerHTML = "Meer tonen +";
+    toggleBtn.dataset.expanded = "false";
+
+    toggleBtn.addEventListener("click", function() {
+      var isExpanded = toggleBtn.dataset.expanded === "true";
+      allBoxes.forEach(function(box, index) {
+        if (index >= maxVisible) {
+          box.style.display = isExpanded ? "none" : "";
+        }
+      });
+      if (isExpanded) {
+        toggleBtn.innerHTML = "Meer tonen +";
+        toggleBtn.dataset.expanded = "false";
+      } else {
+        toggleBtn.innerHTML = "Minder tonen −";
+        toggleBtn.dataset.expanded = "true";
+      }
+    });
+
+    container.parentNode.insertBefore(toggleBtn, container.nextSibling);
+  }
+
+  function run() {
+    setTimeout(initCollapsibleCategories, 500);
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", run);
+  } else {
+    run();
+  }
+
+  var outlet = document.querySelector("#main-outlet");
+  if (outlet) {
+    var mo = new MutationObserver(function() { run(); });
+    mo.observe(outlet, { childList: true, subtree: true });
+  }
+})();
+</script>

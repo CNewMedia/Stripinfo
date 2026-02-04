@@ -79,6 +79,35 @@ body {
   font-size: 0.95rem;
 }
 
+// ============================================
+// TOPIC/POST WEERGAVE OP MOBIEL
+// ============================================
+.topic-post article.boxed {
+  padding: 16px 0;
+}
+
+.topic-avatar {
+  padding-right: 10px;
+
+  .post-avatar img.avatar {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+.topic-post .cooked {
+  font-size: 0.9rem;
+  line-height: 1.6;
+}
+
+#topic-title h1 {
+  font-size: 1.2rem;
+}
+
+.timeline-container {
+  display: none;
+}
+
 // CTA: 1 kolom
 .stripinfo-cta-section .cta-grid {
   grid-template-columns: 1fr;
@@ -95,4 +124,42 @@ body {
   .stripinfo-footer .footer-columns {
     grid-template-columns: 1fr;
   }
+}
+
+// ============================================
+// MOBILE — SIDEBAR + COMMUNITY SECTIE
+// ============================================
+body.navigation-categories {
+  .sidebar-wrapper,
+  .sidebar-container,
+  #d-sidebar {
+    display: none !important;
+  }
+}
+
+.si-community-section {
+  padding: 32px 16px;
+
+  .si-community-inner {
+    grid-template-columns: 1fr !important;
+    gap: 24px;
+  }
+}
+
+.si-top-contributors {
+  padding: 24px;
+}
+
+.si-community-quote {
+  padding: 28px;
+
+  p {
+    font-size: 1rem;
+  }
+}
+
+.si-toggle-categories {
+  margin: 16px 0 24px 0;
+  padding: 10px 24px;
+  font-size: 0.85rem;
 }
