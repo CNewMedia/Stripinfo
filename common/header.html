@@ -45,6 +45,7 @@
 
     toggleBtn.addEventListener("click", function() {
       var isExpanded = toggleBtn.dataset.expanded === "true";
+      container.classList.toggle("show-all", !isExpanded);
       allBoxes.forEach(function(box, index) {
         if (index >= maxVisible) {
           box.style.display = isExpanded ? "none" : "";

@@ -321,6 +321,146 @@ button.sidebar-toggle,
 }
 
 // ============================================
+// HAMBURGER MENU DROPDOWN — STYLING (breedte, 1 kolom, geen afgekapte namen)
+// ============================================
+
+#d-sidebar,
+.sidebar-wrapper {
+  width: 320px !important;
+  max-width: 90vw !important;
+}
+
+#d-sidebar .sidebar-sections,
+.sidebar-wrapper .sidebar-sections {
+  columns: 1 !important;
+  column-count: 1 !important;
+}
+
+.sidebar-wrapper .sidebar-section-link-wrapper,
+#d-sidebar .sidebar-section-link-wrapper {
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.sidebar-wrapper .sidebar-section-link,
+#d-sidebar .sidebar-section-link {
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  max-width: none !important;
+  min-width: 0 !important;
+}
+
+.sidebar-wrapper .badge-category,
+#d-sidebar .badge-category,
+.sidebar-wrapper .category-name,
+#d-sidebar .category-name {
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  max-width: none !important;
+}
+
+.menu-panel.drop-down,
+.hamburger-panel .menu-panel,
+.d-header .menu-panel {
+  width: 320px !important;
+  max-width: 90vw !important;
+  background: $wit !important;
+  border: 1px solid $si-border !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+  padding: 8px 0 !important;
+  overflow: visible !important;
+}
+
+.menu-panel .menu-links-header,
+.menu-panel .panel-body-contents {
+  columns: 1 !important;
+  column-count: 1 !important;
+}
+
+.hamburger-panel .menu-links,
+.menu-panel .menu-links {
+  display: flex !important;
+  flex-direction: column !important;
+
+  .menu-section {
+    display: flex !important;
+    flex-direction: column !important;
+
+    .menu-links-row,
+    .links-section {
+      display: flex !important;
+      flex-direction: column !important;
+      grid-template-columns: 1fr !important;
+    }
+  }
+}
+
+.menu-panel li,
+.menu-panel .menu-link {
+  width: 100% !important;
+
+  a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    padding: 10px 16px !important;
+    font-size: 0.9rem !important;
+    color: $si-dark !important;
+    text-decoration: none !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    width: 100% !important;
+    border-radius: 6px !important;
+    margin: 0 4px !important;
+
+    &:hover {
+      background: $si-light-bg !important;
+      color: $si-teal !important;
+    }
+  }
+}
+
+.menu-panel .section-header,
+.menu-panel .panel-body h3,
+.menu-panel .menu-section-title {
+  font-weight: 700 !important;
+  font-size: 0.7rem !important;
+  text-transform: uppercase !important;
+  color: $grijs-tekst !important;
+  letter-spacing: 0.5px !important;
+  padding: 14px 16px 6px 16px !important;
+  margin: 0 !important;
+}
+
+.menu-panel hr,
+.menu-panel .separator {
+  border: none !important;
+  border-top: 1px solid #f0f0f0 !important;
+  margin: 4px 12px !important;
+}
+
+.hamburger-dropdown-wrapper .nav-links,
+.d-header .panel-body .nav-links,
+.d-header .panel-body .categories-list {
+  display: flex !important;
+  flex-direction: column !important;
+
+  li, .category-link {
+    width: 100% !important;
+
+    a {
+      overflow: visible !important;
+      text-overflow: unset !important;
+      white-space: nowrap !important;
+    }
+  }
+}
+
+// ============================================
 // HOMEPAGE — VERBERG ZOEKBALK, FILTERS + VOLLE BREEDTE
 // ============================================
 body.navigation-categories {
@@ -378,12 +518,35 @@ body.navigation-categories {
     margin: 0 auto;
   }
 
-  // Categorie-kaarten homepage verfijning
+  // ============================================
+  // VERBERG ONGEWENSTE CATEGORIEËN OP HOMEPAGE (CSS fallback)
+  // Aanbevolen: Admin → Categorieën → per categorie "Onderdruk van homepage" aanvinken.
+  // Vul hier data-category-id in na inspectie van de homepage HTML (bijv. .category-box[data-category-id="12"]).
+  // ============================================
+  // .category-box[data-category-id="X"],
+  // .category-box[data-category-id="Y"] {
+  //   display: none !important;
+  // }
+
+  // ============================================
+  // HOMEPAGE CATEGORIEËN — MAX 6 ZICHTBAAR (2 rijen x 3), "Meer tonen" toont rest
+  // ============================================
   .category-boxes,
   .category-boxes-with-topics {
-    max-width: 1200px;
-    margin: 0 auto;
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 16px !important;
+    max-width: 1200px !important;
+    margin: 0 auto !important;
     padding: 0 !important;
+
+    .category-box:nth-child(n+7) {
+      display: none !important;
+    }
+
+    &.show-all .category-box:nth-child(n+7) {
+      display: flex !important;
+    }
 
     .category-box {
       padding: 28px 24px !important;
