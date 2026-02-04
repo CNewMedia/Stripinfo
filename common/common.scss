@@ -321,13 +321,13 @@ button.sidebar-toggle,
 }
 
 // ============================================
-// HAMBURGER MENU DROPDOWN — STYLING (breedte, 1 kolom, geen afgekapte namen)
+// FIX HAMBURGER DROPDOWN — 1 KOLOM, VOLLEDIGE NAMEN
 // ============================================
 
 #d-sidebar,
 .sidebar-wrapper {
-  width: 320px !important;
-  max-width: 90vw !important;
+  width: 360px !important;
+  max-width: 92vw !important;
 }
 
 #d-sidebar .sidebar-sections,
@@ -336,21 +336,8 @@ button.sidebar-toggle,
   column-count: 1 !important;
 }
 
-.sidebar-wrapper .sidebar-section-link-wrapper,
-#d-sidebar .sidebar-section-link-wrapper {
-  display: flex !important;
-  flex-direction: column !important;
-}
-
 .sidebar-wrapper .sidebar-section-link,
-#d-sidebar .sidebar-section-link {
-  white-space: nowrap !important;
-  overflow: visible !important;
-  text-overflow: unset !important;
-  max-width: none !important;
-  min-width: 0 !important;
-}
-
+#d-sidebar .sidebar-section-link,
 .sidebar-wrapper .badge-category,
 #d-sidebar .badge-category,
 .sidebar-wrapper .category-name,
@@ -361,61 +348,62 @@ button.sidebar-toggle,
   max-width: none !important;
 }
 
-.menu-panel.drop-down,
-.hamburger-panel .menu-panel,
-.d-header .menu-panel {
-  width: 320px !important;
-  max-width: 90vw !important;
-  background: $wit !important;
-  border: 1px solid $si-border !important;
-  border-radius: 12px !important;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
-  padding: 8px 0 !important;
-  overflow: visible !important;
+// Het dropdown panel breder maken
+.menu-panel.drop-down {
+  width: 360px !important;
+  max-width: 92vw !important;
+}
+
+// KERN FIX: Forceer 1-kolom layout voor ALLE secties in het menu
+.menu-panel .panel-body-contents .menu-sections-wrapper,
+.menu-panel .panel-body-contents {
+  columns: 1 !important;
+  -webkit-columns: 1 !important;
+  -moz-columns: 1 !important;
+  column-count: 1 !important;
+  -webkit-column-count: 1 !important;
+  -moz-column-count: 1 !important;
 }
 
 .menu-panel .menu-links-header,
-.menu-panel .panel-body-contents {
+.menu-panel .menu-section .menu-links,
+.menu-panel .menu-links-row {
+  display: flex !important;
+  flex-direction: column !important;
   columns: 1 !important;
   column-count: 1 !important;
 }
 
-.hamburger-panel .menu-links,
-.menu-panel .menu-links {
+.menu-panel .menu-section ul,
+.menu-panel .panel-body ul {
   display: flex !important;
   flex-direction: column !important;
-
-  .menu-section {
-    display: flex !important;
-    flex-direction: column !important;
-
-    .menu-links-row,
-    .links-section {
-      display: flex !important;
-      flex-direction: column !important;
-      grid-template-columns: 1fr !important;
-    }
-  }
+  columns: 1 !important;
+  column-count: 1 !important;
 }
 
-.menu-panel li,
-.menu-panel .menu-link {
+.menu-panel .menu-links li,
+.menu-panel li {
   width: 100% !important;
+  break-inside: avoid !important;
+  -webkit-column-break-inside: avoid !important;
 
-  a {
+  a, button {
     display: flex !important;
     align-items: center !important;
-    gap: 10px !important;
-    padding: 10px 16px !important;
+    gap: 8px !important;
+    padding: 8px 16px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
     font-size: 0.9rem !important;
     color: $si-dark !important;
     text-decoration: none !important;
+    border-radius: 6px !important;
+
     white-space: nowrap !important;
     overflow: visible !important;
     text-overflow: unset !important;
-    width: 100% !important;
-    border-radius: 6px !important;
-    margin: 0 4px !important;
+    max-width: none !important;
 
     &:hover {
       background: $si-light-bg !important;
@@ -424,16 +412,36 @@ button.sidebar-toggle,
   }
 }
 
+.menu-panel .badge-category,
+.menu-panel .category-name,
+.menu-panel .sidebar-section-link-content-text,
+.menu-panel a span {
+  white-space: nowrap !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  max-width: none !important;
+}
+
+.menu-panel .menu-section-title,
 .menu-panel .section-header,
-.menu-panel .panel-body h3,
-.menu-panel .menu-section-title {
+.menu-panel .panel-body h3 {
   font-weight: 700 !important;
   font-size: 0.7rem !important;
   text-transform: uppercase !important;
   color: $grijs-tekst !important;
   letter-spacing: 0.5px !important;
-  padding: 14px 16px 6px 16px !important;
-  margin: 0 !important;
+  padding: 12px 16px 4px !important;
+}
+
+.menu-panel.drop-down,
+.hamburger-panel .menu-panel,
+.d-header .menu-panel {
+  background: $wit !important;
+  border: 1px solid $si-border !important;
+  border-radius: 12px !important;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12) !important;
+  padding: 8px 0 !important;
+  overflow: visible !important;
 }
 
 .menu-panel hr,
@@ -456,6 +464,47 @@ button.sidebar-toggle,
       overflow: visible !important;
       text-overflow: unset !important;
       white-space: nowrap !important;
+    }
+  }
+}
+
+// ============================================
+// RUIMTE TUSSEN HEADER EN CATEGORIE-KAARTEN
+// ============================================
+body.navigation-categories .category-list,
+body.navigation-categories .category-boxes,
+body.navigation-categories #categories-wrapper,
+body.navigation-categories .categories-list {
+  margin-top: 24px !important;
+}
+
+.navigation-categories #list-area {
+  padding-top: 24px !important;
+}
+
+// ============================================
+// ZOEKICOON TERUG IN HEADER
+// ============================================
+.d-header .header-buttons .search-dropdown,
+.d-header .panel .search-button,
+.d-header button.search-button,
+.d-header .d-header-icons .search-dropdown,
+.d-header-icons .icon.btn-flat.search-button,
+#search-button {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+}
+
+.d-header-icons .search-dropdown {
+  display: inline-flex !important;
+
+  .d-icon-search {
+    color: $grijs-tekst !important;
+    font-size: 1.1rem !important;
+
+    &:hover {
+      color: $si-teal !important;
     }
   }
 }
@@ -504,7 +553,7 @@ body.navigation-categories {
   #main-outlet {
     max-width: 1200px;
     margin: 0 auto;
-    padding: 0 24px;
+    padding: 32px 24px 0 24px;
     width: 100%;
     box-sizing: border-box;
   }
