@@ -510,25 +510,93 @@ body.navigation-categories .categories-list {
 }
 
 // ============================================
+// HEADER ICONEN — CONSISTENTE POSITIE OP ALLE PAGINA'S
+// ============================================
+
+.d-header-wrap {
+  width: 100% !important;
+}
+
+.d-header {
+  max-width: 100% !important;
+  width: 100% !important;
+
+  .wrap {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 24px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  .contents {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
+    width: 100% !important;
+  }
+}
+
+.d-header-icons {
+  display: flex !important;
+  align-items: center !important;
+  gap: 4px !important;
+  flex-shrink: 0 !important;
+  margin-left: auto !important;
+
+  .icon, .btn {
+    width: 36px !important;
+    height: 36px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+}
+
+#search-button,
+.d-header-icons .search-dropdown,
+.d-header-icons .search-button {
+  display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  order: 1 !important;
+}
+
+.d-header-icons .chat-header-icon,
+.d-header-icons .header-chat-link {
+  order: 2 !important;
+}
+
+.d-header-icons .hamburger-dropdown,
+.header-sidebar-toggle {
+  order: 3 !important;
+}
+
+.d-header-icons .current-user,
+.d-header-icons .header-dropdown-toggle {
+  order: 4 !important;
+}
+
+// ============================================
 // HOMEPAGE — VERBERG ZOEKBALK, FILTERS + VOLLE BREEDTE
 // ============================================
 body.navigation-categories {
-  // Verberg zoekbalk en welkomstbanner
-  .search-container,
-  .search-banner,
-  .custom-search-banner,
-  .category-search,
-  .search-banner .search-input,
-  .search-banner input,
-  .category-search-input,
-  .search-filter,
-  #search-banner,
-  .category-boxes-filter-wrapper .search-input,
-  .category-boxes-filter-wrapper input,
-  .welcome-banner,
-  .custom-search-banner-wrap,
-  [class*="welcome-banner"],
-  [class*="search-banner"] {
+  // Verberg zoekbalk en welkomstbanner — alleen in main content, NIET in .d-header
+  #main-outlet-wrapper .search-container,
+  #main-outlet-wrapper .search-banner,
+  #main-outlet-wrapper .custom-search-banner,
+  #main-outlet-wrapper .category-search,
+  #main-outlet-wrapper .search-banner .search-input,
+  #main-outlet-wrapper .search-banner input,
+  #main-outlet-wrapper .category-search-input,
+  #main-outlet-wrapper .search-filter,
+  #main-outlet-wrapper #search-banner,
+  #main-outlet-wrapper .category-boxes-filter-wrapper .search-input,
+  #main-outlet-wrapper .category-boxes-filter-wrapper input,
+  #main-outlet-wrapper .welcome-banner,
+  #main-outlet-wrapper .custom-search-banner-wrap,
+  #main-outlet-wrapper [class*="welcome-banner"],
+  #main-outlet-wrapper [class*="search-banner"] {
     display: none !important;
   }
 
@@ -558,12 +626,12 @@ body.navigation-categories {
     box-sizing: border-box;
   }
 
-  .wrap {
+  // Alleen main content wrap/contents — NIET de header (.d-header blijft consistent)
+  #main-outlet-wrapper .wrap,
+  #main-outlet-wrapper .contents {
     max-width: 100% !important;
   }
-
-  .contents {
-    max-width: 100%;
+  #main-outlet-wrapper .contents {
     margin: 0 auto;
   }
 
