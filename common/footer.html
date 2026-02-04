@@ -1,25 +1,11 @@
-<!-- Top bijdragers + Quote sectie -->
+<!-- Top bijdragers + Quote sectie (alleen op homepage; wordt via CSS getoond/verborgen) -->
 <div class="si-community-section">
   <div class="si-community-inner">
 
     <div class="si-top-contributors">
       <h3>Maandelijkse top bijdragers</h3>
       <div class="si-contributors-list" id="si-contributors-list">
-        <div class="si-contributor">
-          <div class="si-contributor-info">
-            <div class="si-contributor-avatar">
-              <img src="/letter_avatar_proxy/v4/letter/s/e36b37/48.png" alt="stripinfo" />
-            </div>
-            <div class="si-contributor-details">
-              <span class="si-contributor-name">stripinfo</span>
-              <span class="si-contributor-role">Admin</span>
-            </div>
-          </div>
-          <div class="si-contributor-stat">
-            <span class="si-stat-number">—</span>
-            <span class="si-stat-label">Posts</span>
-          </div>
-        </div>
+        <!-- Wordt dynamisch gevuld via onderstaand script -->
       </div>
       <a href="/u?order=post_count&amp;period=monthly" class="si-see-more-link">Bekijk alle bijdragers +</a>
     </div>
@@ -102,3 +88,66 @@
     </div>
   </div>
 </div>
+
+<script>
+(function() {
+  function loadTopContributors() {
+    var container = document.getElementById("si-contributors-list");
+    if (!container || container.dataset.siLoaded === "true") return;
+    if (!document.body.classList.contains("navigation-categories")) return;
+    container.dataset.siLoaded = "true";
+
+    fetch("/directory_items.json?period=monthly&order=post_count")
+      .then(function(res) { return res.json(); })
+      .then(function(data) {
+        var items = (data.directory_items || []).slice(0, 5);
+        if (items.length === 0) {
+          container.innerHTML = "<p style=\"color:#999;font-size:0.85rem;padding:12px 0;\">Nog geen activiteit deze maand.</p>";
+          return;
+        }
+        container.innerHTML = items.map(function(item) {
+          var u = item.user || {};
+          var username = u.username || "";
+          var avatar = (u.avatar_template || "").replace(/\{size\}/g, "48");
+          if (avatar && avatar.indexOf("/") === 0) {
+            var base = window.location.origin || "";
+            avatar = base + avatar;
+          }
+          var name = u.name || username;
+          var postCount = item.post_count != null ? item.post_count : 0;
+          return (
+            "<div class=\"si-contributor\">" +
+              "<div class=\"si-contributor-info\">" +
+                "<div class=\"si-contributor-avatar\">" +
+                  "<a href=\"/u/" + username + "\"><img src=\"" + avatar + "\" alt=\"" + username + "\" width=\"44\" height=\"44\" /></a>" +
+                "</div>" +
+                "<div class=\"si-contributor-details\">" +
+                  "<a href=\"/u/" + username + "\" class=\"si-contributor-name\">" + username + "</a>" +
+                  "<span class=\"si-contributor-role\">" + (name !== username ? name : "") + "</span>" +
+                "</div>" +
+              "</div>" +
+              "<div class=\"si-contributor-stat\">" +
+                "<span class=\"si-stat-number\">" + postCount + "</span>" +
+                "<span class=\"si-stat-label\">Posts</span>" +
+              "</div>" +
+            "</div>"
+          );
+        }).join("");
+      })
+      .catch(function() {
+        container.innerHTML = "<p style=\"color:#999;font-size:0.85rem;\">Kon bijdragers niet laden.</p>";
+      });
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", function() { setTimeout(loadTopContributors, 300); });
+  } else {
+    setTimeout(loadTopContributors, 300);
+  }
+  var outlet = document.querySelector("#main-outlet");
+  if (outlet) {
+    var mo = new MutationObserver(function() { loadTopContributors(); });
+    mo.observe(outlet, { childList: true, subtree: true });
+  }
+})();
+</script>

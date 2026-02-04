@@ -146,51 +146,6 @@ body {
 }
 
 // ============================================
-// FILTER OP CATEGORIE — BOVEN PAGINA (direct kiezen)
-// ============================================
-.stripinfo-category-filter {
-  background: $si-white;
-  border-bottom: 1px solid $si-border;
-  padding: 10px 0;
-
-  .stripinfo-category-filter-inner {
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 24px;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 8px 16px;
-  }
-
-  .stripinfo-category-filter-label {
-    font-size: 0.8rem;
-    font-weight: 600;
-    color: $grijs-tekst;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
-  }
-
-  .stripinfo-category-filter-link {
-    font-size: 0.9rem;
-    font-weight: 500;
-    color: $si-dark;
-    text-decoration: none;
-    padding: 6px 14px;
-    border-radius: 20px;
-    background: $si-light-bg;
-    border: 1px solid transparent;
-    transition: background 0.2s, border-color 0.2s;
-
-    &:hover {
-      background: rgba(0, 131, 143, 0.08);
-      color: $si-teal;
-      border-color: rgba(0, 131, 143, 0.2);
-    }
-  }
-}
-
-// ============================================
 // DISCOURSE HEADER — NIET OVERSCHRIJVEN
 // Onze custom nav (banner + stripinfo-nav) staat in header.html
 // en wordt BOVEN de standaard Discourse header geplaatst.
@@ -198,27 +153,55 @@ body {
 // ============================================
 
 // ============================================
-// SIDEBAR — GEEN LAYOUTVERSCHUIVING BIJ WAFFLE-MENU
-// Discourse toggelt bij klik op waffle o.a. body.has-sidebar-page en past
-// #main-outlet-wrapper grid aan. Wij verbergen de sidebar; zorg dat de
-// hoofdinhoud nooit van breedte verandert.
+// SIDEBAR — GEEN LAYOUTVERSCHUIVING; HAMBURGER PANEL WEL TONEN
+// Verberg alleen het vaste linkerpaneel; het hamburger-dropdown mag werken.
 // ============================================
 body.has-sidebar-page #main-outlet-wrapper,
 body.sidebar-animate #main-outlet-wrapper {
   grid-template-columns: minmax(0, 1fr) 0 !important;
   grid-template-areas: "content sidebar" !important;
 }
-body.has-sidebar-page .sidebar-wrapper,
-body.has-sidebar-page .sidebar-container,
-body.has-sidebar-page #d-sidebar {
+body.has-sidebar-page #main-outlet-wrapper .sidebar-wrapper,
+body.has-sidebar-page #main-outlet-wrapper .sidebar-container,
+body.has-sidebar-page #main-outlet-wrapper #d-sidebar {
   width: 0 !important;
   min-width: 0 !important;
   overflow: hidden !important;
 }
 
-// Verberg de waffle/sidebar-toggle in de header (sidebar is niet in gebruik)
-.header-sidebar-toggle {
-  display: none !important;
+// Hamburger-knop altijd zichtbaar; dropdown/panel mag openen
+.header-sidebar-toggle,
+button.sidebar-toggle {
+  display: inline-flex !important;
+}
+
+// Styling hamburger dropdown panel
+.menu-panel.slide-in .sidebar-wrapper,
+.sidebar-wrapper--floating,
+.d-header .menu-panel .sidebar-wrapper {
+  background: $wit;
+  border: 1px solid $si-border;
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+
+  .sidebar-section-link {
+    font-size: 0.9rem;
+    color: $si-dark;
+    padding: 8px 12px;
+    border-radius: 6px;
+
+    &:hover {
+      background: $si-light-bg;
+    }
+  }
+
+  .sidebar-section-header {
+    font-weight: 700;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: $grijs-tekst;
+    letter-spacing: 0.5px;
+  }
 }
 
 // ============================================
@@ -282,11 +265,11 @@ body.has-sidebar-page #d-sidebar {
 // HOMEPAGE — VERBERG ZOEKBALK, FILTERS + VOLLE BREEDTE
 // ============================================
 body.navigation-categories {
-  // Verberg sidebar
-  .sidebar-wrapper,
-  .sidebar-container,
-  #d-sidebar,
-  .sidebar-section-wrapper {
+  // Verberg alleen de vaste sidebar in de content-area; hamburger-panel zit in .d-header en blijft werken
+  #main-outlet-wrapper .sidebar-wrapper,
+  #main-outlet-wrapper .sidebar-container,
+  #main-outlet-wrapper #d-sidebar,
+  #main-outlet-wrapper .sidebar-section-wrapper {
     display: none !important;
   }
 
@@ -301,7 +284,11 @@ body.navigation-categories {
   .search-filter,
   #search-banner,
   .category-boxes-filter-wrapper .search-input,
-  .category-boxes-filter-wrapper input {
+  .category-boxes-filter-wrapper input,
+  .welcome-banner,
+  .custom-search-banner-wrap,
+  [class*="welcome-banner"],
+  [class*="search-banner"] {
     display: none !important;
   }
 
@@ -420,9 +407,10 @@ body.navigation-categories {
 // CATEGORIE-PAGINA'S — SIDEBAR WEG + HEADER & FILTERS (Asana)
 // ============================================
 body:not(.navigation-categories) {
-  .sidebar-wrapper,
-  .sidebar-container,
-  #d-sidebar {
+  // Verberg vaste sidebar in content-area; hamburger-panel in header blijft werken
+  #main-outlet-wrapper .sidebar-wrapper,
+  #main-outlet-wrapper .sidebar-container,
+  #main-outlet-wrapper #d-sidebar {
     display: none !important;
   }
 
@@ -817,22 +805,37 @@ body:not(.navigation-categories) {
   }
 }
 
+// ============================================
+// FIX NAVIGATIE TABS — ACTIEVE STAAT (subtiel, geen dikke blauwe highlight)
+// ============================================
+.nav-pills > li > a,
 .navigation-container .nav-pills > li > a {
-  padding: 8px 16px;
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  color: $grijs-tekst !important;
+  font-weight: 500;
   font-size: 0.9rem;
-  color: $grijs-tekst;
+  padding: 8px 16px;
   border-radius: 6px;
+  transition: all 0.15s;
 
   &:hover {
-    background: #f0f0f0;
-    color: $zwart;
+    background: $si-light-bg !important;
+    color: $si-dark !important;
   }
+}
 
-  &.active {
-    color: $si-teal;
-    font-weight: 600;
-    background: rgba(0, 131, 143, 0.08);
-  }
+.nav-pills > li > a.active,
+.nav-pills > li.active > a,
+.navigation-container .nav-pills > li > a.active,
+.navigation-container .nav-pills > li.active > a {
+  background: transparent !important;
+  color: $si-teal !important;
+  font-weight: 600 !important;
+  border-bottom: 2px solid $si-teal !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
 }
 
 // ============================================
@@ -924,14 +927,10 @@ body:not(.navigation-categories) {
 }
 
 // ============================================
-// VERBERG CATEGORIE KLEUR-BADGES
+// VERBERG ALLEEN KLEUR-BADGE (vierkantje/bar); NAAM WEL TONEN
 // ============================================
-.categories-list .category-box .badge-category,
-.navigation-categories .category-box .badge-category,
-.categories-list .category-box .badge-wrapper .badge-category,
-.navigation-categories .category-box .badge-wrapper .badge-category,
-.categories-list .category-box .category-name .badge-category,
-.navigation-categories .category-box .category-name .badge-category,
+.categories-list .category-box .badge-wrapper .badge-category-bg,
+.navigation-categories .category-box .badge-wrapper .badge-category-bg,
 .categories-list .badge-wrapper.bullet .badge-category-bg,
 .categories-list .badge-wrapper.bar .badge-category-bg,
 .categories-list .badge-wrapper.box .badge-category-bg,
@@ -939,6 +938,45 @@ body:not(.navigation-categories) {
 .navigation-categories .badge-wrapper.bar .badge-category-bg,
 .navigation-categories .badge-wrapper.box .badge-category-bg {
   display: none !important;
+}
+
+// ============================================
+// FIX CATEGORIENAMEN — ZICHTBAAR IN KAARTEN
+// ============================================
+.category-box .category-box-inner .category-name,
+.category-box .category-box-inner h3,
+.category-box h3,
+.category-box-heading,
+.category-name a,
+.category-box .category-name,
+.categories-list .category-box .category-name,
+.navigation-categories .category-box .category-name,
+.categories-list .category-box .badge-wrapper .badge-category,
+.navigation-categories .category-box .badge-wrapper .badge-category {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  color: $si-dark !important;
+  font-size: 1.05rem !important;
+  font-weight: 700 !important;
+  margin-bottom: 8px !important;
+  font-family: $sans-stack !important;
+  text-transform: none !important;
+  letter-spacing: normal !important;
+}
+
+.category-box .badge-wrapper {
+  display: inline-flex !important;
+  align-items: center !important;
+
+  .badge-category {
+    display: inline !important;
+    visibility: visible !important;
+    color: $si-dark !important;
+    font-size: 1.05rem !important;
+    font-weight: 700 !important;
+    font-family: $sans-stack !important;
+  }
 }
 
 // ============================================
@@ -1092,12 +1130,14 @@ body:not(.navigation-categories) {
 // COMMUNITY-SECTIE + CTA — ALLEEN OP HOMEPAGE
 // ============================================
 .si-community-section,
+.si-cta-section,
 .stripinfo-cta-section {
   display: none !important;
 }
 
 body.navigation-categories {
   .si-community-section,
+  .si-cta-section,
   .stripinfo-cta-section {
     display: block !important;
   }
