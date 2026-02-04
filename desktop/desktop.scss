@@ -1,7 +1,31 @@
 // ============================================
 // STRIPINFO THEME - DESKTOP-SPECIFIC STYLES
-// Overrides/additions for desktop viewport only.
+// Alleen geladen op desktop; navigatie en footer in meerdere kolommen.
 // ============================================
 
-// Add any desktop-only styles below.
-// Common styles are in common/common.scss.
+// Navigatie volledig zichtbaar (horizontale rij)
+.stripinfo-nav.stripinfo-secondary-nav {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  
+  a,
+  .nav-link {
+    width: auto;
+    padding: 14px 18px;
+    font-size: 14px;
+  }
+  
+  .separator {
+    display: inline;
+  }
+}
+
+// Footer: kolommen naast elkaar
+.stripinfo-footer .footer-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 40px;
+}

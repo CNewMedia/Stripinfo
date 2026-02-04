@@ -1,4 +1,4 @@
 logo_url:
   type: string
-  default: "https://stripinfo.be/assets/images/logo.avif"
-  description: "URL van het Stripinfo logo"
+  default: "https://stripinfo.be/images/logo_header_compact.avif"
+  description: "URL van het logo in de header. Gebruik een geldige afbeeldings-URL (bijv. .avif of .png)."

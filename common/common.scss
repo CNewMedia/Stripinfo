@@ -1,6 +1,13 @@
 // ============================================
 // STRIPINFO DISCOURSE THEME - COMPLETE CSS
 // Versie: CLEAN & WERKEND
+//
+// RICHTLIJNEN:
+// - Standaard Discourse (topic lists, composer, user cards) niet wijzigen.
+// - Geen JavaScript toevoegen tenzij strikt noodzakelijk.
+// - Custom nav BOVEN/ONDER de standaard header; .d-header niet overschrijven.
+// - Geen !important tenzij absoluut noodzakelijk (alleen bij hide-regels).
+// - Bestaande werkende styling behouden; alleen fouten fixen.
 // ============================================
 
 // ============================================
@@ -30,11 +37,11 @@ body {
 }
 
 * {
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
 .btn, button, a, .icon {
-  box-shadow: none !important;
+  box-shadow: none;
 }
 
 // ============================================
@@ -46,12 +53,12 @@ body {
 .user-tips,
 .user-tips-topic-summary,
 .bootstrap-mode-notice {
-  display: none !important;
+  display: none !important; /* enige uitzondering: verbergen wizard/onboarding */
 }
 
 .topic-list-item[data-topic-id="1"],
 [data-topic-id="1"] {
-  display: none !important;
+  display: none !important; /* verbergen welkomsttopic */
 }
 
 // ============================================
@@ -128,78 +135,11 @@ body {
 }
 
 // ============================================
-// DISCOURSE HEADER
+// DISCOURSE HEADER — NIET OVERSCHRIJVEN
+// Onze custom nav (banner + stripinfo-nav) staat in header.html
+// en wordt BOVEN de standaard Discourse header geplaatst.
+// De .d-header (logo, zoek, hamburger, profiel) blijft ongewijzigd.
 // ============================================
-.d-header {
-  background: $cyaan !important;
-  border-bottom: 3px solid $zwart !important;
-  
-  .title a {
-    color: $zwart !important;
-    font-weight: 700 !important;
-  }
-  
-  .d-header-icons {
-    .icon {
-      color: $zwart !important;
-      background: none !important;
-      border: none !important;
-      border-radius: 8px !important;
-      padding: 8px 10px !important;
-      margin: 0 4px !important;
-      transition: all 0.2s ease;
-      
-      &:hover {
-        background: rgba(0,0,0,0.1) !important;
-        color: $wit !important;
-      }
-      
-      .d-icon {
-        color: inherit !important;
-      }
-    }
-  }
-  
-  .hamburger-panel,
-  .hamburger-dropdown {
-    background: none !important;
-    border: none !important;
-    
-    .d-icon {
-      color: $zwart !important;
-    }
-    
-    &:hover {
-      background: rgba(0,0,0,0.1) !important;
-    }
-  }
-  
-  #search-button {
-    background: none !important;
-    border: none !important;
-    
-    .d-button-label {
-      display: none !important;
-    }
-  }
-  
-  .login-button, 
-  .sign-up-button {
-    background: $zwart !important;
-    color: $wit !important;
-    border-radius: 20px !important;
-    padding: 8px 20px !important;
-    font-weight: 700 !important;
-    margin-left: 8px !important;
-    border: 2px solid $zwart !important;
-    
-    &:hover {
-      background: $roze !important;
-      border-color: $roze !important;
-      transform: translateY(-1px);
-    }
-  }
-}
 
 // ============================================
 // SIDEBAR
@@ -210,7 +150,7 @@ body {
   border: 2px solid $grijs-border;
   
   .sidebar-section-wrapper {
-    border: none !important;
+    border: none;
   }
   
   .sidebar-section-header {
@@ -220,12 +160,12 @@ body {
     letter-spacing: 0.5px;
     color: $grijs-tekst;
     padding: 12px 16px 8px;
-    background: none !important;
-    border: none !important;
+    background: none;
+    border: none;
     
     .sidebar-section-header-button {
-      background: none !important;
-      border: none !important;
+      background: none;
+      border: none;
     }
   }
   
@@ -234,17 +174,17 @@ body {
     transition: all 0.2s ease;
     border-radius: 8px;
     margin: 2px 8px;
-    background: none !important;
-    border: none !important;
+    background: none;
+    border: none;
     
     &:hover {
-      background: lighten($cyaan, 45%) !important;
-      color: $cyaan !important;
+      background: lighten($cyaan, 45%);
+      color: $cyaan;
     }
     
     &.active {
-      background: $cyaan !important;
-      color: $wit !important;
+      background: $cyaan;
+      color: $wit;
       font-weight: 700;
     }
   }
@@ -252,7 +192,7 @@ body {
   .sidebar-section-link-wrapper {
     [data-tooltip], [title] {
       &::after, &::before {
-        display: none !important;
+        display: none;
       }
     }
   }
@@ -292,13 +232,13 @@ body {
   }
   
   .category-name {
-    font-weight: 700 !important;
-    font-size: 18px !important;
-    color: $zwart !important;
+    font-weight: 700;
+    font-size: 18px;
+    color: $zwart;
   }
   
   .category-description {
-    color: $grijs-tekst !important;
+    color: $grijs-tekst;
     line-height: 1.6;
     margin-top: 8px;
   }
@@ -355,24 +295,24 @@ body {
     }
     
     td {
-      border: none !important;
-      padding: 8px 12px !important;
+      border: none;
+      padding: 8px 12px;
     }
   }
   
   .main-link {
     .title {
-      color: $zwart !important;
-      font-weight: 700 !important;
-      font-size: 16px !important;
+      color: $zwart;
+      font-weight: 700;
+      font-size: 16px;
       line-height: 1.4;
       
       &:hover {
-        color: $cyaan !important;
+        color: $cyaan;
       }
       
       &:visited {
-        color: $grijs-tekst !important;
+        color: $grijs-tekst;
       }
     }
   }
@@ -397,22 +337,22 @@ body {
   .num.views {
     background: lighten($geel, 25%);
     border-radius: 16px;
-    padding: 8px 16px !important;
-    margin: 0 8px !important;
+    padding: 8px 16px;
+    margin: 0 8px;
     border: 2px solid $grijs-border;
     font-weight: 700;
-    font-family: 'Outfit', sans-serif !important;
+    font-family: 'Outfit', sans-serif;
     min-width: 50px;
     text-align: center;
     display: inline-block;
   }
   
   .num.posts-map {
-    margin-right: 12px !important;
+    margin-right: 12px;
   }
   
   .topic-list-data {
-    padding: 8px !important;
+    padding: 8px;
   }
 }
 
@@ -428,7 +368,7 @@ button,
 input,
 textarea,
 select {
-  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif !important;
+  font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
 }
 
 h1, h2, h3, h4, h5, h6,
@@ -437,53 +377,53 @@ h1, h2, h3, h4, h5, h6,
 .stripinfo-footer h3,
 .stripinfo-footer h2,
 .stripinfo-footer h4 {
-  font-family: 'Bangers', cursive !important;
+  font-family: 'Bangers', cursive;
 }
 
 .topic-list .title,
 .fancy-title {
-  font-family: 'Outfit', sans-serif !important;
-  font-weight: 700 !important;
+  font-family: 'Outfit', sans-serif;
+  font-weight: 700;
 }
 
 // ============================================
 // BUTTONS
 // ============================================
 .btn {
-  border-radius: 20px !important;
-  font-weight: 700 !important;
+  border-radius: 20px;
+  font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.3px;
-  transition: all 0.2s ease !important;
-  padding: 10px 22px !important;
+  transition: all 0.2s ease;
+  padding: 10px 22px;
   
   &.btn-primary {
-    background: $zwart !important;
-    color: $wit !important;
-    border: 2px solid $zwart !important;
+    background: $zwart;
+    color: $wit;
+    border: 2px solid $zwart;
     
     &:hover {
-      background: $roze !important;
-      border-color: $roze !important;
+      background: $roze;
+      border-color: $roze;
       transform: translateY(-2px);
     }
   }
   
   &.btn-default {
-    background: $wit !important;
-    color: $zwart !important;
-    border: 2px solid $zwart !important;
+    background: $wit;
+    color: $zwart;
+    border: 2px solid $zwart;
     
     &:hover {
-      background: $cyaan !important;
-      color: $wit !important;
-      border-color: $cyaan !important;
+      background: $cyaan;
+      color: $wit;
+      border-color: $cyaan;
     }
   }
   
   &.btn-icon-text {
-    border: none !important;
-    background: none !important;
+    border: none;
+    background: none;
   }
 }
 
@@ -560,7 +500,7 @@ h1, h2, h3, h4, h5, h6,
     font-weight: 700;
     
     .username {
-      color: $zwart !important;
+      color: $zwart;
       font-size: 15px;
       font-weight: 700;
     }
@@ -571,16 +511,16 @@ h1, h2, h3, h4, h5, h6,
 // BADGES & NOTIFICATIONS
 // ============================================
 .badge-notification {
-  background: $roze !important;
-  color: $wit !important;
+  background: $roze;
+  color: $wit;
   font-weight: 700;
   border-radius: 12px;
   border: none;
 }
 
 .badge-wrapper.box {
-  background: $cyaan !important;
-  color: $wit !important;
+  background: $cyaan;
+  color: $wit;
   border: none;
 }
 
@@ -588,32 +528,32 @@ h1, h2, h3, h4, h5, h6,
 // SEARCH
 // ============================================
 #search-term {
-  border: 2px solid $grijs-border !important;
-  border-radius: 20px !important;
-  padding: 10px 18px !important;
+  border: 2px solid $grijs-border;
+  border-radius: 20px;
+  padding: 10px 18px;
   
   &:focus {
-    border-color: $cyaan !important;
-    outline: 3px solid rgba($cyaan, 0.1) !important;
+    border-color: $cyaan;
+    outline: 3px solid rgba($cyaan, 0.1);
   }
 }
 
 .search-menu {
-  border: 2px solid $grijs-border !important;
-  border-radius: 12px !important;
+  border: 2px solid $grijs-border;
+  border-radius: 12px;
 }
 
 // ============================================
 // USER MENU
 // ============================================
 .user-menu {
-  border: 2px solid $grijs-border !important;
-  border-radius: 12px !important;
+  border: 2px solid $grijs-border;
+  border-radius: 12px;
   
   .menu-links-header {
-    background: $cyaan !important;
-    color: $zwart !important;
-    font-weight: 700 !important;
+    background: $cyaan;
+    color: $zwart;
+    font-weight: 700;
   }
 }
 
@@ -622,8 +562,8 @@ h1, h2, h3, h4, h5, h6,
 // ============================================
 .d-editor-button-bar {
   .btn {
-    border-radius: 6px !important;
-    border: 1px solid $grijs-border !important;
+    border-radius: 6px;
+    border: 1px solid $grijs-border;
   }
 }
 
@@ -781,8 +721,8 @@ h1, h2, h3, h4, h5, h6,
   }
   
   .d-header-icons .icon {
-    padding: 6px 8px !important;
-    margin: 0 2px !important;
+    padding: 6px 8px;
+    margin: 0 2px;
   }
   
   .stripinfo-footer .footer-content {
@@ -797,11 +737,10 @@ h1, h2, h3, h4, h5, h6,
 .topic-list {
   .topic-poster {
     a[data-user-card="system"] {
-      display: none !important;
+      display: none !important; /* verbergen system-gebruiker in topiclijst */
     }
   }
   
-  // Als system de enige poster is, verberg hele kolom
   .posters {
     a[href="/u/system"] {
       display: none !important;
@@ -814,20 +753,20 @@ h1, h2, h3, h4, h5, h6,
   .posts-map, 
   .num.posts, 
   .num.views {
-    margin: 0 10px !important; // Van 8px naar 10px
-    padding: 8px 18px !important; // Iets meer padding
+    margin: 0 10px; // Van 8px naar 10px
+    padding: 8px 18px; // Iets meer padding
   }
   
   // Eerste blok krijgt geen linker margin (posts-map of num)
   .posts-map:first-of-type,
   .num:first-of-type {
-    margin-left: 0 !important;
+    margin-left: 0;
   }
   
   // Laatste blok krijgt geen rechter margin
   .posts-map:last-of-type,
   .num:last-of-type {
-    margin-right: 0 !important;
+    margin-right: 0;
   }
 }
 
@@ -835,6 +774,6 @@ h1, h2, h3, h4, h5, h6,
 .topic-list-header {
   .posts,
   .views {
-    padding: 0 12px !important;
+    padding: 0 12px;
   }
 }

@@ -1,7 +1,36 @@
 // ============================================
 // STRIPINFO THEME - MOBILE-SPECIFIC STYLES
-// Overrides/additions for mobile viewport only.
+// Alleen geladen op mobiel; zorg voor stapelen en geen horizontale scroll.
 // ============================================
 
-// Add any mobile-only styles below.
-// Common styles (including responsive) are in common/common.scss.
+// Geen horizontale scroll op mobiel
+html,
+body {
+  overflow-x: hidden;
+}
+
+// Header-navigatie verkleind (compacte links, verticaal gestapeld)
+.stripinfo-nav.stripinfo-secondary-nav {
+  flex-direction: column;
+  
+  a,
+  .nav-link {
+    width: 100%;
+    padding: 10px 12px;
+    font-size: 13px;
+  }
+  
+  .separator {
+    display: none;
+  }
+}
+
+// Footer: kolommen verticaal gestapeld
+.stripinfo-footer .footer-content {
+  grid-template-columns: 1fr;
+}
+
+// Banner titel iets kleiner op mobiel
+.stripinfo-top-banner .banner-title {
+  font-size: 26px;
+}
