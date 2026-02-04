@@ -175,36 +175,56 @@ body,
 // ============================================
 
 // ============================================
-// ADMIN SIDEBAR — NIET AANRAKEN
+// ADMIN SIDEBAR — LAYOUT FIX: CONTENT NAAST SIDEBAR
 // ============================================
-// De admin sidebar moet standaard Discourse gedrag behouden.
-// Geen globale sidebar-CSS toepassen op admin; content moet NAAST sidebar staan.
+// Op admin-pagina's: container flex row, sidebar links, content rechts.
+// Geen globale sidebar-CSS toepassen op admin (zie body:not(route-admin) hieronder).
 
 body[class*="route-admin"],
 body.admin-interface {
+  // Container die sidebar + content bevat — flex row zodat ze naast elkaar staan
+  #main-outlet-wrapper,
+  .admin-wrapper,
+  .admin-contents,
+  .admin-body,
+  .ember-application > .ember-view,
+  .wrap.body-page {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-left: 0 !important;
+    align-items: stretch !important;
+  }
+
+  // Sidebar: vaste breedte, niet laten krimpen
   .admin-sidebar,
   .sidebar-wrapper,
-  #d-sidebar {
+  #d-sidebar,
+  [class*="admin-sidebar"],
+  nav.sidebar-wrapper {
     position: relative !important;
     transform: none !important;
     width: auto !important;
+    min-width: 220px !important;
     max-width: none !important;
+    flex-shrink: 0 !important;
     display: flex !important;
     visibility: visible !important;
     opacity: 1 !important;
   }
 
-  .admin-contents,
-  .admin-body {
-    display: flex !important;
-    flex-direction: row !important;
-  }
-
-  #main-outlet-wrapper,
-  #main-outlet {
-    margin-left: 0 !important;
+  // Content gebied: neemt rest van de ruimte
+  #main-outlet,
+  .admin-main-content,
+  .contents.ember-view {
+    flex: 1 1 auto !important;
+    min-width: 0 !important;
     width: auto !important;
     max-width: none !important;
+    margin-left: 0 !important;
+    display: block !important;
   }
 }
 
