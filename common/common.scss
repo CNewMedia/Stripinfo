@@ -158,23 +158,53 @@ body {
 // "navigation menu" → kies "header dropdown" (geen vaste sidebar).
 // ============================================
 
-// 1. Verberg de VASTE sidebar (linkerpaneel); dropdown/overlay mag werken
-.sidebar-wrapper:not(.sidebar-floating):not(.sidebar-wrapper--floating) {
-  display: none !important;
+// 1. Verberg de VASTE sidebar — MOBILE: class-gebaseerd; DESKTOP: alleen binnen content-area
+// Op desktop verbergen we alleen #main-outlet-wrapper .sidebar-wrapper, zodat het dropdown-panel
+// (dat vaak buiten die wrapper rendert) zichtbaar blijft.
+@media (max-width: 768px) {
+  .sidebar-wrapper:not(.sidebar-floating):not(.sidebar-wrapper--floating) {
+    display: none !important;
+  }
+  .sidebar-wrapper--static,
+  #d-sidebar.sidebar-container--static,
+  #d-sidebar:not(.sidebar-floating):not(.sidebar-wrapper--floating) {
+    display: none !important;
+  }
 }
 
-.sidebar-wrapper--static,
-#d-sidebar.sidebar-container--static,
-#d-sidebar:not(.sidebar-floating):not(.sidebar-wrapper--floating) {
-  display: none !important;
+@media (min-width: 769px) {
+  // Desktop: alleen de vaste sidebar in de content-area verbergen; dropdown blijft werken
+  #main-outlet-wrapper .sidebar-wrapper,
+  #main-outlet-wrapper .sidebar-container,
+  #main-outlet-wrapper #d-sidebar {
+    display: none !important;
+  }
+  // Als Discourse het open panel toch binnen #main-outlet-wrapper rendert (bv. als overlay), toon het dan
+  #main-outlet-wrapper .sidebar-wrapper.sidebar-wrapper--floating,
+  #main-outlet-wrapper .sidebar-wrapper.sidebar-floating,
+  #main-outlet-wrapper .menu-panel .sidebar-wrapper {
+    display: block !important;
+  }
 }
 
-// Dropdown-panel (in header): altijd tonen, ook als Discourse geen --floating class gebruikt
+// Dropdown-panel: altijd tonen (header, menu-panel, slide-in)
 .d-header .menu-panel .sidebar-wrapper,
 .d-header .sidebar-wrapper,
 .hamburger-panel .sidebar-wrapper,
-.menu-panel.slide-in .sidebar-wrapper {
+.menu-panel.slide-in .sidebar-wrapper,
+.menu-panel .sidebar-wrapper,
+.sidebar-hamburger-dropdown .sidebar-wrapper {
   display: block !important;
+}
+
+// Desktop: dropdown-panel boven content (z-index)
+@media (min-width: 769px) {
+  .menu-panel.slide-in,
+  .menu-panel .sidebar-wrapper,
+  .d-header .menu-panel,
+  .sidebar-hamburger-dropdown {
+    z-index: 1100 !important;
+  }
 }
 
 // 2. Hamburger knop (≡) altijd zichtbaar
