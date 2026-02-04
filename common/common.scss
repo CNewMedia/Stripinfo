@@ -902,9 +902,10 @@ body.navigation-categories {
 }
 
 // ============================================
-// MAIN CONTENT
+// MAIN CONTENT — ALLEEN FORUM (niet admin)
 // ============================================
-#main-outlet {
+// Zonder scope zou dit #main-outlet op admin overschrijven en de sidebar-layout breken.
+body:not([class*="route-admin"]) #main-outlet {
   background: transparent;
   padding: 30px 15px;
   max-width: 1200px;
@@ -914,7 +915,8 @@ body.navigation-categories {
 // ============================================
 // CATEGORIE-PAGINA'S — SIDEBAR WEG + HEADER & FILTERS (Asana)
 // ============================================
-body:not(.navigation-categories) {
+// Admin uitsluiten: body:not(.navigation-categories) matcht ook admin.
+body:not(.navigation-categories):not([class*="route-admin"]) {
   #main-outlet {
     max-width: 1200px;
     margin: 0 auto;
