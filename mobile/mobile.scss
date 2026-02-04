@@ -127,12 +127,8 @@ body {
 }
 
 // ============================================
-// MOBILE — alleen vaste sidebar verbergen; hamburger dropdown blijft werken
+// MOBILE — sidebar/hamburger wordt in common.scss als overlay gestuurd
 // ============================================
-.sidebar-wrapper--static,
-#d-sidebar.sidebar-container--static {
-  display: none !important;
-}
 
 .si-community-section {
   padding: 32px 16px;
