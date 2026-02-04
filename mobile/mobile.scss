@@ -1,6 +1,6 @@
 // ============================================
 // STRIPINFO THEME - MOBILE-SPECIFIC STYLES
-// Alleen geladen op mobiel; zorg voor stapelen en geen horizontale scroll.
+// Navigatie scrollbaar, categorieën/CTA/footer gestapeld.
 // ============================================
 
 // Geen horizontale scroll op mobiel
@@ -9,28 +9,58 @@ body {
   overflow-x: hidden;
 }
 
-// Header-navigatie verkleind (compacte links, verticaal gestapeld)
-.stripinfo-nav.stripinfo-secondary-nav {
-  flex-direction: column;
-  
-  a,
-  .nav-link {
-    width: 100%;
-    padding: 10px 12px;
-    font-size: 13px;
+// Navigatiebalk: horizontaal scrollbaar op kleine schermen
+.stripinfo-nav-bar {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+
+  .stripinfo-nav-inner {
+    flex-wrap: nowrap;
+    min-width: max-content;
   }
-  
-  .separator {
-    display: none;
+
+  .nav-item {
+    padding: 10px 14px;
+    font-size: 0.8rem;
+    white-space: nowrap;
   }
 }
 
-// Footer: kolommen verticaal gestapeld
-.stripinfo-footer .footer-content {
+// Categorieën: 1 kolom
+.category-boxes {
+  grid-template-columns: 1fr;
+  gap: 12px;
+  padding: 0 12px;
+}
+
+.category-boxes .category-box .category-box-inner {
+  padding: 16px;
+}
+
+.category-boxes .category-box .logo.aspect-image {
+  width: 48px;
+  height: 48px;
+
+  img {
+    width: 48px;
+    height: 48px;
+  }
+}
+
+// CTA: 1 kolom
+.stripinfo-cta-section .cta-grid {
   grid-template-columns: 1fr;
 }
 
-// Banner titel iets kleiner op mobiel
-.stripinfo-top-banner .banner-title {
-  font-size: 26px;
+// Footer: 2 kolommen op mobiel
+.stripinfo-footer .footer-columns {
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+// Zeer kleine schermen: footer 1 kolom
+@media screen and (max-width: 400px) {
+  .stripinfo-footer .footer-columns {
+    grid-template-columns: 1fr;
+  }
 }

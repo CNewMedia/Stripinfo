@@ -23,6 +23,18 @@ $grijs-border: #e0e0e0;
 $grijs-bg: #f5f5f5;
 $grijs-tekst: #666;
 
+// Asana-stijl / Stripinfo homepage
+$si-teal: #00838F;
+$si-cyan: #00BCD4;
+$si-orange: #F9A825;
+$si-pink: #E91E63;
+$si-dark: #333333;
+$si-light-bg: #F5F5F5;
+$si-white: #FFFFFF;
+$si-border: #E0E0E0;
+$si-card-shadow: 0 1px 3px rgba(0,0,0,0.08);
+$si-card-hover-shadow: 0 4px 12px rgba(0,0,0,0.12);
+
 // ============================================
 // FONTS
 // ============================================
@@ -62,75 +74,53 @@ body {
 }
 
 // ============================================
-// TOP BANNER
+// ANNOUNCEMENT BANNER (oranje — boven nav)
 // ============================================
-.stripinfo-top-banner {
-  display: block;
-  text-decoration: none;
-  background: repeating-linear-gradient(
-    45deg,
-    $geel,
-    $geel 10px,
-    $oranje 10px,
-    $oranje 20px
-  );
-  padding: 25px 20px;
+.stripinfo-announcement {
+  background: $si-orange;
   text-align: center;
-  border-bottom: 4px solid $zwart;
-  
-  .banner-title {
-    color: $zwart;
-    font-family: 'Bangers', cursive;
-    font-size: 38px;
-    margin: 0 0 10px 0;
-    letter-spacing: 2px;
-    text-transform: uppercase;
-    text-shadow: 
-      2px 2px 0px $wit,
-      3px 3px 0px rgba(0,0,0,0.3);
-  }
-  
-  .banner-subtitle {
-    color: $roze;
-    font-size: 16px;
-    margin: 0;
-    font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+  padding: 8px 16px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+
+  a {
+    color: $si-pink;
+    text-decoration: none;
+    &:hover {
+      text-decoration: underline;
+    }
   }
 }
 
 // ============================================
-// SECONDARY NAVIGATION (stripinfo.be look: cyaan, witte tekst)
+// NAVIGATIEBALK (teal — boven Discourse header)
 // ============================================
-.stripinfo-secondary-nav {
-  background: $cyaan;
+.stripinfo-nav-bar {
+  background: $si-teal;
   padding: 0;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-wrap: wrap;
-  
-  a, .nav-link {
-    color: $wit;
-    padding: 14px 18px;
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 14px;
-    transition: all 0.2s ease;
-    text-transform: uppercase;
-    letter-spacing: 0.3px;
-    
-    &:hover {
-      color: $wit;
-      background: rgba(0,0,0,0.1);
-    }
+
+  .stripinfo-nav-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    gap: 0;
   }
-  
-  .separator {
-    color: rgba(255,255,255,0.5);
-    margin: 0 3px;
+
+  .nav-item {
+    color: $si-white;
+    text-decoration: none;
+    padding: 12px 20px;
+    font-weight: 600;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    transition: background 0.2s;
+
+    &:hover {
+      background: rgba(255,255,255,0.15);
+    }
   }
 }
 
@@ -357,6 +347,88 @@ body {
 }
 
 // ============================================
+// CATEGORIE KAARTEN — ASANA-STIJL (categories boxes)
+// ============================================
+.category-boxes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-top: 24px;
+  padding: 0 16px;
+}
+
+.category-boxes .category-box {
+  border: 1px solid $si-border;
+  border-radius: 12px;
+  background: $si-white;
+  box-shadow: $si-card-shadow;
+  transition: box-shadow 0.2s ease, transform 0.15s ease;
+  overflow: hidden;
+  border-top: none;
+  border-left: none;
+  border-color: $si-border;
+
+  &:hover {
+    box-shadow: $si-card-hover-shadow;
+    transform: translateY(-2px);
+  }
+
+  > a {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    padding: 24px;
+    text-decoration: none;
+  }
+
+  .category-box-inner {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+    padding: 24px;
+    width: 100%;
+  }
+}
+
+.category-boxes .category-box .logo.aspect-image {
+  flex-shrink: 0;
+  width: 64px;
+  height: 64px;
+
+  img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    border-radius: 8px;
+  }
+}
+
+.category-boxes .category-box .category-box-heading {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: $si-dark;
+  margin: 0 0 4px 0;
+
+  a {
+    color: $si-dark;
+    text-decoration: none;
+  }
+}
+
+.category-boxes .category-box .description {
+  font-size: 0.9rem;
+  color: $grijs-tekst;
+  line-height: 1.4;
+  margin: 0;
+  text-align: left;
+}
+
+.category-boxes .category-box .stat {
+  display: none;
+}
+
+// ============================================
 // FONT CONSISTENCY
 // ============================================
 body,
@@ -373,7 +445,6 @@ select {
 
 h1, h2, h3, h4, h5, h6,
 .category-name,
-.stripinfo-top-banner .banner-title,
 .stripinfo-footer h3,
 .stripinfo-footer h2,
 .stripinfo-footer h4 {
@@ -578,101 +649,130 @@ h1, h2, h3, h4, h5, h6,
 }
 
 // ============================================
-// FOOTER
+// CTA BLOKKEN (boven footer — Asana-stijl)
 // ============================================
-.stripinfo-footer {
-  background: repeating-linear-gradient(
-    45deg,
-    $geel,
-    $geel 10px,
-    $oranje 10px,
-    $oranje 20px
-  );
-  padding: 50px 30px 30px;
-  margin-top: 60px;
-  border-top: 5px solid $zwart;
-  
-  .footer-content {
+.stripinfo-cta-section {
+  background: $si-light-bg;
+  padding: 48px 24px;
+
+  .cta-grid {
     max-width: 1200px;
     margin: 0 auto;
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-    gap: 40px;
-    margin-bottom: 40px;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
   }
-  
-  .footer-section {
-    background: rgba(255,255,255,0.95);
-    padding: 24px;
-    border: 3px solid $zwart;
+
+  .cta-card {
+    background: $si-white;
+    border: 1px solid $si-border;
     border-radius: 12px;
-    
-    h3, h4 {
-      color: $zwart;
-      font-family: 'Bangers', cursive;
-      font-size: 20px;
-      margin-bottom: 16px;
-      text-transform: uppercase;
-      border-bottom: 2px solid $zwart;
-      padding-bottom: 10px;
+    padding: 24px;
+    text-decoration: none;
+    transition: box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+
+    &:hover {
+      box-shadow: $si-card-hover-shadow;
     }
-    
+
+    h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: $si-teal;
+      margin: 0 0 8px 0;
+    }
+
+    p {
+      font-size: 0.85rem;
+      color: $grijs-tekst;
+      margin: 0;
+      flex-grow: 1;
+    }
+
+    .cta-arrow {
+      margin-top: 16px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: $si-light-bg;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-self: flex-end;
+
+      &::after {
+        content: "→";
+        font-size: 1.1rem;
+        color: $si-teal;
+      }
+    }
+  }
+}
+
+// ============================================
+// FOOTER (donkere achtergrond — 4 kolommen)
+// ============================================
+.stripinfo-footer {
+  background: #1a1a2e;
+  color: rgba(255,255,255,0.8);
+  padding: 48px 24px 24px;
+  margin-top: 0;
+
+  .footer-content {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .footer-columns {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 32px;
+    margin-bottom: 32px;
+  }
+
+  .footer-section {
+    h4 {
+      color: $si-white;
+      font-size: 0.9rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin: 0 0 16px 0;
+    }
+
     a {
       display: block;
-      color: $zwart;
+      color: rgba(255,255,255,0.7);
       text-decoration: none;
-      font-weight: 600;
-      font-size: 14px;
-      margin-bottom: 10px;
-      
+      font-size: 0.85rem;
+      padding: 4px 0;
+      transition: color 0.2s;
+
       &:hover {
-        color: $roze;
-      }
-    }
-    
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-      
-      li {
-        margin-bottom: 10px;
-        
-        a {
-          color: $zwart;
-          text-decoration: none;
-          font-weight: 600;
-          font-size: 14px;
-          
-          &:hover {
-            color: $roze;
-          }
-        }
+        color: $si-cyan;
       }
     }
   }
-  
+
   .footer-bottom {
-    grid-column: 1 / -1;
-    background: $zwart;
-    color: $wit;
+    border-top: 1px solid rgba(255,255,255,0.1);
+    padding-top: 24px;
     text-align: center;
-    padding: 20px;
-    border-top: 2px solid $zwart;
-    margin-top: 20px;
-    
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.5);
+
     p {
-      color: $wit;
-      font-size: 14px;
-      font-weight: 600;
       margin: 0;
     }
-    
-    a {
-      color: $cyaan;
-      text-decoration: none;
-      &:hover {
-        color: $wit;
+
+    .footer-logo {
+      margin-bottom: 8px;
+
+      img {
+        height: 32px;
+        opacity: 0.7;
       }
     }
   }
@@ -703,30 +803,43 @@ h1, h2, h3, h4, h5, h6,
 // RESPONSIVE
 // ============================================
 @media (max-width: 768px) {
-  .stripinfo-top-banner .banner-title {
-    font-size: 26px;
+  .stripinfo-nav-bar .stripinfo-nav-inner {
+    flex-wrap: wrap;
+    justify-content: center;
   }
-  
-  .stripinfo-secondary-nav {
-    flex-direction: column;
-    
-    a {
-      width: 100%;
-      padding: 12px;
-    }
-    
-    .separator {
-      display: none;
-    }
+
+  .stripinfo-nav-bar .nav-item {
+    padding: 10px 14px;
+    font-size: 0.8rem;
   }
-  
-  .d-header-icons .icon {
-    padding: 6px 8px;
-    margin: 0 2px;
+
+  .stripinfo-footer .footer-columns {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
   }
-  
-  .stripinfo-footer .footer-content {
+
+  .stripinfo-cta-section .cta-grid {
     grid-template-columns: 1fr;
+  }
+
+  .category-boxes {
+    grid-template-columns: 1fr;
+    gap: 12px;
+    padding: 0 12px;
+  }
+
+  .category-boxes .category-box .category-box-inner {
+    padding: 16px;
+  }
+
+  .category-boxes .category-box .logo.aspect-image {
+    width: 48px;
+    height: 48px;
+
+    img {
+      width: 48px;
+      height: 48px;
+    }
   }
 }
 // ============================================

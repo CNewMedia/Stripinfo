@@ -1,31 +1,30 @@
 // ============================================
 // STRIPINFO THEME - DESKTOP-SPECIFIC STYLES
-// Alleen geladen op desktop; navigatie en footer in meerdere kolommen.
+// Categorie grid 3 kolommen, CTA 4 kolommen, footer 4 kolommen.
 // ============================================
 
-// Navigatie volledig zichtbaar (horizontale rij)
-.stripinfo-nav.stripinfo-secondary-nav {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
-  justify-content: center;
-  align-items: center;
-  
-  a,
-  .nav-link {
-    width: auto;
-    padding: 14px 18px;
-    font-size: 14px;
-  }
-  
-  .separator {
-    display: inline;
-  }
+// Categorie kaarten: 3 kolommen
+.category-boxes {
+  grid-template-columns: repeat(3, 1fr);
 }
 
-// Footer: kolommen naast elkaar
-.stripinfo-footer .footer-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 40px;
+// CTA grid: 4 kolommen
+.stripinfo-cta-section .cta-grid {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+// Footer: 4 kolommen
+.stripinfo-footer .footer-columns {
+  grid-template-columns: repeat(4, 1fr);
+}
+
+// Nav-bar: volledig zichtbaar horizontaal
+.stripinfo-nav-bar .stripinfo-nav-inner {
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.stripinfo-nav-bar .nav-item {
+  padding: 12px 20px;
+  font-size: 0.85rem;
 }

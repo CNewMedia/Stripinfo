@@ -1,4 +1,24 @@
 logo_url:
   type: string
   default: "https://stripinfo.be/images/logo_header_compact.avif"
-  description: "URL van het logo in de header. Gebruik een geldige afbeeldings-URL (bijv. .avif of .png)."
+  description: "URL van het Stripinfo logo"
+
+show_announcement_banner:
+  type: bool
+  default: true
+  description: "Toon de oranje announcement banner bovenaan"
+
+announcement_text:
+  type: string
+  default: "BEHEER JE VERZAMELING EN VERKOOP JE DUBBELE ITEMS"
+  description: "Tekst in de announcement banner"
+
+announcement_url:
+  type: string
+  default: "https://stripinfo.be/user/register"
+  description: "Link van de announcement banner"
+
+show_cta_section:
+  type: bool
+  default: true
+  description: "Toon de CTA blokken boven de footer"

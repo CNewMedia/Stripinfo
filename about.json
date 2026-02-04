@@ -6,15 +6,15 @@
   "assets": {},
   "color_schemes": {
     "Stripinfo": {
-      "primary": "#00BCD4",
+      "primary": "#333333",
       "secondary": "#FFFFFF",
-      "tertiary": "#FFC107",
-      "quaternary": "#E91E63",
-      "header_background": "#00BCD4",
-      "header_primary": "#333333",
+      "tertiary": "#00BCD4",
+      "quaternary": "#00838F",
+      "header_background": "#00838F",
+      "header_primary": "#FFFFFF",
       "highlight": "#FFC107",
       "danger": "#E91E63",
-      "success": "#00BCD4",
+      "success": "#4CAF50",
       "love": "#E91E63"
     }
   }
