@@ -3,8 +3,9 @@
 // Categorie grid 3 kolommen, CTA 4 kolommen, footer 4 kolommen.
 // ============================================
 
-// Categorie kaarten: 3 kolommen
-.category-boxes {
+// Categorie kaarten (alleen homepage): 3 kolommen
+.categories-list .category-boxes,
+.navigation-categories .category-boxes {
   grid-template-columns: repeat(3, 1fr);
 }
 

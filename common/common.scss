@@ -261,95 +261,181 @@ body {
 }
 
 // ============================================
-// TOPIC LIST
+// TOPIC LIJST — CLEAN TABELWEERGAVE (binnen categorie)
 // ============================================
 .topic-list {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
   background: transparent;
-  
-  tbody {
-    border: none;
-  }
-  
-  tr {
-    background: $wit;
-    border: 2px solid $grijs-border;
-    border-radius: 10px;
-    margin-bottom: 12px;
-    padding: 16px;
-    transition: all 0.2s ease;
-    display: block;
-    
-    &:hover {
-      transform: translateY(-1px);
-      border-color: $cyaan;
-    }
-    
-    td {
-      border: none;
-      padding: 8px 12px;
-    }
-  }
-  
-  .main-link {
-    .title {
-      color: $zwart;
-      font-weight: 700;
-      font-size: 16px;
-      line-height: 1.4;
-      
-      &:hover {
-        color: $cyaan;
+
+  thead {
+    th {
+      padding: 12px 8px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: $grijs-tekst;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid $grijs-border;
+      text-align: left;
+
+      &.num, &.posts-map, &.views, &.activity {
+        text-align: center;
       }
-      
-      &:visited {
+    }
+  }
+
+  tbody {
+    tr {
+      border-bottom: 1px solid #f0f0f0;
+      transition: background 0.15s;
+
+      &:hover {
+        background: #fafafa;
+      }
+
+      &.visited .main-link .link-top-line a.title {
         color: $grijs-tekst;
       }
     }
+
+    td {
+      padding: 12px 8px;
+      vertical-align: middle;
+      font-size: 0.95rem;
+    }
   }
-  
-  .badge-wrapper {
-    background: $roze;
-    color: $wit;
-    border-radius: 12px;
-    padding: 4px 10px;
-    font-size: 11px;
-    font-weight: 700;
-    border: none;
+}
+
+.topic-list .main-link {
+  .link-top-line {
+    a.title {
+      color: $zwart;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+
+      &:hover {
+        color: $si-teal;
+      }
+    }
   }
-  
-  .num {
-    font-weight: 700;
+
+  .badge-category-bg {
+    border-radius: 3px;
+  }
+}
+
+.topic-list .posts-map {
+  text-align: center;
+
+  .number {
+    font-weight: 600;
+    font-size: 1rem;
+    color: $zwart;
+  }
+}
+
+.topic-list .views {
+  text-align: center;
+  color: $grijs-tekst;
+  font-size: 0.9rem;
+}
+
+.topic-list .activity {
+  text-align: center;
+
+  a {
     color: $grijs-tekst;
+    font-size: 0.85rem;
+    text-decoration: none;
   }
-  
-  .posts-map, 
-  .num.posts, 
-  .num.views {
-    background: lighten($geel, 25%);
-    border-radius: 16px;
-    padding: 8px 16px;
-    margin: 0 8px;
-    border: 2px solid $grijs-border;
+}
+
+.topic-list .posters {
+  a {
+    margin-right: 2px;
+
+    img.avatar {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+    }
+  }
+}
+
+// Verwijder kaart-styling op topic-rijen
+.topic-list-item {
+  background: transparent;
+  box-shadow: none;
+  border-radius: 0;
+  border: none;
+  border-bottom: 1px solid #f0f0f0;
+  margin: 0;
+  padding: 0;
+}
+
+.topic-list .num.posts-map .number,
+.topic-list .num.views .number {
+  background: transparent;
+  border: none;
+  padding: 4px 8px;
+  border-radius: 0;
+  font-size: 0.95rem;
+  color: $grijs-tekst;
+}
+
+.topic-list .num.posts-map a.heatmap-high .number {
+  color: $si-teal;
+}
+
+.topic-list .num.posts-map a.heatmap-med .number {
+  color: $si-orange;
+}
+
+// ============================================
+// CATEGORIE-HEADER BINNEN EEN CATEGORIE
+// ============================================
+.category-heading {
+  margin: 16px 0;
+
+  h2 {
+    font-size: 1.3rem;
     font-weight: 700;
-    font-family: 'Outfit', sans-serif;
-    min-width: 50px;
-    text-align: center;
-    display: inline-block;
+    color: $zwart;
   }
-  
-  .num.posts-map {
-    margin-right: 12px;
+
+  .category-description {
+    font-size: 0.9rem;
+    color: $grijs-tekst;
+    margin-top: 4px;
   }
-  
-  .topic-list-data {
-    padding: 8px;
+}
+
+.navigation-container .nav-pills > li > a {
+  padding: 8px 16px;
+  font-size: 0.9rem;
+  color: $grijs-tekst;
+  border-radius: 6px;
+
+  &:hover {
+    background: #f0f0f0;
+    color: $zwart;
+  }
+
+  &.active {
+    color: $si-teal;
+    font-weight: 600;
+    background: rgba(0, 131, 143, 0.08);
   }
 }
 
 // ============================================
-// CATEGORIE KAARTEN — ASANA-STIJL (categories boxes)
+// CATEGORIE KAARTEN — ALLEEN HOMEPAGE (/categories)
 // ============================================
-.category-boxes {
+.categories-list .category-boxes,
+.navigation-categories .category-boxes {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 20px;
@@ -357,7 +443,8 @@ body {
   padding: 0 16px;
 }
 
-.category-boxes .category-box {
+.categories-list .category-boxes .category-box,
+.navigation-categories .category-boxes .category-box {
   border: 1px solid $si-border;
   border-radius: 12px;
   background: $si-white;
@@ -391,7 +478,8 @@ body {
   }
 }
 
-.category-boxes .category-box .logo.aspect-image {
+.categories-list .category-boxes .category-box .logo.aspect-image,
+.navigation-categories .category-boxes .category-box .logo.aspect-image {
   flex-shrink: 0;
   width: 64px;
   height: 64px;
@@ -404,7 +492,8 @@ body {
   }
 }
 
-.category-boxes .category-box .category-box-heading {
+.categories-list .category-boxes .category-box .category-box-heading,
+.navigation-categories .category-boxes .category-box .category-box-heading {
   font-size: 1.1rem;
   font-weight: 700;
   color: $si-dark;
@@ -416,7 +505,8 @@ body {
   }
 }
 
-.category-boxes .category-box .description {
+.categories-list .category-boxes .category-box .description,
+.navigation-categories .category-boxes .category-box .description {
   font-size: 0.9rem;
   color: $grijs-tekst;
   line-height: 1.4;
@@ -424,7 +514,8 @@ body {
   text-align: left;
 }
 
-.category-boxes .category-box .stat {
+.categories-list .category-boxes .category-box .stat,
+.navigation-categories .category-boxes .category-box .stat {
   display: none;
 }
 
@@ -822,17 +913,20 @@ h1, h2, h3, h4, h5, h6,
     grid-template-columns: 1fr;
   }
 
-  .category-boxes {
+  .categories-list .category-boxes,
+  .navigation-categories .category-boxes {
     grid-template-columns: 1fr;
     gap: 12px;
     padding: 0 12px;
   }
 
-  .category-boxes .category-box .category-box-inner {
+  .categories-list .category-boxes .category-box .category-box-inner,
+  .navigation-categories .category-boxes .category-box .category-box-inner {
     padding: 16px;
   }
 
-  .category-boxes .category-box .logo.aspect-image {
+  .categories-list .category-boxes .category-box .logo.aspect-image,
+  .navigation-categories .category-boxes .category-box .logo.aspect-image {
     width: 48px;
     height: 48px;
 
@@ -842,9 +936,6 @@ h1, h2, h3, h4, h5, h6,
     }
   }
 }
-// ============================================
-// FIX: KLEINE SCHOONHEIDSFOUTJES
-// ============================================
 
 // Verberg system gebruiker in topic lists
 .topic-list {
@@ -853,40 +944,10 @@ h1, h2, h3, h4, h5, h6,
       display: none !important; /* verbergen system-gebruiker in topiclijst */
     }
   }
-  
+
   .posters {
     a[href="/u/system"] {
       display: none !important;
     }
-  }
-}
-
-// Extra spacing voor gele statistiek blokken
-.topic-list {
-  .posts-map, 
-  .num.posts, 
-  .num.views {
-    margin: 0 10px; // Van 8px naar 10px
-    padding: 8px 18px; // Iets meer padding
-  }
-  
-  // Eerste blok krijgt geen linker margin (posts-map of num)
-  .posts-map:first-of-type,
-  .num:first-of-type {
-    margin-left: 0;
-  }
-  
-  // Laatste blok krijgt geen rechter margin
-  .posts-map:last-of-type,
-  .num:last-of-type {
-    margin-right: 0;
-  }
-}
-
-// Extra ruimte tussen de labels "Antwoorden" en "Weergaven"
-.topic-list-header {
-  .posts,
-  .views {
-    padding: 0 12px;
   }
 }

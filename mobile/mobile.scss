@@ -26,18 +26,21 @@ body {
   }
 }
 
-// Categorieën: 1 kolom
-.category-boxes {
+// Categorieën (homepage): 1 kolom
+.categories-list .category-boxes,
+.navigation-categories .category-boxes {
   grid-template-columns: 1fr;
   gap: 12px;
   padding: 0 12px;
 }
 
-.category-boxes .category-box .category-box-inner {
+.categories-list .category-boxes .category-box .category-box-inner,
+.navigation-categories .category-boxes .category-box .category-box-inner {
   padding: 16px;
 }
 
-.category-boxes .category-box .logo.aspect-image {
+.categories-list .category-boxes .category-box .logo.aspect-image,
+.navigation-categories .category-boxes .category-box .logo.aspect-image {
   width: 48px;
   height: 48px;
 
@@ -45,6 +48,35 @@ body {
     width: 48px;
     height: 48px;
   }
+}
+
+// Topic-lijst op mobiel: minder kolommen, compact
+.topic-list {
+  thead {
+    th.posts-map,
+    th.views,
+    th.activity {
+      display: none;
+    }
+  }
+
+  tbody td {
+    padding: 10px 6px;
+
+    &.posts-map,
+    &.views,
+    &.activity {
+      display: none;
+    }
+  }
+
+  .posters {
+    display: none;
+  }
+}
+
+.topic-list .main-link .link-top-line a.title {
+  font-size: 0.95rem;
 }
 
 // CTA: 1 kolom
