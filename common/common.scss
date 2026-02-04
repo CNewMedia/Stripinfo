@@ -146,6 +146,51 @@ body {
 }
 
 // ============================================
+// FILTER OP CATEGORIE — BOVEN PAGINA (direct kiezen)
+// ============================================
+.stripinfo-category-filter {
+  background: $si-white;
+  border-bottom: 1px solid $si-border;
+  padding: 10px 0;
+
+  .stripinfo-category-filter-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 8px 16px;
+  }
+
+  .stripinfo-category-filter-label {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: $grijs-tekst;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .stripinfo-category-filter-link {
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: $si-dark;
+    text-decoration: none;
+    padding: 6px 14px;
+    border-radius: 20px;
+    background: $si-light-bg;
+    border: 1px solid transparent;
+    transition: background 0.2s, border-color 0.2s;
+
+    &:hover {
+      background: rgba(0, 131, 143, 0.08);
+      color: $si-teal;
+      border-color: rgba(0, 131, 143, 0.2);
+    }
+  }
+}
+
+// ============================================
 // DISCOURSE HEADER — NIET OVERSCHRIJVEN
 // Onze custom nav (banner + stripinfo-nav) staat in header.html
 // en wordt BOVEN de standaard Discourse header geplaatst.
@@ -153,7 +198,26 @@ body {
 // ============================================
 
 // ============================================
-// SIDEBAR
+// SIDEBAR — GEEN LAYOUTVERSCHUIVING BIJ WAFFLE-MENU
+// Discourse toggelt bij klik op waffle o.a. body.has-sidebar-page en past
+// #main-outlet-wrapper grid aan. Wij verbergen de sidebar; zorg dat de
+// hoofdinhoud nooit van breedte verandert.
+// ============================================
+body.has-sidebar-page #main-outlet-wrapper,
+body.sidebar-animate #main-outlet-wrapper {
+  grid-template-columns: minmax(0, 1fr) 0 !important;
+  grid-template-areas: "content sidebar" !important;
+}
+body.has-sidebar-page .sidebar-wrapper,
+body.has-sidebar-page .sidebar-container,
+body.has-sidebar-page #d-sidebar {
+  width: 0 !important;
+  min-width: 0 !important;
+  overflow: hidden !important;
+}
+
+// ============================================
+// SIDEBAR (styling wanneer zichtbaar)
 // ============================================
 .sidebar-wrapper {
   background: $wit;

@@ -22,3 +22,13 @@ show_cta_section:
   type: bool
   default: true
   description: "Toon de CTA blokken boven de footer"
+
+show_category_filter_bar:
+  type: bool
+  default: true
+  description: "Toon de filterbalk voor categorieën onder de navigatie"
+
+category_filter_links:
+  type: list
+  default: ""
+  description: "Extra categorieën in de filterbalk (formaat: slug|Label, bijv. algemeen|Algemeen,help|Help)"
