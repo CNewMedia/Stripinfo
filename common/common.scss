@@ -175,7 +175,41 @@ body,
 // ============================================
 
 // ============================================
-// HAMBURGER MENU & SIDEBAR — DE ENIGE REGELS
+// ADMIN SIDEBAR — NIET AANRAKEN
+// ============================================
+// De admin sidebar moet standaard Discourse gedrag behouden.
+// Geen globale sidebar-CSS toepassen op admin; content moet NAAST sidebar staan.
+
+body[class*="route-admin"],
+body.admin-interface {
+  .admin-sidebar,
+  .sidebar-wrapper,
+  #d-sidebar {
+    position: relative !important;
+    transform: none !important;
+    width: auto !important;
+    max-width: none !important;
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .admin-contents,
+  .admin-body {
+    display: flex !important;
+    flex-direction: row !important;
+  }
+
+  #main-outlet-wrapper,
+  #main-outlet {
+    margin-left: 0 !important;
+    width: auto !important;
+    max-width: none !important;
+  }
+}
+
+// ============================================
+// HAMBURGER MENU & SIDEBAR — ALLEEN FORUM (niet admin)
 // ============================================
 //
 // UITLEG:
@@ -183,9 +217,7 @@ body,
 // 1. "sidebar" modus: vast paneel links dat content verschuift (NIET gewenst)
 // 2. "header dropdown" modus: overlay die bovenop content zweeft (WEL gewenst)
 //
-// Op mobiel werkt het al correct als overlay.
-// Op desktop forceert Discourse soms de "push" modus.
-// Onderstaande CSS forceert de overlay modus op ALLE schermformaten.
+// Onderstaande regels gelden ALLEEN buiten admin (route-admin / admin-interface).
 
 // --- D. Content NOOIT verschuiven (alleen forum, NIET admin) ---
 // Op admin-pagina's (Beheer) gebruikt Discourse een andere layout; deze regels
@@ -234,89 +266,84 @@ button.sidebar-toggle,
   cursor: pointer !important;
 }
 
-// --- G. Styling van het menu panel zelf ---
-#d-sidebar .sidebar-sections,
-.sidebar-wrapper .sidebar-sections {
-  padding: 8px !important;
+// --- G. Styling van het menu panel zelf (ALLEEN hamburger, niet admin) ---
+body:not([class*="route-admin"]):not(.admin-interface) {
+  #d-sidebar .sidebar-sections,
+  .sidebar-wrapper .sidebar-sections {
+    padding: 8px !important;
 
-  // Navigatie links (Nieuwste, Ongelezen, etc.)
-  .sidebar-section-link-wrapper {
-    .sidebar-section-link {
-      font-size: 0.9rem !important;
-      color: #333 !important;
-      padding: 10px 12px !important;
-      border-radius: 6px !important;
-      text-decoration: none !important;
-      display: flex !important;
-      align-items: center !important;
-      gap: 8px !important;
+    .sidebar-section-link-wrapper {
+      .sidebar-section-link {
+        font-size: 0.9rem !important;
+        color: #333 !important;
+        padding: 10px 12px !important;
+        border-radius: 6px !important;
+        text-decoration: none !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 8px !important;
 
-      &:hover {
-        background: #f5f5f5 !important;
-        color: #00838F !important;
-      }
+        &:hover {
+          background: #f5f5f5 !important;
+          color: #00838F !important;
+        }
 
-      &.active {
-        background: rgba(0, 131, 143, 0.08) !important;
-        color: #00838F !important;
-        font-weight: 600 !important;
+        &.active {
+          background: rgba(0, 131, 143, 0.08) !important;
+          color: #00838F !important;
+          font-weight: 600 !important;
+        }
       }
     }
-  }
 
-  // Sectie headers (CATEGORIEËN, etc.)
-  .sidebar-section-header-text,
-  .sidebar-section-header {
-    font-weight: 700 !important;
-    font-size: 0.7rem !important;
-    text-transform: uppercase !important;
-    color: #999 !important;
-    letter-spacing: 0.5px !important;
-    padding: 16px 12px 6px 12px !important;
-  }
+    .sidebar-section-header-text,
+    .sidebar-section-header {
+      font-weight: 700 !important;
+      font-size: 0.7rem !important;
+      text-transform: uppercase !important;
+      color: #999 !important;
+      letter-spacing: 0.5px !important;
+      padding: 16px 12px 6px 12px !important;
+    }
 
-  // Categorie kleur-bullets
-  .sidebar-section-link-prefix {
-    .badge-category {
+    .sidebar-section-link-prefix .badge-category {
       width: 10px !important;
       height: 10px !important;
       border-radius: 50% !important;
     }
   }
+
+  #d-sidebar,
+  .sidebar-wrapper {
+    width: 360px !important;
+    max-width: 92vw !important;
+  }
+
+  #d-sidebar .sidebar-sections,
+  .sidebar-wrapper .sidebar-sections {
+    columns: 1 !important;
+    column-count: 1 !important;
+  }
+
+  .sidebar-wrapper .sidebar-section-link,
+  #d-sidebar .sidebar-section-link,
+  .sidebar-wrapper .badge-category,
+  #d-sidebar .badge-category,
+  .sidebar-wrapper .category-name,
+  #d-sidebar .category-name {
+    white-space: nowrap !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    max-width: none !important;
+  }
 }
 
-// ============================================
-// FIX HAMBURGER DROPDOWN — 1 KOLOM, VOLLEDIGE NAMEN
-// ============================================
-
-#d-sidebar,
-.sidebar-wrapper {
-  width: 360px !important;
-  max-width: 92vw !important;
-}
-
-#d-sidebar .sidebar-sections,
-.sidebar-wrapper .sidebar-sections {
-  columns: 1 !important;
-  column-count: 1 !important;
-}
-
-.sidebar-wrapper .sidebar-section-link,
-#d-sidebar .sidebar-section-link,
-.sidebar-wrapper .badge-category,
-#d-sidebar .badge-category,
-.sidebar-wrapper .category-name,
-#d-sidebar .category-name {
-  white-space: nowrap !important;
-  overflow: visible !important;
-  text-overflow: unset !important;
-  max-width: none !important;
-}
-
-// Het dropdown panel breder maken
+// Hamburger dropdown panel — alleen deze selector; position absolute (niet fixed)
 .menu-panel.drop-down {
   width: 360px !important;
   max-width: 92vw !important;
+  position: absolute !important;
+  z-index: 1100 !important;
 }
 
 // KERN FIX: Forceer 1-kolom layout voor ALLE secties in het menu
@@ -431,6 +458,26 @@ button.sidebar-toggle,
       white-space: nowrap !important;
     }
   }
+}
+
+// ============================================
+// HAMBURGER MENU — VERBERG USER-SPECIFIEKE ITEMS
+// ============================================
+// Mijn berichten, Beoordelen, Beheer, Uitnodigen horen in avatar-dropdown, niet in hamburger.
+
+.menu-panel.drop-down .menu-section.personal-section,
+.menu-panel.drop-down .sidebar-section[data-section-name="personal"],
+.menu-panel.drop-down .sidebar-section-link-wrapper:has(a[href*="/admin"]),
+.menu-panel.drop-down .sidebar-section-link-wrapper:has(a[href*="/review"]),
+.menu-panel.drop-down .sidebar-section-link-wrapper:has(a[href*="invite"]),
+.menu-panel.drop-down .sidebar-section-link-wrapper:has(a[href*="/my/"]),
+.menu-panel.drop-down .sidebar-section-link-wrapper:has(a[href*="/user-notifications"]),
+.menu-panel.drop-down li a[href*="/my/messages"],
+.menu-panel.drop-down li a[href*="/my/posts"],
+.hamburger-panel .menu-panel .sidebar-section-link-wrapper:has(a[href*="/admin"]),
+.hamburger-panel .menu-panel .sidebar-section-link-wrapper:has(a[href*="/review"]),
+.hamburger-panel .menu-panel .sidebar-section-link-wrapper:has(a[href*="invite"]) {
+  display: none !important;
 }
 
 // ============================================
