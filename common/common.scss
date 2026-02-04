@@ -172,32 +172,40 @@ body {
 // Op desktop forceert Discourse soms de "push" modus.
 // Onderstaande CSS forceert de overlay modus op ALLE schermformaten.
 
-// --- D. Content NOOIT verschuiven ---
-// Dit is de kernfix: de content mag NOOIT bewegen als de sidebar opent
-#main-outlet-wrapper,
-#main-outlet,
-.wrap,
-.d-header-wrap,
-.d-header {
-  // Geen margin/transform shifts door sidebar
-  margin-left: 0 !important;
-  transform: none !important;
-  transition: none !important;
-  width: 100% !important;
-}
+// --- D. Content NOOIT verschuiven (alleen forum, NIET admin) ---
+// Op admin-pagina's (Beheer) gebruikt Discourse een andere layout; deze regels
+// uitsluiten voorkomt een leeg wit scherm. Body krijgt bv. class route-admin-dashboard.
+body:not([class*="route-admin"]) {
+  #main-outlet-wrapper,
+  #main-outlet,
+  .wrap,
+  .d-header-wrap,
+  .d-header {
+    margin-left: 0 !important;
+    transform: none !important;
+    transition: none !important;
+    width: 100% !important;
+  }
 
-// Discourse voegt soms een wrapper class toe die de content verschuift
-.has-sidebar-page #main-outlet-wrapper,
-.sidebar-visible #main-outlet-wrapper {
-  margin-left: 0 !important;
-  width: 100% !important;
-  grid-template-columns: 1fr !important; // Geen sidebar kolom in grid
-}
+  .has-sidebar-page #main-outlet-wrapper,
+  .sidebar-visible #main-outlet-wrapper {
+    margin-left: 0 !important;
+    width: 100% !important;
+    grid-template-columns: 1fr !important;
+  }
 
-// Specifiek voor grid layout die Discourse soms gebruikt
-#main-outlet-wrapper {
-  display: block !important; // Geen grid, geen sidebar kolom
-  max-width: 100% !important;
+  #main-outlet-wrapper {
+    display: block !important;
+    max-width: 100% !important;
+  }
+
+  #main-outlet {
+    max-width: 1200px !important;
+    margin: 0 auto !important;
+    padding: 0 24px !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
 }
 
 // --- E. Hamburger knop (≡) altijd zichtbaar ---
@@ -209,15 +217,6 @@ button.sidebar-toggle,
   visibility: visible !important;
   opacity: 1 !important;
   cursor: pointer !important;
-}
-
-// --- F. Content centreren (nu sidebar weg is als vast paneel) ---
-#main-outlet {
-  max-width: 1200px !important;
-  margin: 0 auto !important;
-  padding: 0 24px !important;
-  width: 100% !important;
-  box-sizing: border-box !important;
 }
 
 // --- G. Styling van het menu panel zelf ---
