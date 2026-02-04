@@ -216,6 +216,11 @@ body.has-sidebar-page #d-sidebar {
   overflow: hidden !important;
 }
 
+// Verberg de waffle/sidebar-toggle in de header (sidebar is niet in gebruik)
+.header-sidebar-toggle {
+  display: none !important;
+}
+
 // ============================================
 // SIDEBAR (styling wanneer zichtbaar)
 // ============================================
