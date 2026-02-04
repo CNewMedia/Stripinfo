@@ -6,12 +6,15 @@
 // ============================================
 // KLEUREN - MOET EERST!
 // ============================================
-$cyaan: #1EC1CE;
+$cyaan: #00BCD4;
 $geel: #FFC107;
 $oranje: #FFB300;
 $roze: #E91E63;
-$zwart: #000000;
+$zwart: #333333;
 $wit: #FFFFFF;
+$grijs-border: #e0e0e0;
+$grijs-bg: #f5f5f5;
+$grijs-tekst: #666;
 
 // ============================================
 // FONTS
@@ -23,7 +26,7 @@ $wit: #FFFFFF;
 // ============================================
 body {
   font-family: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-  background: #f5f5f5;
+  background: $grijs-bg;
 }
 
 * {
@@ -51,20 +54,12 @@ body {
   display: none !important;
 }
 
-body.categories-list {
-  .category-list.with-topics {
-    display: none !important;
-  }
-  
-  .latest-topic-list {
-    display: none !important;
-  }
-}
-
 // ============================================
 // TOP BANNER
 // ============================================
 .stripinfo-top-banner {
+  display: block;
+  text-decoration: none;
   background: repeating-linear-gradient(
     45deg,
     $geel,
@@ -99,10 +94,10 @@ body.categories-list {
 }
 
 // ============================================
-// SECONDARY NAVIGATION
+// SECONDARY NAVIGATION (stripinfo.be look: cyaan, witte tekst)
 // ============================================
 .stripinfo-secondary-nav {
-  background: $zwart;
+  background: $cyaan;
   padding: 0;
   text-align: center;
   display: flex;
@@ -110,7 +105,7 @@ body.categories-list {
   align-items: center;
   flex-wrap: wrap;
   
-  a {
+  a, .nav-link {
     color: $wit;
     padding: 14px 18px;
     text-decoration: none;
@@ -121,13 +116,13 @@ body.categories-list {
     letter-spacing: 0.3px;
     
     &:hover {
-      color: $cyaan;
-      background: rgba(255,255,255,0.05);
+      color: $wit;
+      background: rgba(0,0,0,0.1);
     }
   }
   
   .separator {
-    color: rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.5);
     margin: 0 3px;
   }
 }
@@ -212,7 +207,7 @@ body.categories-list {
 .sidebar-wrapper {
   background: $wit;
   border-radius: 12px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid $grijs-border;
   
   .sidebar-section-wrapper {
     border: none !important;
@@ -223,7 +218,7 @@ body.categories-list {
     text-transform: uppercase;
     font-size: 11px;
     letter-spacing: 0.5px;
-    color: #666;
+    color: $grijs-tekst;
     padding: 12px 16px 8px;
     background: none !important;
     border: none !important;
@@ -283,7 +278,7 @@ body.categories-list {
   
   .category {
     background: $wit;
-    border: 2px solid #e0e0e0;
+    border: 2px solid $grijs-border;
     border-radius: 12px;
     margin-bottom: 20px;
     padding: 20px;
@@ -303,20 +298,20 @@ body.categories-list {
   }
   
   .category-description {
-    color: #666 !important;
+    color: $grijs-tekst !important;
     line-height: 1.6;
     margin-top: 8px;
   }
   
   .category-logo {
-    border: 2px solid #e0e0e0;
+    border: 2px solid $grijs-border;
     border-radius: 8px;
   }
   
   .subcategories {
     margin-top: 15px;
     padding-top: 15px;
-    border-top: 1px solid #e0e0e0;
+    border-top: 1px solid $grijs-border;
     
     .subcategory {
       display: inline-block;
@@ -347,7 +342,7 @@ body.categories-list {
   
   tr {
     background: $wit;
-    border: 2px solid #e0e0e0;
+    border: 2px solid $grijs-border;
     border-radius: 10px;
     margin-bottom: 12px;
     padding: 16px;
@@ -377,7 +372,7 @@ body.categories-list {
       }
       
       &:visited {
-        color: #666 !important;
+        color: $grijs-tekst !important;
       }
     }
   }
@@ -394,7 +389,7 @@ body.categories-list {
   
   .num {
     font-weight: 700;
-    color: #666;
+    color: $grijs-tekst;
   }
   
   .posts-map, 
@@ -404,7 +399,7 @@ body.categories-list {
     border-radius: 16px;
     padding: 8px 16px !important;
     margin: 0 8px !important;
-    border: 2px solid #e0e0e0;
+    border: 2px solid $grijs-border;
     font-weight: 700;
     font-family: 'Outfit', sans-serif !important;
     min-width: 50px;
@@ -440,7 +435,8 @@ h1, h2, h3, h4, h5, h6,
 .category-name,
 .stripinfo-top-banner .banner-title,
 .stripinfo-footer h3,
-.stripinfo-footer h2 {
+.stripinfo-footer h2,
+.stripinfo-footer h4 {
   font-family: 'Bangers', cursive !important;
 }
 
@@ -496,7 +492,7 @@ h1, h2, h3, h4, h5, h6,
 // ============================================
 .topic-post {
   background: $wit;
-  border: 2px solid #e0e0e0;
+  border: 2px solid $grijs-border;
   border-radius: 12px;
   margin-bottom: 20px;
   
@@ -504,7 +500,7 @@ h1, h2, h3, h4, h5, h6,
     padding: 24px;
     
     .cooked {
-      color: #333;
+      color: $zwart;
       line-height: 1.7;
       font-size: 15px;
       
@@ -533,7 +529,7 @@ h1, h2, h3, h4, h5, h6,
       }
       
       code {
-        background: #f5f5f5;
+        background: $grijs-bg;
         border: 1px solid #ddd;
         padding: 2px 6px;
         border-radius: 4px;
@@ -556,7 +552,7 @@ h1, h2, h3, h4, h5, h6,
   }
   
   .topic-avatar {
-    border: 2px solid #e0e0e0;
+    border: 2px solid $grijs-border;
     border-radius: 50%;
   }
   
@@ -592,7 +588,7 @@ h1, h2, h3, h4, h5, h6,
 // SEARCH
 // ============================================
 #search-term {
-  border: 2px solid #e0e0e0 !important;
+  border: 2px solid $grijs-border !important;
   border-radius: 20px !important;
   padding: 10px 18px !important;
   
@@ -603,7 +599,7 @@ h1, h2, h3, h4, h5, h6,
 }
 
 .search-menu {
-  border: 2px solid #e0e0e0 !important;
+  border: 2px solid $grijs-border !important;
   border-radius: 12px !important;
 }
 
@@ -611,7 +607,7 @@ h1, h2, h3, h4, h5, h6,
 // USER MENU
 // ============================================
 .user-menu {
-  border: 2px solid #e0e0e0 !important;
+  border: 2px solid $grijs-border !important;
   border-radius: 12px !important;
   
   .menu-links-header {
@@ -627,16 +623,16 @@ h1, h2, h3, h4, h5, h6,
 .d-editor-button-bar {
   .btn {
     border-radius: 6px !important;
-    border: 1px solid #e0e0e0 !important;
+    border: 1px solid $grijs-border !important;
   }
 }
 
 #reply-control {
-  border: 2px solid #e0e0e0;
+  border: 2px solid $grijs-border;
   border-radius: 12px 12px 0 0;
   
   .d-editor-textarea-wrapper {
-    border: 2px solid #e0e0e0;
+    border: 2px solid $grijs-border;
     border-radius: 8px;
   }
 }
@@ -671,7 +667,7 @@ h1, h2, h3, h4, h5, h6,
     border: 3px solid $zwart;
     border-radius: 12px;
     
-    h3 {
+    h3, h4 {
       color: $zwart;
       font-family: 'Bangers', cursive;
       font-size: 20px;
@@ -679,6 +675,19 @@ h1, h2, h3, h4, h5, h6,
       text-transform: uppercase;
       border-bottom: 2px solid $zwart;
       padding-bottom: 10px;
+    }
+    
+    a {
+      display: block;
+      color: $zwart;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 10px;
+      
+      &:hover {
+        color: $roze;
+      }
     }
     
     ul {
@@ -703,28 +712,28 @@ h1, h2, h3, h4, h5, h6,
     }
   }
   
-  .footer-tagline {
+  .footer-bottom {
+    grid-column: 1 / -1;
+    background: $zwart;
+    color: $wit;
     text-align: center;
-    padding: 25px;
-    background: rgba(255,255,255,0.95);
-    border: 3px solid $zwart;
-    border-radius: 12px;
-    max-width: 700px;
-    margin: 0 auto;
-    
-    h2 {
-      color: $zwart;
-      font-family: 'Bangers', cursive;
-      font-size: 28px;
-      margin-bottom: 10px;
-      text-transform: uppercase;
-    }
+    padding: 20px;
+    border-top: 2px solid $zwart;
+    margin-top: 20px;
     
     p {
-      color: $roze;
-      font-size: 16px;
-      font-weight: 700;
+      color: $wit;
+      font-size: 14px;
+      font-weight: 600;
       margin: 0;
+    }
+    
+    a {
+      color: $cyaan;
+      text-decoration: none;
+      &:hover {
+        color: $wit;
+      }
     }
   }
 }
@@ -809,12 +818,14 @@ h1, h2, h3, h4, h5, h6,
     padding: 8px 18px !important; // Iets meer padding
   }
   
-  // Eerste blok krijgt geen linker margin
+  // Eerste blok krijgt geen linker margin (posts-map of num)
+  .posts-map:first-of-type,
   .num:first-of-type {
     margin-left: 0 !important;
   }
   
   // Laatste blok krijgt geen rechter margin
+  .posts-map:last-of-type,
   .num:last-of-type {
     margin-right: 0 !important;
   }
