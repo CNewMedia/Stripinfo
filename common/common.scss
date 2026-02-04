@@ -172,55 +172,6 @@ body {
 // Op desktop forceert Discourse soms de "push" modus.
 // Onderstaande CSS forceert de overlay modus op ALLE schermformaten.
 
-// --- A. Forceer dat de sidebar NOOIT als vast paneel verschijnt ---
-// Dit voorkomt dat content opzij geschoven wordt
-#d-sidebar,
-.sidebar-wrapper {
-  // Verander van vast paneel naar floating overlay
-  position: fixed !important;
-  z-index: 1100 !important;
-  top: 0 !important;
-  left: 0 !important;
-  height: 100vh !important;
-  width: 85vw !important;
-  max-width: 360px !important;
-  background: #fff !important;
-  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.15) !important;
-  transform: translateX(-110%) !important; // Standaard verborgen buiten scherm
-  transition: transform 0.25s ease !important;
-  overflow-y: auto !important;
-
-  // Padding bovenaan voor ruimte
-  padding-top: 16px !important;
-}
-
-// --- B. Wanneer sidebar OPEN is (Discourse voegt classes toe bij openen) ---
-// Discourse voegt verschillende classes toe afhankelijk van de versie.
-// We targeten ze allemaal:
-.sidebar-visible #d-sidebar,
-.sidebar-visible .sidebar-wrapper,
-.has-sidebar-page #d-sidebar,
-.has-sidebar-page .sidebar-wrapper,
-body.sidebar-open #d-sidebar,
-body.sidebar-open .sidebar-wrapper,
-#d-sidebar.sidebar-floating,
-.sidebar-wrapper.sidebar-floating {
-  transform: translateX(0) !important; // Schuif in beeld
-}
-
-// --- C. Backdrop/overlay wanneer menu open is ---
-// Donkere achtergrond achter het menu zodat je kunt klikken om te sluiten
-.sidebar-backdrop,
-.sidebar-overlay {
-  position: fixed !important;
-  top: 0 !important;
-  left: 0 !important;
-  width: 100vw !important;
-  height: 100vh !important;
-  background: rgba(0, 0, 0, 0.4) !important;
-  z-index: 1099 !important;
-}
-
 // --- D. Content NOOIT verschuiven ---
 // Dit is de kernfix: de content mag NOOIT bewegen als de sidebar opent
 #main-outlet-wrapper,
@@ -1425,6 +1376,165 @@ body:not(.navigation-categories) {
   .categories-list .category-boxes-with-topics,
   .navigation-categories .category-boxes-with-topics {
     grid-template-columns: repeat(2, 1fr) !important;
+  }
+}
+
+// ============================================
+// CATEGORIE-KAARTEN — ASANA-STIJL LAYOUT (icoon links, tekst rechts)
+// ============================================
+
+.categories-list .category-boxes,
+.navigation-categories .category-boxes,
+.categories-list .category-boxes-with-topics,
+.navigation-categories .category-boxes-with-topics,
+.category-list,
+#categories-wrapper {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 20px !important;
+  max-width: 1200px !important;
+  margin: 0 auto !important;
+  padding: 0 24px !important;
+
+  @media (max-width: 900px) {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  @media (max-width: 550px) {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.categories-list .category-box,
+.navigation-categories .category-box,
+.category-boxes .category-box,
+.category-boxes-with-topics .category-box {
+  background: $wit !important;
+  border: 1px solid $si-border !important;
+  border-radius: 12px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  transition: box-shadow 0.15s ease, transform 0.15s ease !important;
+  overflow: hidden !important;
+  border-left: 1px solid $si-border !important;
+
+  &:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08) !important;
+    transform: translateY(-2px) !important;
+  }
+
+  .category-box-inner {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: flex-start !important;
+    padding: 24px !important;
+    gap: 18px !important;
+    border: none !important;
+    border-left: none !important;
+    min-height: auto !important;
+    height: 100% !important;
+    box-sizing: border-box !important;
+  }
+}
+
+.categories-list .category-box .category-logo,
+.categories-list .category-box .category-box-inner .category-logo,
+.navigation-categories .category-box .category-logo,
+.navigation-categories .category-box .category-box-inner .category-logo,
+.category-box .logo.aspect-image,
+.category-box .category-box-inner .logo.aspect-image {
+  flex-shrink: 0 !important;
+  width: 64px !important;
+  height: 64px !important;
+
+  img {
+    width: 64px !important;
+    height: 64px !important;
+    object-fit: contain !important;
+    border-radius: 8px !important;
+  }
+}
+
+.categories-list .category-box .category-box-inner .badge-wrapper,
+.navigation-categories .category-box .category-box-inner .badge-wrapper {
+  flex-shrink: 0 !important;
+}
+
+.categories-list .category-box .category-box-heading,
+.navigation-categories .category-box .category-box-heading,
+.category-box .category-box-heading,
+.category-box .category-box-inner > div:not(.category-logo):not(.logo) {
+  flex: 1 !important;
+  min-width: 0 !important;
+}
+
+.categories-list .category-box .category-name,
+.navigation-categories .category-box .category-name,
+.categories-list .category-box h3,
+.navigation-categories .category-box h3,
+.categories-list .category-box .category-box-heading h3,
+.navigation-categories .category-box .category-box-heading h3,
+.categories-list .category-box .badge-category,
+.navigation-categories .category-box .badge-category,
+.category-box .category-name,
+.category-box h3,
+.category-box .category-box-heading h3,
+.category-box .badge-category {
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  color: $si-dark !important;
+  margin: 0 0 6px 0 !important;
+  text-align: left !important;
+  line-height: 1.3 !important;
+  font-family: $sans-stack !important;
+}
+
+.categories-list .category-box .category-description,
+.navigation-categories .category-box .category-description,
+.categories-list .category-box .description,
+.navigation-categories .category-box .description,
+.category-box .category-description,
+.category-box .category-box-description,
+.category-box .description {
+  font-size: 0.85rem !important;
+  color: $grijs-tekst !important;
+  line-height: 1.5 !important;
+  text-align: left !important;
+  margin: 0 !important;
+
+  a.read-more {
+    display: none !important;
+  }
+}
+
+.categories-list .category-box .category-statistic,
+.navigation-categories .category-box .category-statistic,
+.categories-list .category-box .topics-count,
+.navigation-categories .category-box .topics-count,
+.categories-list .category-box .category-box-inner .subcategories,
+.navigation-categories .category-box .category-box-inner .subcategories,
+.category-box .category-statistic,
+.category-box .topics-count,
+.category-box .category-box-inner .subcategories {
+  display: none !important;
+}
+
+.categories-list .category-box .category-box-inner > hr,
+.navigation-categories .category-box .category-box-inner > hr,
+.categories-list .category-box .category-box-inner > .border-bottom,
+.navigation-categories .category-box .category-box-inner > .border-bottom {
+  display: none !important;
+}
+
+.categories-list .category-boxes .category-box,
+.navigation-categories .category-boxes .category-box,
+.categories-list .category-boxes-with-topics .category-box,
+.navigation-categories .category-boxes-with-topics .category-box {
+  display: flex !important;
+
+  .category-box-inner {
+    flex: 1 !important;
   }
 }
 
