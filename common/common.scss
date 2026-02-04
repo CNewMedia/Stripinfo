@@ -2034,6 +2034,76 @@ select {
 }
 
 // ============================================
+// ANTWOORDEN KNOP — PRIMAIRE ACTIE STYLING
+// ============================================
+
+#topic-footer-buttons .btn.create,
+#topic-footer-buttons button.create {
+  background: $si-teal !important;
+  color: $wit !important;
+  border: none !important;
+  border-radius: 8px !important;
+  padding: 10px 24px !important;
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  transition: background 0.15s ease !important;
+
+  &:hover {
+    background: #00697A !important;
+  }
+
+  .d-icon {
+    color: $wit !important;
+  }
+}
+
+.post-controls .actions .reply .widget-button,
+.post-controls button.reply {
+  color: $si-teal !important;
+  font-weight: 600 !important;
+
+  &:hover {
+    color: #00697A !important;
+    background: rgba(0, 131, 143, 0.08) !important;
+    border-radius: 6px !important;
+  }
+
+  .d-icon {
+    color: $si-teal !important;
+  }
+}
+
+#topic-footer-buttons .btn:not(.create) {
+  background: transparent !important;
+  color: $grijs-tekst !important;
+  border: 1px solid #ddd !important;
+  border-radius: 8px !important;
+  padding: 10px 16px !important;
+  font-weight: 500 !important;
+
+  &:hover {
+    background: $si-light-bg !important;
+    color: $si-dark !important;
+    border-color: #ccc !important;
+  }
+
+  .d-icon {
+    color: $grijs-tekst !important;
+  }
+}
+
+#topic-footer-buttons .btn.admin-topic-actions,
+#topic-footer-buttons .topic-admin-menu-button {
+  background: transparent !important;
+  border: 1px solid #ddd !important;
+  color: $grijs-tekst !important;
+
+  &:hover {
+    background: $si-light-bg !important;
+  }
+}
+
+// ============================================
 // REPLY AREA — ANTWOORD SCHRIJVEN
 // ============================================
 .reply-area,
