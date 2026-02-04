@@ -153,55 +153,100 @@ body {
 // ============================================
 
 // ============================================
-// SIDEBAR — GEEN LAYOUTVERSCHUIVING; HAMBURGER PANEL WEL TONEN
-// Verberg alleen het vaste linkerpaneel; het hamburger-dropdown mag werken.
+// SIDEBAR & HAMBURGER MENU — alleen vaste sidebar verbergen
+// Als het hamburger menu (≡) niet opent: Admin → Instellingen → zoek
+// "navigation menu" → kies "header dropdown" (geen vaste sidebar).
 // ============================================
-body.has-sidebar-page #main-outlet-wrapper,
-body.sidebar-animate #main-outlet-wrapper {
-  grid-template-columns: minmax(0, 1fr) 0 !important;
-  grid-template-areas: "content sidebar" !important;
-}
-body.has-sidebar-page #main-outlet-wrapper .sidebar-wrapper,
-body.has-sidebar-page #main-outlet-wrapper .sidebar-container,
-body.has-sidebar-page #main-outlet-wrapper #d-sidebar {
-  width: 0 !important;
-  min-width: 0 !important;
-  overflow: hidden !important;
+
+// 1. Verberg de VASTE sidebar (linkerpaneel); dropdown/overlay mag werken
+.sidebar-wrapper:not(.sidebar-floating):not(.sidebar-wrapper--floating) {
+  display: none !important;
 }
 
-// Hamburger-knop altijd zichtbaar; dropdown/panel mag openen
+.sidebar-wrapper--static,
+#d-sidebar.sidebar-container--static,
+#d-sidebar:not(.sidebar-floating):not(.sidebar-wrapper--floating) {
+  display: none !important;
+}
+
+// Dropdown-panel (in header): altijd tonen, ook als Discourse geen --floating class gebruikt
+.d-header .menu-panel .sidebar-wrapper,
+.d-header .sidebar-wrapper,
+.hamburger-panel .sidebar-wrapper,
+.menu-panel.slide-in .sidebar-wrapper {
+  display: block !important;
+}
+
+// 2. Hamburger knop (≡) altijd zichtbaar
 .header-sidebar-toggle,
-button.sidebar-toggle {
+button.sidebar-toggle,
+.d-header .hamburger-dropdown,
+.btn-sidebar-toggle {
   display: inline-flex !important;
+  visibility: visible !important;
+  opacity: 1 !important;
 }
 
-// Styling hamburger dropdown panel
-.menu-panel.slide-in .sidebar-wrapper,
+// 3. Dropdown/overlay-panel dat opent bij klik op ≡ — niet verbergen; alleen styling
+.sidebar-wrapper.sidebar-floating,
+.sidebar-wrapper.sidebar-wrapper--floating,
 .sidebar-wrapper--floating,
+.hamburger-panel,
+.menu-panel,
+.menu-panel.slide-in,
+.sidebar-hamburger-dropdown,
 .d-header .menu-panel .sidebar-wrapper {
-  background: $wit;
-  border: 1px solid $si-border;
-  border-radius: 8px;
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.12);
+  .sidebar-sections {
+    background: $wit;
+  }
 
+  .sidebar-section-link-wrapper .sidebar-section-link,
   .sidebar-section-link {
     font-size: 0.9rem;
     color: $si-dark;
     padding: 8px 12px;
     border-radius: 6px;
+    text-decoration: none;
 
     &:hover {
       background: $si-light-bg;
+      color: $si-teal;
+    }
+
+    &.active {
+      background: rgba(0, 131, 143, 0.08);
+      color: $si-teal;
+      font-weight: 600;
     }
   }
 
+  .sidebar-section-header-text,
   .sidebar-section-header {
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
     text-transform: uppercase;
     color: $grijs-tekst;
     letter-spacing: 0.5px;
   }
+
+  .sidebar-section-link-prefix .badge-category {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+  }
+}
+
+// 4. Geen layoutverschuiving wanneer sidebar getoggled wordt
+body.has-sidebar-page #main-outlet-wrapper,
+body.sidebar-animate #main-outlet-wrapper {
+  grid-template-columns: minmax(0, 1fr) 0 !important;
+  grid-template-areas: "content sidebar" !important;
+}
+
+// 5. Content volle breedte
+#main-outlet-wrapper {
+  width: 100% !important;
+  max-width: 100% !important;
 }
 
 // ============================================
@@ -265,14 +310,6 @@ button.sidebar-toggle {
 // HOMEPAGE — VERBERG ZOEKBALK, FILTERS + VOLLE BREEDTE
 // ============================================
 body.navigation-categories {
-  // Verberg alleen de vaste sidebar in de content-area; hamburger-panel zit in .d-header en blijft werken
-  #main-outlet-wrapper .sidebar-wrapper,
-  #main-outlet-wrapper .sidebar-container,
-  #main-outlet-wrapper #d-sidebar,
-  #main-outlet-wrapper .sidebar-section-wrapper {
-    display: none !important;
-  }
-
   // Verberg zoekbalk en welkomstbanner
   .search-container,
   .search-banner,
@@ -407,13 +444,6 @@ body.navigation-categories {
 // CATEGORIE-PAGINA'S — SIDEBAR WEG + HEADER & FILTERS (Asana)
 // ============================================
 body:not(.navigation-categories) {
-  // Verberg vaste sidebar in content-area; hamburger-panel in header blijft werken
-  #main-outlet-wrapper .sidebar-wrapper,
-  #main-outlet-wrapper .sidebar-container,
-  #main-outlet-wrapper #d-sidebar {
-    display: none !important;
-  }
-
   #main-outlet {
     max-width: 1200px;
     margin: 0 auto;

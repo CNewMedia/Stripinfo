@@ -127,14 +127,11 @@ body {
 }
 
 // ============================================
-// MOBILE — SIDEBAR + COMMUNITY SECTIE
+// MOBILE — alleen vaste sidebar verbergen; hamburger dropdown blijft werken
 // ============================================
-body.navigation-categories {
-  .sidebar-wrapper,
-  .sidebar-container,
-  #d-sidebar {
-    display: none !important;
-  }
+.sidebar-wrapper--static,
+#d-sidebar.sidebar-container--static {
+  display: none !important;
 }
 
 .si-community-section {
