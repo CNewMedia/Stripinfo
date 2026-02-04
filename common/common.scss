@@ -74,23 +74,41 @@ body {
 }
 
 // ============================================
-// ANNOUNCEMENT BANNER (oranje — boven nav)
+// TOP BANNER / HERO (oranje/geel — boven nav)
 // ============================================
-.stripinfo-announcement {
-  background: $si-orange;
+.stripinfo-top-banner {
+  display: block;
+  text-decoration: none;
+  background: repeating-linear-gradient(
+    45deg,
+    $geel,
+    $geel 10px,
+    $oranje 10px,
+    $oranje 20px
+  );
+  padding: 25px 20px;
   text-align: center;
-  padding: 8px 16px;
-  font-weight: 700;
-  font-size: 0.85rem;
-  letter-spacing: 0.5px;
-  text-transform: uppercase;
+  border-bottom: 4px solid $zwart;
 
-  a {
-    color: $si-pink;
-    text-decoration: none;
-    &:hover {
-      text-decoration: underline;
-    }
+  .banner-title {
+    color: $zwart;
+    font-family: 'Bangers', cursive;
+    font-size: 38px;
+    margin: 0 0 10px 0;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    text-shadow:
+      2px 2px 0 $wit,
+      3px 3px 0 rgba(0,0,0,0.3);
+  }
+
+  .banner-subtitle {
+    color: $roze;
+    font-size: 16px;
+    margin: 0;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
   }
 }
 
@@ -894,6 +912,10 @@ h1, h2, h3, h4, h5, h6,
 // RESPONSIVE
 // ============================================
 @media (max-width: 768px) {
+  .stripinfo-top-banner .banner-title {
+    font-size: 26px;
+  }
+
   .stripinfo-nav-bar .stripinfo-nav-inner {
     flex-wrap: wrap;
     justify-content: center;
