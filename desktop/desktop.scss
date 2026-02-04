@@ -3,6 +3,33 @@
 // Categorie grid 3 kolommen, CTA 4 kolommen, footer 4 kolommen.
 // ============================================
 
+// ============================================
+// HEADER — Waffle (≡) rechts naast zoek, zoals op mobile
+// ============================================
+.d-header {
+  .header-sidebar-toggle,
+  .hamburger-dropdown,
+  button.sidebar-toggle,
+  .btn-sidebar-toggle,
+  [class*="sidebar-toggle"],
+  [class*="hamburger"] {
+    display: inline-flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+  // Volgorde: logo links, dan zoek, dan waffle rechts naast zoek (zoals mobile)
+  .contents {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .header-sidebar-toggle,
+  .hamburger-dropdown,
+  .sidebar-toggle {
+    margin-left: 0.5rem;
+  }
+}
+
 // Categorie kaarten (alleen homepage): 3 kolommen
 .categories-list .category-boxes,
 .navigation-categories .category-boxes {

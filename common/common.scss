@@ -173,17 +173,17 @@ body {
 }
 
 @media (min-width: 769px) {
-  // Desktop: alleen de vaste sidebar in de content-area verbergen; dropdown blijft werken
+  // Desktop: sidebar in content-area niet met display:none verbergen (anders is dropdown-inhoud leeg).
+  // Alleen visueel inklappen (0 breedte) zodat er geen kolom zichtbaar is.
   #main-outlet-wrapper .sidebar-wrapper,
   #main-outlet-wrapper .sidebar-container,
   #main-outlet-wrapper #d-sidebar {
-    display: none !important;
-  }
-  // Als Discourse het open panel toch binnen #main-outlet-wrapper rendert (bv. als overlay), toon het dan
-  #main-outlet-wrapper .sidebar-wrapper.sidebar-wrapper--floating,
-  #main-outlet-wrapper .sidebar-wrapper.sidebar-floating,
-  #main-outlet-wrapper .menu-panel .sidebar-wrapper {
-    display: block !important;
+    min-width: 0 !important;
+    width: 0 !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border: none !important;
   }
 }
 
@@ -197,13 +197,41 @@ body {
   display: block !important;
 }
 
-// Desktop: dropdown-panel boven content (z-index)
+// Desktop: dropdown-panel boven content + menu-inhoud zichtbaar (niet leeg)
 @media (min-width: 769px) {
   .menu-panel.slide-in,
   .menu-panel .sidebar-wrapper,
   .d-header .menu-panel,
   .sidebar-hamburger-dropdown {
     z-index: 1100 !important;
+  }
+  // Zorg dat de inhoud van het dropdown-panel zichtbaar is (Nieuwste, Categorieën, etc.)
+  .menu-panel .sidebar-wrapper,
+  .d-header .menu-panel .sidebar-wrapper,
+  .sidebar-hamburger-dropdown .sidebar-wrapper {
+    display: block !important;
+    visibility: visible !important;
+    overflow: visible !important;
+  }
+  .menu-panel .sidebar-sections,
+  .menu-panel .sidebar-section-wrapper,
+  .menu-panel .sidebar-section-link-wrapper,
+  .menu-panel .sidebar-section-link,
+  .d-header .menu-panel .sidebar-sections,
+  .d-header .menu-panel .sidebar-section-wrapper,
+  .d-header .menu-panel .sidebar-section-link {
+    display: block !important;
+    visibility: visible !important;
+  }
+  // Panel en sidebar in dropdown een breedte geven zodat inhoud zichtbaar is
+  .menu-panel.slide-in,
+  .d-header .menu-panel .menu-panel-dropdown {
+    min-width: 280px !important;
+  }
+  .menu-panel .sidebar-wrapper,
+  .d-header .menu-panel .sidebar-wrapper {
+    min-width: 260px !important;
+    width: auto !important;
   }
 }
 
