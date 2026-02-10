@@ -2183,7 +2183,19 @@ section.category-boxes.with-logo {
 
 // === TITEL — NIET AFKAPPEN + LINKS UITLIJNEN ===
 // Dit is het belangrijkste probleem: de titels worden afgekapt en staan gecentreerd
-.category-boxes .category-box .category-box-heading,
+.category-boxes .category-box .category-box-heading {
+  text-align: left !important;
+  display: block !important;
+  width: 100% !important;
+  margin: 0 !important;
+  padding: 0 !important;
+  
+  // Alle child elementen links uitlijnen
+  * {
+    text-align: left !important;
+  }
+}
+
 .category-boxes .category-box .category-box-heading a,
 .category-boxes .category-box .category-box-heading .parent-box-link,
 .category-boxes .category-box .category-box-heading a[href] {
@@ -2215,10 +2227,25 @@ section.category-boxes.with-logo {
   -webkit-hyphens: none !important;
 }
 
+// Badge wrapper binnen category-box-heading links uitlijnen
+.category-boxes .category-box .category-box-heading .badge-wrapper {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  width: 100% !important;
+  
+  .badge-category,
+  .badge-category__name,
+  .badge-category__wrapper {
+    text-align: left !important;
+    display: block !important;
+  }
+}
+
 // Verberg de gekleurde badge-vierkantjes voor de titel (de ■ symbolen)
-.category-boxes .category-box .category-box-heading .badge-category {
-  // Als je de gekleurde vierkantjes wilt behouden, comment dit uit
-  // display: none !important;
+.category-boxes .category-box .category-box-heading .badge-category-bg {
+  display: none !important;
 }
 
 // === BESCHRIJVING ===
@@ -2338,16 +2365,34 @@ section.category-boxes ~ .show-more {
 }
 
 .category-box .badge-wrapper {
-  display: inline-flex !important;
-  align-items: center !important;
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  width: 100% !important;
 
   .badge-category {
-    display: inline !important;
+    display: block !important;
     visibility: visible !important;
     color: $si-dark !important;
     font-size: 1.05rem !important;
     font-weight: 700 !important;
     font-family: $sans-stack !important;
+    text-align: left !important;
+  }
+}
+
+// Specifiek voor category-boxes: badge-wrapper links uitlijnen
+.category-boxes .category-box .badge-wrapper {
+  display: flex !important;
+  justify-content: flex-start !important;
+  align-items: flex-start !important;
+  text-align: left !important;
+  width: 100% !important;
+  
+  .badge-category {
+    text-align: left !important;
+    display: block !important;
   }
 }
 
