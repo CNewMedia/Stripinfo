@@ -2099,14 +2099,13 @@ body.categories-list {
 // (section.category-boxes met Chrome Inspector structuur)
 
 // =============================================
-// STRIPINFO DISCOURSE — CATEGORY BOXES STYLING
-// Selectors gebaseerd op Chrome Inspector
-// Exacte HTML structuur: section.category-boxes > .category-box > .category-box-inner > .category-logo + .category-details
+// STRIPINFO DISCOURSE — CATEGORY BOXES FIX
+// Exacte class: section.category-boxes-with-topics.with-logos
+// Belangrijk: category-logo zit BINNEN a.parent-box-link, samen met h3
 // =============================================
 
 // === GRID LAYOUT ===
-section.category-boxes,
-section.category-boxes.with-logo {
+section.category-boxes-with-topics.with-logos {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
   gap: 24px !important;
@@ -2115,224 +2114,148 @@ section.category-boxes.with-logo {
   margin: 0 auto !important;
 }
 
-// === INDIVIDUELE CATEGORY BOX ===
-.category-boxes .category-box,
-.category-boxes.with-logo .category-box {
+// === CATEGORY BOX ===
+section.category-boxes-with-topics.with-logos .category-box {
   border: 2px solid #e0e0e0 !important;
-  border-left: 4px solid #00bcd4 !important;
   border-radius: 16px !important;
   overflow: hidden !important;
   background: #fff !important;
   transition: all 0.3s ease !important;
   width: 100% !important;
-  
-  &:hover {
-    transform: translateY(-4px) !important;
-    box-shadow: 0 12px 32px rgba(0, 188, 212, 0.15) !important;
-    border-color: #00bcd4 !important;
-    border-left-color: #00bcd4 !important;
-  }
 }
 
-// === INNER CONTAINER — VERTICAAL ===
-.category-boxes .category-box .category-box-inner {
+section.category-boxes-with-topics.with-logos .category-box:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 12px 32px rgba(0, 188, 212, 0.18) !important;
+  border-color: #00bcd4 !important;
+}
+
+// === INNER ===
+section.category-boxes-with-topics.with-logos .category-box-inner {
   display: flex !important;
   flex-direction: column !important;
   padding: 0 !important;
 }
 
-// === AFBEELDING / LOGO ===
-.category-boxes .category-box .category-logo {
+// === LINK WRAPPER — VERTICAAL ===
+section.category-boxes-with-topics.with-logos .category-box-heading {
+  padding: 0 !important;
+  margin: 0 !important;
+}
+
+section.category-boxes-with-topics.with-logos a.parent-box-link {
+  display: flex !important;
+  flex-direction: column !important;
+  text-decoration: none !important;
+}
+
+// === AFBEELDING ===
+section.category-boxes-with-topics.with-logos .category-logo,
+section.category-boxes-with-topics.with-logos .category-logo.aspect-image {
   width: 100% !important;
   max-width: none !important;
   padding: 0 !important;
   margin: 0 !important;
-  order: -1 !important;
-  flex-shrink: 0 !important;
   overflow: hidden !important;
-  
-  img {
-    width: 100% !important;
-    height: 180px !important;
-    max-width: none !important;
-    max-height: none !important;
-    min-height: 180px !important;
-    object-fit: cover !important;
-    display: block !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    transition: transform 0.3s ease !important;
-  }
+  order: -1 !important;
 }
 
-// Hover zoom op afbeelding
-.category-boxes .category-box:hover .category-logo img {
+section.category-boxes-with-topics.with-logos .category-logo img,
+section.category-boxes-with-topics.with-logos .category-logo.aspect-image img {
+  width: 100% !important;
+  height: 180px !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-height: 180px !important;
+  object-fit: cover !important;
+  display: block !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  border-radius: 0 !important;
+  transition: transform 0.3s ease !important;
+}
+
+section.category-boxes-with-topics.with-logos .category-box:hover .category-logo img {
   transform: scale(1.05) !important;
 }
 
-// === CATEGORY DETAILS (titel + beschrijving) ===
-.category-boxes .category-box .category-details {
-  padding: 16px 20px 20px !important;
-  display: flex !important;
-  flex-direction: column !important;
-  gap: 8px !important;
-  align-items: flex-start !important;  // Links uitlijnen
-  text-align: left !important;
-}
-
-// === TITEL — NIET AFKAPPEN + LINKS UITLIJNEN ===
-// Dit is het belangrijkste probleem: de titels worden afgekapt en staan gecentreerd
-.category-boxes .category-box .category-box-heading {
-  text-align: left !important;
-  display: block !important;
-  width: 100% !important;
+// === TITEL H3 — NIET AFBREKEN ===
+section.category-boxes-with-topics.with-logos h3 {
+  padding: 14px 16px 4px !important;
   margin: 0 !important;
-  padding: 0 !important;
-  
-  // Alle child elementen links uitlijnen
-  * {
-    text-align: left !important;
-  }
-}
+  font-size: 1rem !important;
+  font-weight: 700 !important;
+  line-height: 1.35 !important;
+  color: #222 !important;
+  text-align: left !important;
 
-.category-boxes .category-box .category-box-heading a,
-.category-boxes .category-box .category-box-heading .parent-box-link,
-.category-boxes .category-box .category-box-heading a[href] {
-  // Stop alle vormen van afkappen
+  // GEEN woordafbreking
+  word-break: keep-all !important;
+  overflow-wrap: normal !important;
+  word-wrap: normal !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
   white-space: normal !important;
   overflow: visible !important;
   text-overflow: unset !important;
-  -webkit-line-clamp: unset !important;
-  max-width: none !important;
-  width: 100% !important;
-  display: block !important;
-  
-  // LINKS UITLIJNEN (niet gecentreerd!)
-  text-align: left !important;
-  margin: 0 !important;
-  padding: 0 !important;
-  
-  // Styling
-  font-size: 1.1rem !important;
-  font-weight: 700 !important;
-  color: #222 !important;
-  line-height: 1.4 !important;
-  text-decoration: none !important;
-  
-  // VOORKOM WOORDEN MIDDENIN TE BREKEN
+}
+
+section.category-boxes-with-topics.with-logos h3 .badge-category__name {
+  white-space: normal !important;
   word-break: keep-all !important;
-  overflow-wrap: break-word !important;
-  word-wrap: break-word !important;
   hyphens: none !important;
   -webkit-hyphens: none !important;
-  -ms-hyphens: none !important;
-  
-  // Zorg dat woorden alleen op natuurlijke grenzen breken
+  overflow: visible !important;
+  text-overflow: unset !important;
+}
+
+// Badge wrapper (gekleurde vierkantjes + lock icoon)
+section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper {
+  display: inline !important;
   white-space: normal !important;
+  word-break: keep-all !important;
 }
 
-// Badge wrapper binnen category-box-heading links uitlijnen
-.category-boxes .category-box .category-box-heading .badge-wrapper {
-  display: flex !important;
-  justify-content: flex-start !important;
-  align-items: flex-start !important;
-  text-align: left !important;
-  width: 100% !important;
-  
-  .badge-category,
-  .badge-category__name,
-  .badge-category__wrapper,
-  .badge-category__wrapper span {
-    text-align: left !important;
-    display: block !important;
-    word-break: keep-all !important;
-    overflow-wrap: break-word !important;
-    word-wrap: break-word !important;
-    hyphens: none !important;
-    white-space: normal !important;
-  }
+// Lock icoon kleiner
+section.category-boxes-with-topics.with-logos h3 .d-icon {
+  width: 0.7em !important;
+  height: 0.7em !important;
 }
 
-// Verberg de gekleurde badge-vierkantjes voor de titel (de ■ symbolen)
-.category-boxes .category-box .category-box-heading .badge-category-bg {
-  display: none !important;
-}
-
-// === BESCHRIJVING ===
-.category-boxes .category-box .description,
-.category-boxes .category-box .category-details .description {
+// === BESCHRIJVING (in featured-topics of description div) ===
+section.category-boxes-with-topics.with-logos .description {
   color: #666 !important;
-  font-size: 0.9rem !important;
+  font-size: 0.875rem !important;
   line-height: 1.5 !important;
-  padding: 0 !important;
+  padding: 4px 16px 16px !important;
   margin: 0 !important;
-  
-  // Limiteer tot 3 regels
-  display: -webkit-box !important;
-  -webkit-line-clamp: 3 !important;
-  -webkit-box-orient: vertical !important;
-  overflow: hidden !important;
+}
+
+// === FEATURED TOPICS — compact ===
+section.category-boxes-with-topics.with-logos .featured-topics {
+  padding: 0 16px 12px !important;
+  font-size: 0.8rem !important;
+  color: #888 !important;
 }
 
 // === RESPONSIVE ===
 @media (max-width: 900px) {
-  section.category-boxes,
-  section.category-boxes.with-logo {
+  section.category-boxes-with-topics.with-logos {
     grid-template-columns: repeat(2, 1fr) !important;
     gap: 16px !important;
-    padding: 20px 15px !important;
-  }
-  
-  .category-boxes .category-box .category-logo img {
-    height: 150px !important;
-    min-height: 150px !important;
   }
 }
 
 @media (max-width: 600px) {
-  section.category-boxes,
-  section.category-boxes.with-logo {
+  section.category-boxes-with-topics.with-logos {
     grid-template-columns: 1fr !important;
     gap: 14px !important;
-    padding: 15px 10px !important;
   }
-  
-  .category-boxes .category-box .category-logo img {
+
+  section.category-boxes-with-topics.with-logos .category-logo img {
     height: 140px !important;
     min-height: 140px !important;
-  }
-  
-  .category-boxes .category-box .category-box-heading a {
-    font-size: 1rem !important;
-  }
-}
-
-// === "MEER TONEN" KNOP ===
-.category-boxes + .show-more,
-section.category-boxes ~ .show-more {
-  text-align: center !important;
-  padding: 30px 0 !important;
-  
-  a, button {
-    background: #00bcd4 !important;
-    color: #fff !important;
-    border: 2px solid #222 !important;
-    border-radius: 30px !important;
-    padding: 12px 36px !important;
-    font-weight: 700 !important;
-    font-size: 1rem !important;
-    cursor: pointer !important;
-    transition: all 0.2s ease !important;
-    text-decoration: none !important;
-    display: inline-block !important;
-    
-    &:hover {
-      background: #f5c518 !important;
-      color: #222 !important;
-      transform: translateY(-2px) !important;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.12) !important;
-    }
   }
 }
 
