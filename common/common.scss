@@ -1095,15 +1095,9 @@ body:not(.navigation-categories):not([class*="route-admin"]) {
 // CATEGORIES LIST PAGE — COMIC-STYLE VISUELE TRANSFORMATIE
 // ============================================
 body.categories-list {
-  // Hero banner styling
+  // Hero banner styling — DONKERE ACHTERGROND (contrast met gele header)
   .stripinfo-categories-hero {
-    background: repeating-linear-gradient(
-      45deg,
-      #f5c518,
-      #f5c518 20px,
-      #ffb300 20px,
-      #ffb300 40px
-    );
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%) !important;
     padding: 60px 24px;
     margin: 0 0 40px 0;
     text-align: center;
@@ -1118,12 +1112,12 @@ body.categories-list {
     .hero-title {
       font-family: 'Bangers', cursive !important;
       font-size: 3.5rem !important;
-      color: #222 !important;
+      color: #fff !important;
       margin: 0 0 16px 0 !important;
       text-transform: uppercase !important;
       letter-spacing: 2px !important;
       text-shadow: 
-        3px 3px 0px #fff,
+        3px 3px 0px rgba(0,0,0,0.3),
         5px 5px 0px rgba(0,0,0,0.2) !important;
       line-height: 1.1 !important;
     }
@@ -1131,7 +1125,7 @@ body.categories-list {
     .hero-subtitle {
       font-family: 'DM Sans', sans-serif !important;
       font-size: 1.2rem !important;
-      color: #333 !important;
+      color: rgba(255,255,255,0.9) !important;
       margin: 0 0 24px 0 !important;
       font-weight: 600 !important;
     }
@@ -1179,9 +1173,9 @@ body.categories-list {
   // Transformeer tabel naar grid layout
   .category-list {
     display: grid !important;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
-    gap: 30px !important;
-    padding: 30px 24px !important;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)) !important;
+    gap: 24px !important;
+    padding: 40px 30px !important;
     max-width: 1400px !important;
     margin: 0 auto !important;
     border: none !important;
@@ -1201,42 +1195,32 @@ body.categories-list {
       display: contents !important;
     }
     
-    // Grote visuele kaarten — zowel .category als .category-list-item
+    // Grote visuele kaarten — VERTICALE LAYOUT (icoon bovenaan, gecentreerd)
     .category,
     .category-list-item {
       background: #fff !important;
-      border: 4px solid #222 !important;
+      border: 3px solid #222 !important;
       border-radius: 16px !important;
-      padding: 0 !important;
+      padding: 40px 24px 30px !important;
       margin: 0 !important;
       display: flex !important;
       flex-direction: column !important;
-      transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275) !important;
-      box-shadow: 6px 6px 0px rgba(0,0,0,0.15) !important;
-      overflow: hidden !important;
+      align-items: center !important;
+      text-align: center !important;
+      transition: all 0.25s ease !important;
+      box-shadow: 5px 5px 0px #222 !important;
+      overflow: visible !important;
       position: relative !important;
-      min-height: 280px !important;
-      
-      // Gekleurde rand links (category color) — gebruik badge color indien beschikbaar
-      &::before {
-        content: '' !important;
-        position: absolute !important;
-        left: 0 !important;
-        top: 0 !important;
-        bottom: 0 !important;
-        width: 8px !important;
-        background: var(--category-color, $si-cyan) !important;
-        z-index: 1 !important;
-      }
+      min-height: 320px !important;
       
       &:hover {
-        transform: translate(-4px, -4px) !important;
-        box-shadow: 10px 10px 0px #222 !important;
-        border-color: #e74c3c !important;
+        transform: translate(-3px, -3px) !important;
+        box-shadow: 8px 8px 0px #222 !important;
+        border-color: #00bcd4 !important;
       }
     }
     
-    // Category content wrapper — reorganiseer content
+    // Category content wrapper — reorganiseer content VERTICAAL
     .category-content,
     .category-box-inner,
     > div:first-child {
@@ -1246,138 +1230,141 @@ body.categories-list {
       padding: 0 !important;
       align-items: center !important;
       text-align: center !important;
-    }
-    
-    // Category header sectie — logo bovenaan
-    .category-header,
-    .category-logo-wrapper,
-    > div:first-child > .category-logo,
-    > div:first-child > .logo {
-      padding: 32px 32px 20px !important;
-      text-align: center !important;
-      background: linear-gradient(135deg, #f5f5f5 0%, #fff 100%) !important;
-      border-bottom: 3px solid #222 !important;
       width: 100% !important;
-      box-sizing: border-box !important;
     }
     
-    // Als logo direct in category staat, voeg padding toe
-    .category > .category-logo,
-    .category > .logo,
-    .category-list-item > .category-logo,
-    .category-list-item > .logo {
-      margin-top: 32px !important;
-    }
-    
-    // Groot icoon/logo — verschillende mogelijke selectors
+    // GROTE ICONEN — 120px+ met achtergrondcirkel
     .category-logo,
     .logo,
-    .logo.aspect-image,
-    .category-logo img,
-    .logo img {
-      width: 100px !important;
-      height: 100px !important;
-      margin: 0 auto 16px !important;
+    .logo.aspect-image {
+      width: 120px !important;
+      height: 120px !important;
+      margin: 0 auto 20px auto !important;
       display: block !important;
-      border: 4px solid #222 !important;
-      border-radius: 12px !important;
-      background: #fff !important;
-      padding: 8px !important;
-      box-shadow: 4px 4px 0px rgba(0,0,0,0.1) !important;
-      transition: transform 0.3s ease !important;
       flex-shrink: 0 !important;
+      position: relative !important;
       
       img {
         width: 100% !important;
         height: 100% !important;
         object-fit: contain !important;
-        border-radius: 8px !important;
         display: block !important;
+        background: #f8f9fa !important;
+        border-radius: 50% !important;
+        padding: 20px !important;
+        border: 3px solid #222 !important;
+        transition: transform 0.3s ease !important;
+        box-sizing: border-box !important;
       }
     }
     
-    .category:hover .category-logo,
-    .category:hover .logo,
-    .category-list-item:hover .category-logo,
-    .category-list-item:hover .logo {
+    // Gekleurde achtergrondcirkels per categorie (optioneel)
+    .category:nth-child(1) .logo img,
+    .category:nth-child(1) .category-logo img { background: #fff3e0 !important; border-color: #ff9800 !important; }
+    .category:nth-child(2) .logo img,
+    .category:nth-child(2) .category-logo img { background: #e8f5e9 !important; border-color: #4caf50 !important; }
+    .category:nth-child(3) .logo img,
+    .category:nth-child(3) .category-logo img { background: #e3f2fd !important; border-color: #2196f3 !important; }
+    .category:nth-child(4) .logo img,
+    .category:nth-child(4) .category-logo img { background: #fce4ec !important; border-color: #e91e63 !important; }
+    .category:nth-child(5) .logo img,
+    .category:nth-child(5) .category-logo img { background: #f3e5f5 !important; border-color: #9c27b0 !important; }
+    .category:nth-child(6) .logo img,
+    .category:nth-child(6) .category-logo img { background: #fff8e1 !important; border-color: #ffc107 !important; }
+    .category:nth-child(7) .logo img,
+    .category:nth-child(7) .category-logo img { background: #e0f2f1 !important; border-color: #00bcd4 !important; }
+    .category:nth-child(8) .logo img,
+    .category:nth-child(8) .category-logo img { background: #f1f8e9 !important; border-color: #8bc34a !important; }
+    
+    .category:hover .category-logo img,
+    .category:hover .logo img,
+    .category-list-item:hover .category-logo img,
+    .category-list-item:hover .logo img {
       transform: scale(1.15) rotate(5deg) !important;
     }
     
-    // Category naam — Bangers font
+    // Category naam — Bangers font, VOLLEDIG TONEN (niet afgekapt)
     .category-name,
     h3.category-name,
     h3,
     .badge-category,
     .badge-wrapper .badge-category {
       font-family: 'Bangers', cursive !important;
-      font-size: 1.8rem !important;
+      font-size: 24px !important;
       font-weight: 400 !important;
       color: #222 !important;
-      margin: 0 0 12px 0 !important;
+      margin: 10px 0 !important;
       text-align: center !important;
       text-transform: uppercase !important;
       letter-spacing: 1px !important;
-      line-height: 1.2 !important;
+      line-height: 1.3 !important;
       text-shadow: 2px 2px 0px rgba(0,0,0,0.1) !important;
       display: block !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: unset !important;
+      word-wrap: break-word !important;
+      hyphens: auto !important;
       
       a {
         color: #222 !important;
         text-decoration: none !important;
+        display: block !important;
         
         &:hover {
-          color: #e74c3c !important;
+          color: #00bcd4 !important;
         }
       }
     }
     
-    // Beschrijving — kort en leesbaar
+    // Beschrijving — kort en leesbaar (max 2-3 regels)
     .category-description,
     .description {
       font-family: 'DM Sans', sans-serif !important;
-      font-size: 0.95rem !important;
+      font-size: 14px !important;
       color: #666 !important;
-      line-height: 1.6 !important;
+      line-height: 1.5 !important;
       text-align: center !important;
-      margin: 0 0 20px 0 !important;
-      padding: 0 24px !important;
+      margin: 0 0 15px 0 !important;
+      padding: 0 !important;
+      max-height: 60px !important;
+      overflow: hidden !important;
+      text-overflow: ellipsis !important;
       display: -webkit-box !important;
       -webkit-line-clamp: 2 !important;
       -webkit-box-orient: vertical !important;
-      overflow: hidden !important;
       flex-grow: 1 !important;
     }
     
-    // Category footer met stats
+    // Category footer met stats — badge onderaan
     .category-footer,
     .category-stats {
-      padding: 16px 24px 24px !important;
-      border-top: 2px solid #eee !important;
+      margin-top: auto !important;
+      padding-top: 15px !important;
       display: flex !important;
       justify-content: center !important;
       align-items: center !important;
-      margin-top: auto !important;
-      gap: 12px !important;
+      width: 100% !important;
     }
     
-    // Topic count badge
+    // Topic count badge — comic-style badge onderaan
     .topics,
     .topic-count,
     .category-statistic,
     .topics-count,
-    .posts-count {
-      display: inline-flex !important;
-      align-items: center !important;
-      gap: 6px !important;
-      font-family: 'DM Sans', sans-serif !important;
-      font-size: 0.9rem !important;
-      font-weight: 700 !important;
-      color: #222 !important;
-      background: #f5c518 !important;
-      padding: 6px 14px !important;
+    .posts-count,
+    .posts {
+      display: inline-block !important;
+      background: #00bcd4 !important;
+      color: #fff !important;
+      padding: 6px 18px !important;
       border-radius: 20px !important;
+      font-weight: 700 !important;
+      font-size: 13px !important;
+      font-family: 'DM Sans', sans-serif !important;
       border: 2px solid #222 !important;
-      box-shadow: 2px 2px 0px rgba(0,0,0,0.1) !important;
+      box-shadow: 2px 2px 0px #222 !important;
+      text-align: center !important;
     }
     
     // Subcategories — verberg voor clean look
@@ -1385,43 +1372,81 @@ body.categories-list {
       display: none !important;
     }
     
-    // Badge category colors — verberg achtergrond badge, gebruik voor border
+    // Badge category colors — verberg achtergrond badge
     .badge-category-bg {
       display: none !important;
     }
+  }
+  
+  // "Meer tonen +" knop styling
+  .show-more,
+  .category-list + button,
+  .category-list + a,
+  button.show-more,
+  a.show-more {
+    text-align: center !important;
+    margin: 30px auto 0 !important;
+    display: block !important;
     
-    // Verberg onnodige elementen
-    .category-meta,
-    .category-logo-wrapper {
-      // Behoud logo maar verberg extra wrappers
+    a, button {
+      font-family: 'Bangers', cursive !important;
+      font-size: 20px !important;
+      background: #f5c518 !important;
+      color: #222 !important;
+      border: 3px solid #222 !important;
+      border-radius: 30px !important;
+      padding: 12px 40px !important;
+      box-shadow: 4px 4px 0px #222 !important;
+      cursor: pointer !important;
+      transition: all 0.2s ease !important;
+      text-transform: uppercase !important;
+      letter-spacing: 1px !important;
+      text-decoration: none !important;
+      display: inline-block !important;
+      
+      &:hover {
+        background: #00bcd4 !important;
+        color: #fff !important;
+        transform: translate(-2px, -2px) !important;
+        box-shadow: 6px 6px 0px #222 !important;
+      }
     }
   }
   
   // Responsive grid
-  @media (max-width: 1024px) {
+  @media (max-width: 900px) {
     .category-list {
       grid-template-columns: repeat(2, 1fr) !important;
-      gap: 24px !important;
-      padding: 24px 16px !important;
+      gap: 16px !important;
+      padding: 20px 15px !important;
     }
   }
   
-  @media (max-width: 768px) {
+  @media (max-width: 600px) {
     .category-list {
       grid-template-columns: 1fr !important;
-      gap: 20px !important;
-      padding: 20px 12px !important;
+      gap: 12px !important;
+      padding: 15px 10px !important;
     }
     
     .category-list .category .category-logo,
     .category-list .category .logo {
       width: 80px !important;
       height: 80px !important;
+      
+      img {
+        padding: 15px !important;
+      }
     }
     
     .category-list .category-name,
     .category-list h3.category-name {
-      font-size: 1.5rem !important;
+      font-size: 20px !important;
+    }
+    
+    .category-list .category {
+      padding: 30px 20px 24px !important;
+      min-height: 280px !important;
     }
   }
   
