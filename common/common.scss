@@ -136,13 +136,19 @@ body,
 .stripinfo-nav-bar {
   background: $si-teal;
   padding: 0;
+  position: relative;
+  z-index: 5;
 
   .stripinfo-nav-inner {
     max-width: 1200px;
     margin: 0 auto;
     display: flex;
     justify-content: center;
+    align-items: center;
     gap: 0;
+    padding: 0 24px;
+    position: relative;
+    min-height: 48px;
   }
 
   .nav-item {
@@ -156,6 +162,25 @@ body,
 
     &:hover {
       background: rgba(255,255,255,0.15);
+    }
+  }
+}
+
+// Integreer header iconen visueel met navigatiebalk — UX best practice
+// De iconen blijven rechtsboven maar krijgen een visuele connectie met de teal navigatiebalk
+.d-header-wrap {
+  position: relative !important;
+  
+  .d-header {
+    .d-header-icons {
+      // Visuele connectie met navigatiebalk door teal-tint achtergrond
+      background: linear-gradient(135deg, rgba(0, 131, 143, 0.2) 0%, rgba(0, 188, 212, 0.15) 100%) !important;
+      border: 1px solid rgba(0, 131, 143, 0.3) !important;
+      
+      &:hover {
+        background: linear-gradient(135deg, rgba(0, 131, 143, 0.3) 0%, rgba(0, 188, 212, 0.25) 100%) !important;
+        border-color: rgba(0, 131, 143, 0.5) !important;
+      }
     }
   }
 }
@@ -549,6 +574,12 @@ body.navigation-categories .categories-list {
 .d-header {
   max-width: 100% !important;
   width: 100% !important;
+  background: transparent !important;
+  padding: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  position: relative !important;
+  z-index: 10 !important;
 
   .wrap {
     max-width: 1200px !important;
@@ -556,6 +587,9 @@ body.navigation-categories .categories-list {
     padding: 0 24px !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: space-between !important;
   }
 
   .contents {
@@ -563,6 +597,8 @@ body.navigation-categories .categories-list {
     align-items: center !important;
     justify-content: space-between !important;
     width: 100% !important;
+    gap: 16px !important;
+    padding: 8px 0 !important;
   }
 }
 
@@ -572,13 +608,43 @@ body.navigation-categories .categories-list {
   gap: 4px !important;
   flex-shrink: 0 !important;
   margin-left: auto !important;
+  padding: 4px 6px !important;
+  background: rgba(0, 131, 143, 0.15) !important;
+  border-radius: 12px !important;
+  backdrop-filter: blur(8px) !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+
+  &:hover {
+    background: rgba(0, 131, 143, 0.25) !important;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15) !important;
+    border-color: rgba(255, 255, 255, 0.2) !important;
+  }
 
   .icon, .btn {
     width: 36px !important;
     height: 36px !important;
+    min-width: 36px !important;
+    min-height: 36px !important;
     display: inline-flex !important;
     align-items: center !important;
     justify-content: center !important;
+    border-radius: 8px !important;
+    transition: all 0.2s ease !important;
+    color: rgba(255, 255, 255, 0.95) !important;
+    font-size: 17px !important;
+    background: transparent !important;
+
+    &:hover {
+      background: rgba(255, 255, 255, 0.2) !important;
+      color: #fff !important;
+      transform: translateY(-1px) scale(1.05) !important;
+    }
+
+    &:active {
+      transform: translateY(0) scale(1) !important;
+    }
   }
 }
 
