@@ -1641,29 +1641,34 @@ body.categories-list {
     text-align: center !important;
     margin: 30px auto 0 !important;
     display: block !important;
+  }
+  
+  .show-more a,
+  .show-more button,
+  .category-list + button,
+  .category-list + a,
+  button.show-more,
+  a.show-more {
+    font-family: 'Bangers', cursive !important;
+    font-size: 20px !important;
+    background: #f5c518 !important;
+    color: #222 !important;
+    border: 3px solid #222 !important;
+    border-radius: 30px !important;
+    padding: 12px 40px !important;
+    box-shadow: 4px 4px 0px #222 !important;
+    cursor: pointer !important;
+    transition: all 0.2s ease !important;
+    text-transform: uppercase !important;
+    letter-spacing: 1px !important;
+    text-decoration: none !important;
+    display: inline-block !important;
     
-    a, button {
-      font-family: 'Bangers', cursive !important;
-      font-size: 20px !important;
-      background: #f5c518 !important;
-      color: #222 !important;
-      border: 3px solid #222 !important;
-      border-radius: 30px !important;
-      padding: 12px 40px !important;
-      box-shadow: 4px 4px 0px #222 !important;
-      cursor: pointer !important;
-      transition: all 0.2s ease !important;
-      text-transform: uppercase !important;
-      letter-spacing: 1px !important;
-      text-decoration: none !important;
-      display: inline-block !important;
-      
-      &:hover {
-        background: #00bcd4 !important;
-        color: #fff !important;
-        transform: translate(-2px, -2px) !important;
-        box-shadow: 6px 6px 0px #222 !important;
-      }
+    &:hover {
+      background: #00bcd4 !important;
+      color: #fff !important;
+      transform: translate(-2px, -2px) !important;
+      box-shadow: 6px 6px 0px #222 !important;
     }
   }
   
