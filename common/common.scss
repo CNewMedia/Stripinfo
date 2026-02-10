@@ -2099,18 +2099,20 @@ body.categories-list {
 // (section.category-boxes met Chrome Inspector structuur)
 
 // =============================================
-// STRIPINFO DISCOURSE — CATEGORY BOXES ASANA-STIJL
+// STRIPINFO DISCOURSE — CATEGORY BOXES PERFECT UX
 // Exacte class: section.category-boxes-with-topics.with-logos
 // Belangrijk: category-logo zit BINNEN a.parent-box-link, samen met h3
-// ASANA-INSPIRED: Clean, ruim, moderne proporties
+// PERFECT UX: Clean, ruim, perfecte proporties, perfecte uitlijning
 // =============================================
 
 // CRITICAL: Overschrijf ALLE oude CSS voor categories-list pagina
-body.categories-list section.category-boxes-with-topics.with-logos {
+// Deze selector heeft hogere specificiteit dan body.navigation-categories
+body.categories-list section.category-boxes-with-topics.with-logos,
+section.category-boxes-with-topics.with-logos {
   // Forceer deze CSS boven ALLE andere regels
 }
 
-// === GRID LAYOUT — ASANA STIJL ===
+// === GRID LAYOUT — PERFECT UX ===
 section.category-boxes-with-topics.with-logos {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
@@ -2188,23 +2190,37 @@ section.category-boxes-with-topics.with-logos .category-box:hover .category-logo
   transform: scale(1.03) !important;
 }
 
-// === TITEL H3 — ASANA STIJL: PERFECT UITGELIJND ===
+// === TITEL H3 — PERFECT UX: PERFECT UITGELIJND, PERFECTE SPACING ===
+// CRITICAL: Deze selectors hebben HOOGSTE specificiteit om ALLE conflicten te overwinnen
+body.categories-list section.category-boxes-with-topics.with-logos h3,
 section.category-boxes-with-topics.with-logos h3,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box-heading h3,
 section.category-boxes-with-topics.with-logos .category-box-heading h3,
-section.category-boxes-with-topics.with-logos .category-box h3 {
-  padding: 20px 24px 8px !important;
+body.categories-list section.category-boxes-with-topics.with-logos .category-box h3,
+section.category-boxes-with-topics.with-logos .category-box h3,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box-heading,
+section.category-boxes-with-topics.with-logos .category-box-heading,
+body.categories-list section.category-boxes-with-topics.with-logos .category-name,
+section.category-boxes-with-topics.with-logos .category-name {
+  padding: 24px 24px 12px !important;
   margin: 0 !important;
-  font-size: 0.9rem !important;
+  font-size: 0.95rem !important;
   font-weight: 600 !important;
   line-height: 1.5 !important;
   color: #1a1a1a !important;
+  
+  // CRITICAL: Forceer LEFT alignment — overschrijf ALLE Discourse defaults en oude CSS
   text-align: left !important;
+  text-align-last: left !important;
+  align-items: flex-start !important;
+  justify-content: flex-start !important;
+  
   font-family: 'DM Sans', sans-serif !important;
   
   // BLOCK LAYOUT — tekst breekt natuurlijk af
   display: block !important;
   
-  // GEEN woordafbreking — ASANA STIJL: alleen op woordgrenzen
+  // PERFECTE WOORD AFBREKING: alleen op natuurlijke woordgrenzen, NOOIT midden in woorden
   word-break: normal !important;
   overflow-wrap: break-word !important;
   word-wrap: break-word !important;
@@ -2223,13 +2239,20 @@ section.category-boxes-with-topics.with-logos .category-box h3 {
 }
 
 // Badge wrapper — PERFECT UITGELIJND met icon en tekst op één lijn
+body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper,
+body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category__wrapper,
 section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper,
 section.category-boxes-with-topics.with-logos h3 .badge-category__wrapper,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box-heading .badge-category_wrapper,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__wrapper,
 section.category-boxes-with-topics.with-logos .category-box-heading .badge-category_wrapper,
-section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__wrapper {
+section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__wrapper,
+section.category-boxes-with-topics.with-logos h3 .badge-wrapper {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
+  align-content: flex-start !important;
+  justify-content: flex-start !important;
   gap: 6px !important;
   white-space: normal !important;
   word-break: normal !important;
@@ -2237,13 +2260,20 @@ section.category-boxes-with-topics.with-logos .category-box-heading .badge-categ
   max-width: 100% !important;
   line-height: 1.5 !important;
   width: 100% !important;
+  text-align: left !important;
+  text-align-last: left !important;
 }
 
-// Badge category name — PERFECT UITGELIJND
+// Badge category name — PERFECT UITGELIJND, PERFECTE AFBREKING
+body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category__name,
+body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category__name span,
 section.category-boxes-with-topics.with-logos h3 .badge-category__name,
 section.category-boxes-with-topics.with-logos h3 .badge-category__name span,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__name,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__name span,
 section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__name,
-section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__name span {
+section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__name span,
+section.category-boxes-with-topics.with-logos h3 .badge-category__name a {
   white-space: normal !important;
   word-break: normal !important;
   overflow-wrap: break-word !important;
@@ -2257,12 +2287,15 @@ section.category-boxes-with-topics.with-logos .category-box-heading .badge-categ
   max-width: 100% !important;
   line-height: 1.5 !important;
   flex: 0 1 auto !important;
+  text-align: left !important;
+  text-align-last: left !important;
 }
 
 // Lock icoon — PERFECT UITGELIJND met tekst
 section.category-boxes-with-topics.with-logos h3 .d-icon,
 section.category-boxes-with-topics.with-logos h3 .badge-category__wrapper .d-icon,
-section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper .d-icon {
+section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper .d-icon,
+section.category-boxes-with-topics.with-logos h3 .badge-wrapper .d-icon {
   width: 0.75em !important;
   height: 0.75em !important;
   margin: 0 !important;
@@ -2272,6 +2305,7 @@ section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper .d-icon
   display: inline-block !important;
   position: relative !important;
   top: -1px !important; // Subtiele verticale uitlijning
+  align-self: center !important;
 }
 
 // === BESCHRIJVING — ASANA STIJL ===
