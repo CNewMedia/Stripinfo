@@ -2161,6 +2161,12 @@ section.category-boxes-with-topics.with-logos a.parent-box-link {
   text-align: center !important;
 }
 
+// CRITICAL: Zorg dat de h3 container ALLE tekst centreert, ook bij meerdere regels
+section.category-boxes-with-topics.with-logos a.parent-box-link h3 {
+  text-align: center !important;
+  width: 100% !important;
+}
+
 // === AFBEELDING — GROOT EN MOOI ===
 section.category-boxes-with-topics.with-logos .category-logo,
 section.category-boxes-with-topics.with-logos .category-logo.aspect-image {
@@ -2205,13 +2211,14 @@ section.category-boxes-with-topics.with-logos .category-box-heading,
 body.categories-list section.category-boxes-with-topics.with-logos .category-name,
 section.category-boxes-with-topics.with-logos .category-name {
   padding: 24px 24px 12px !important;
-  margin: 0 !important;
+  margin: 0 auto !important;
   font-size: 0.95rem !important;
   font-weight: 600 !important;
   line-height: 1.5 !important;
   color: #1a1a1a !important;
   
-  // CRITICAL: Forceer CENTER alignment — overschrijf ALLE Discourse defaults en oude CSS
+  // CRITICAL: Forceer CENTER alignment voor ALLE regels — overschrijf ALLE Discourse defaults
+  // Voor meerdere regels: gebruik text-align: center zodat ALLE regels gecentreerd zijn
   text-align: center !important;
   text-align-last: center !important;
   align-items: center !important;
@@ -2219,7 +2226,7 @@ section.category-boxes-with-topics.with-logos .category-name {
   
   font-family: 'DM Sans', sans-serif !important;
   
-  // BLOCK LAYOUT — tekst breekt natuurlijk af
+  // BLOCK LAYOUT — tekst breekt natuurlijk af, maar ALLE regels blijven gecentreerd
   display: block !important;
   
   // PERFECTE WOORD AFBREKING: alleen op natuurlijke woordgrenzen, NOOIT midden in woorden
@@ -2238,9 +2245,14 @@ section.category-boxes-with-topics.with-logos .category-name {
   box-sizing: border-box !important;
   min-height: auto !important;
   height: auto !important;
+  
+  // CRITICAL: Zorg dat alle tekst binnen het element gecentreerd is, ook bij meerdere regels
+  direction: ltr !important;
+  unicode-bidi: normal !important;
 }
 
 // Badge wrapper — PERFECT GECENTREERD met icon en tekst op één lijn
+// CRITICAL: Bij meerdere regels moet ALLE tekst gecentreerd blijven
 body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper,
 body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category__wrapper,
 section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper,
@@ -2253,8 +2265,8 @@ section.category-boxes-with-topics.with-logos h3 .badge-wrapper {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
-  align-content: center !important;
   justify-content: center !important;
+  flex-wrap: wrap !important; // Laat tekst op meerdere regels breken
   gap: 6px !important;
   white-space: normal !important;
   word-break: normal !important;
@@ -2267,6 +2279,7 @@ section.category-boxes-with-topics.with-logos h3 .badge-wrapper {
 }
 
 // Badge category name — PERFECT GECENTREERD, PERFECTE AFBREKING
+// CRITICAL: Zorg dat tekst gecentreerd blijft bij meerdere regels
 body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category__name,
 body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category__name span,
 section.category-boxes-with-topics.with-logos h3 .badge-category__name,
@@ -2285,12 +2298,12 @@ section.category-boxes-with-topics.with-logos h3 .badge-category__name a {
   -moz-hyphens: none !important;
   overflow: visible !important;
   text-overflow: unset !important;
-  display: inline !important;
+  display: block !important; // CRITICAL: block zodat text-align: center werkt voor meerdere regels
   max-width: 100% !important;
   line-height: 1.5 !important;
-  flex: 0 1 auto !important;
-  text-align: center !important;
+  text-align: center !important; // CRITICAL: centreer alle regels
   text-align-last: center !important;
+  width: 100% !important;
 }
 
 // Lock icoon — PERFECT UITGELIJND met tekst
