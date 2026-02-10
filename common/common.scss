@@ -2188,7 +2188,7 @@ section.category-boxes-with-topics.with-logos .category-box:hover .category-logo
   transform: scale(1.03) !important;
 }
 
-// === TITEL H3 — ASANA STIJL: KLEINER, MEER RUIMTE, GEEN AFBREKING ===
+// === TITEL H3 — ASANA STIJL: PERFECT UITGELIJND ===
 section.category-boxes-with-topics.with-logos h3,
 section.category-boxes-with-topics.with-logos .category-box-heading h3,
 section.category-boxes-with-topics.with-logos .category-box h3 {
@@ -2200,6 +2200,9 @@ section.category-boxes-with-topics.with-logos .category-box h3 {
   color: #1a1a1a !important;
   text-align: left !important;
   font-family: 'DM Sans', sans-serif !important;
+  
+  // BLOCK LAYOUT — tekst breekt natuurlijk af
+  display: block !important;
   
   // GEEN woordafbreking — ASANA STIJL: alleen op woordgrenzen
   word-break: normal !important;
@@ -2219,7 +2222,24 @@ section.category-boxes-with-topics.with-logos .category-box h3 {
   height: auto !important;
 }
 
-// Badge category name — GEEN AFBREKING MIDDEN IN WOORDEN
+// Badge wrapper — PERFECT UITGELIJND met icon en tekst op één lijn
+section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper,
+section.category-boxes-with-topics.with-logos h3 .badge-category__wrapper,
+section.category-boxes-with-topics.with-logos .category-box-heading .badge-category_wrapper,
+section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__wrapper {
+  display: flex !important;
+  flex-direction: row !important;
+  align-items: center !important;
+  gap: 6px !important;
+  white-space: normal !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  max-width: 100% !important;
+  line-height: 1.5 !important;
+  width: 100% !important;
+}
+
+// Badge category name — PERFECT UITGELIJND
 section.category-boxes-with-topics.with-logos h3 .badge-category__name,
 section.category-boxes-with-topics.with-logos h3 .badge-category__name span,
 section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__name,
@@ -2235,27 +2255,23 @@ section.category-boxes-with-topics.with-logos .category-box-heading .badge-categ
   text-overflow: unset !important;
   display: inline !important;
   max-width: 100% !important;
-  line-height: inherit !important;
+  line-height: 1.5 !important;
+  flex: 0 1 auto !important;
 }
 
-// Badge wrapper — GEEN AFBREKING MIDDEN IN WOORDEN
-section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper,
-section.category-boxes-with-topics.with-logos h3 .badge-category__wrapper,
-section.category-boxes-with-topics.with-logos .category-box-heading .badge-category_wrapper,
-section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__wrapper {
-  display: inline !important;
-  white-space: normal !important;
-  word-break: normal !important;
-  overflow-wrap: break-word !important;
-  max-width: 100% !important;
-  line-height: inherit !important;
-}
-
-// Lock icoon kleiner
-section.category-boxes-with-topics.with-logos h3 .d-icon {
-  width: 0.7em !important;
-  height: 0.7em !important;
-  margin-right: 4px !important;
+// Lock icoon — PERFECT UITGELIJND met tekst
+section.category-boxes-with-topics.with-logos h3 .d-icon,
+section.category-boxes-with-topics.with-logos h3 .badge-category__wrapper .d-icon,
+section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper .d-icon {
+  width: 0.75em !important;
+  height: 0.75em !important;
+  margin: 0 !important;
+  margin-right: 0 !important;
+  flex-shrink: 0 !important;
+  vertical-align: middle !important;
+  display: inline-block !important;
+  position: relative !important;
+  top: -1px !important; // Subtiele verticale uitlijning
 }
 
 // === BESCHRIJVING — ASANA STIJL ===
@@ -2357,19 +2373,16 @@ section.category-boxes-with-topics.with-logos .category-box {
   h3,
   .category-box-heading,
   .category-box-heading h3,
-  .category-name,
-  .badge-category,
-  .badge-category__name,
-  .badge-category__wrapper {
+  .category-name {
     padding: 20px 24px 8px !important;
     margin: 0 !important;
-    font-size: 0.95rem !important;
+    font-size: 0.9rem !important;
     font-weight: 600 !important;
-    line-height: 1.4 !important;
+    line-height: 1.5 !important;
     color: #1a1a1a !important;
     text-align: left !important;
     font-family: 'DM Sans', sans-serif !important;
-    word-break: keep-all !important;
+    word-break: normal !important;
     overflow-wrap: break-word !important;
     hyphens: none !important;
     -webkit-hyphens: none !important;
@@ -2378,16 +2391,47 @@ section.category-boxes-with-topics.with-logos .category-box {
     max-width: 100% !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    
-    a,
-    span,
-    .badge-category__name {
-      word-break: keep-all !important;
-      overflow-wrap: break-word !important;
-      hyphens: none !important;
-      white-space: normal !important;
-      display: inline !important;
-    }
+    display: block !important;
+  }
+  
+  // Badge wrapper — PERFECT UITGELIJND
+  h3 .badge-category__wrapper,
+  h3 .badge-category_wrapper,
+  .category-box-heading .badge-category__wrapper,
+  .category-box-heading .badge-category_wrapper {
+    display: flex !important;
+    flex-direction: row !important;
+    align-items: center !important;
+    gap: 6px !important;
+    line-height: 1.5 !important;
+    width: 100% !important;
+  }
+  
+  // Badge category name
+  h3 .badge-category__name,
+  h3 .badge-category__name span,
+  .category-box-heading .badge-category__name,
+  .category-box-heading .badge-category__name span {
+    word-break: normal !important;
+    overflow-wrap: break-word !important;
+    hyphens: none !important;
+    white-space: normal !important;
+    display: inline !important;
+    line-height: 1.5 !important;
+  }
+  
+  // Lock icon — PERFECT UITGELIJND
+  h3 .d-icon,
+  h3 .badge-category__wrapper .d-icon,
+  h3 .badge-category_wrapper .d-icon {
+    width: 0.75em !important;
+    height: 0.75em !important;
+    margin: 0 !important;
+    flex-shrink: 0 !important;
+    vertical-align: middle !important;
+    display: inline-block !important;
+    position: relative !important;
+    top: -1px !important;
   }
   
   // Overschrijf ALLE oude beschrijving regels
