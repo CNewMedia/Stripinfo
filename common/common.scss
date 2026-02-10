@@ -2220,11 +2220,16 @@ section.category-boxes.with-logo {
   line-height: 1.4 !important;
   text-decoration: none !important;
   
-  // Voorkom lelijke woordafbreking
-  word-break: normal !important;
-  overflow-wrap: normal !important;
+  // VOORKOM WOORDEN MIDDENIN TE BREKEN
+  word-break: keep-all !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
   hyphens: none !important;
   -webkit-hyphens: none !important;
+  -ms-hyphens: none !important;
+  
+  // Zorg dat woorden alleen op natuurlijke grenzen breken
+  white-space: normal !important;
 }
 
 // Badge wrapper binnen category-box-heading links uitlijnen
@@ -2237,9 +2242,15 @@ section.category-boxes.with-logo {
   
   .badge-category,
   .badge-category__name,
-  .badge-category__wrapper {
+  .badge-category__wrapper,
+  .badge-category__wrapper span {
     text-align: left !important;
     display: block !important;
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
+    word-wrap: break-word !important;
+    hyphens: none !important;
+    white-space: normal !important;
   }
 }
 
@@ -2638,6 +2649,14 @@ section.category-boxes ~ .show-more {
   text-overflow: unset !important;
   display: block !important;
   width: 100% !important;
+  
+  // VOORKOM WOORDEN MIDDENIN TE BREKEN
+  word-break: keep-all !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
+  hyphens: none !important;
+  -webkit-hyphens: none !important;
+  -ms-hyphens: none !important;
 }
 
 .categories-list .category-box .category-description,
