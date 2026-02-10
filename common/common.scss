@@ -2251,8 +2251,8 @@ section.category-boxes-with-topics.with-logos .category-name {
 }
 
 // Badge wrapper — PERFECT GECENTREERD binnen het category box
-// CRITICAL: De wrapper moet inline zijn zodat het gecentreerd wordt door de h3 (die text-align: center heeft)
-// Bij meerdere regels breekt de tekst binnen de wrapper, en alle regels blijven gecentreerd
+// CRITICAL: De wrapper moet block zijn zodat het de volledige breedte heeft en text-align: center werkt voor meerdere regels
+// Wanneer tekst op meerdere regels breekt, moet elke regel gecentreerd zijn binnen het category box
 body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper,
 body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category__wrapper,
 section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper,
@@ -2262,14 +2262,16 @@ body.categories-list section.category-boxes-with-topics.with-logos .category-box
 section.category-boxes-with-topics.with-logos .category-box-heading .badge-category_wrapper,
 section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__wrapper,
 section.category-boxes-with-topics.with-logos h3 .badge-wrapper {
-  display: inline !important; // CRITICAL: inline zodat het gecentreerd wordt door h3 met text-align: center
+  display: block !important; // CRITICAL: block zodat het de volledige breedte heeft en text-align: center werkt voor meerdere regels
   white-space: normal !important;
   word-break: normal !important;
   overflow-wrap: break-word !important;
   max-width: 100% !important;
   line-height: 1.5 !important;
-  // text-align wordt geërfd van parent h3 die text-align: center heeft
-  vertical-align: middle !important;
+  width: 100% !important; // CRITICAL: Volledige breedte zodat tekst gecentreerd is binnen het category box
+  text-align: center !important; // CRITICAL: Centreer alle regels binnen de wrapper
+  text-align-last: center !important;
+  box-sizing: border-box !important;
 }
 
 // Badge category name — PERFECT GECENTREERD, PERFECTE AFBREKING
