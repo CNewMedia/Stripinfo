@@ -2157,6 +2157,8 @@ section.category-boxes-with-topics.with-logos a.parent-box-link {
   flex-direction: column !important;
   text-decoration: none !important;
   width: 100% !important;
+  align-items: center !important;
+  text-align: center !important;
 }
 
 // === AFBEELDING — GROOT EN MOOI ===
@@ -2190,7 +2192,7 @@ section.category-boxes-with-topics.with-logos .category-box:hover .category-logo
   transform: scale(1.03) !important;
 }
 
-// === TITEL H3 — PERFECT UX: PERFECT UITGELIJND, PERFECTE SPACING ===
+// === TITEL H3 — PERFECT UX: PERFECT GECENTREERD, PERFECTE SPACING ===
 // CRITICAL: Deze selectors hebben HOOGSTE specificiteit om ALLE conflicten te overwinnen
 body.categories-list section.category-boxes-with-topics.with-logos h3,
 section.category-boxes-with-topics.with-logos h3,
@@ -2209,11 +2211,11 @@ section.category-boxes-with-topics.with-logos .category-name {
   line-height: 1.5 !important;
   color: #1a1a1a !important;
   
-  // CRITICAL: Forceer LEFT alignment — overschrijf ALLE Discourse defaults en oude CSS
-  text-align: left !important;
-  text-align-last: left !important;
-  align-items: flex-start !important;
-  justify-content: flex-start !important;
+  // CRITICAL: Forceer CENTER alignment — overschrijf ALLE Discourse defaults en oude CSS
+  text-align: center !important;
+  text-align-last: center !important;
+  align-items: center !important;
+  justify-content: center !important;
   
   font-family: 'DM Sans', sans-serif !important;
   
@@ -2238,7 +2240,7 @@ section.category-boxes-with-topics.with-logos .category-name {
   height: auto !important;
 }
 
-// Badge wrapper — PERFECT UITGELIJND met icon en tekst op één lijn
+// Badge wrapper — PERFECT GECENTREERD met icon en tekst op één lijn
 body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper,
 body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category__wrapper,
 section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper,
@@ -2251,8 +2253,8 @@ section.category-boxes-with-topics.with-logos h3 .badge-wrapper {
   display: flex !important;
   flex-direction: row !important;
   align-items: center !important;
-  align-content: flex-start !important;
-  justify-content: flex-start !important;
+  align-content: center !important;
+  justify-content: center !important;
   gap: 6px !important;
   white-space: normal !important;
   word-break: normal !important;
@@ -2260,11 +2262,11 @@ section.category-boxes-with-topics.with-logos h3 .badge-wrapper {
   max-width: 100% !important;
   line-height: 1.5 !important;
   width: 100% !important;
-  text-align: left !important;
-  text-align-last: left !important;
+  text-align: center !important;
+  text-align-last: center !important;
 }
 
-// Badge category name — PERFECT UITGELIJND, PERFECTE AFBREKING
+// Badge category name — PERFECT GECENTREERD, PERFECTE AFBREKING
 body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category__name,
 body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category__name span,
 section.category-boxes-with-topics.with-logos h3 .badge-category__name,
@@ -2287,8 +2289,8 @@ section.category-boxes-with-topics.with-logos h3 .badge-category__name a {
   max-width: 100% !important;
   line-height: 1.5 !important;
   flex: 0 1 auto !important;
-  text-align: left !important;
-  text-align-last: left !important;
+  text-align: center !important;
+  text-align-last: center !important;
 }
 
 // Lock icoon — PERFECT UITGELIJND met tekst
@@ -2403,18 +2405,19 @@ section.category-boxes-with-topics.with-logos .category-box {
     }
   }
   
-  // Overschrijf ALLE oude titel regels
+  // Overschrijf ALLE oude titel regels — PERFECT GECENTREERD
   h3,
   .category-box-heading,
   .category-box-heading h3,
   .category-name {
-    padding: 20px 24px 8px !important;
+    padding: 24px 24px 12px !important;
     margin: 0 !important;
-    font-size: 0.9rem !important;
+    font-size: 0.95rem !important;
     font-weight: 600 !important;
     line-height: 1.5 !important;
     color: #1a1a1a !important;
-    text-align: left !important;
+    text-align: center !important;
+    text-align-last: center !important;
     font-family: 'DM Sans', sans-serif !important;
     word-break: normal !important;
     overflow-wrap: break-word !important;
@@ -2428,7 +2431,7 @@ section.category-boxes-with-topics.with-logos .category-box {
     display: block !important;
   }
   
-  // Badge wrapper — PERFECT UITGELIJND
+  // Badge wrapper — PERFECT GECENTREERD
   h3 .badge-category__wrapper,
   h3 .badge-category_wrapper,
   .category-box-heading .badge-category__wrapper,
@@ -2436,12 +2439,14 @@ section.category-boxes-with-topics.with-logos .category-box {
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
+    justify-content: center !important;
     gap: 6px !important;
     line-height: 1.5 !important;
     width: 100% !important;
+    text-align: center !important;
   }
   
-  // Badge category name
+  // Badge category name — PERFECT GECENTREERD
   h3 .badge-category__name,
   h3 .badge-category__name span,
   .category-box-heading .badge-category__name,
@@ -2452,6 +2457,7 @@ section.category-boxes-with-topics.with-logos .category-box {
     white-space: normal !important;
     display: inline !important;
     line-height: 1.5 !important;
+    text-align: center !important;
   }
   
   // Lock icon — PERFECT UITGELIJND
