@@ -570,17 +570,6 @@ body.navigation-categories .categories-list {
 .d-header-wrap {
   width: 100% !important;
   position: relative !important;
-  
-  // Op grote schermen: positioneer iconen naar rechterrand van viewport
-  @media (min-width: 1248px) {
-    .d-header-icons {
-      position: absolute !important;
-      right: 24px !important;
-      top: 50% !important;
-      transform: translateY(-50%) !important;
-      z-index: 100 !important;
-    }
-  }
 }
 
 .d-header {
@@ -592,6 +581,7 @@ body.navigation-categories .categories-list {
   margin-bottom: 0 !important;
   position: relative !important;
   z-index: 10 !important;
+  overflow: visible !important;
 
   .wrap {
     max-width: 1200px !important;
@@ -603,6 +593,7 @@ body.navigation-categories .categories-list {
     align-items: center !important;
     justify-content: space-between !important;
     position: relative !important;
+    overflow: visible !important;
   }
 
   .contents {
@@ -612,6 +603,8 @@ body.navigation-categories .categories-list {
     width: 100% !important;
     gap: 16px !important;
     padding: 8px 0 !important;
+    position: relative !important;
+    overflow: visible !important;
   }
 }
 
@@ -628,15 +621,12 @@ body.navigation-categories .categories-list {
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1) !important;
   border: 1px solid rgba(255, 255, 255, 0.1) !important;
   
-  // Op grote schermen: positioneer absoluut naar rechterrand van .d-header
-  // Dit zorgt ervoor dat ze naar de rechterrand van het scherm bewegen
+  // Op grote schermen: gebruik negatieve margin om iconen naar rechterrand te duwen
   @media (min-width: 1248px) {
-    position: absolute !important;
-    right: 24px !important;
-    top: 50% !important;
-    transform: translateY(-50%) !important;
-    margin-left: 0 !important;
-    z-index: 20 !important;
+    position: relative !important;
+    margin-left: auto !important;
+    margin-right: calc(-1 * ((100vw - 1200px) / 2) - 24px) !important;
+    z-index: 100 !important;
   }
   
   // Op kleinere schermen: blijf binnen container met auto margin
