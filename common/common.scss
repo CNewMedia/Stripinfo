@@ -2099,38 +2099,45 @@ body.categories-list {
 // (section.category-boxes met Chrome Inspector structuur)
 
 // =============================================
-// STRIPINFO DISCOURSE — CATEGORY BOXES FIX
+// STRIPINFO DISCOURSE — CATEGORY BOXES ASANA-STIJL
 // Exacte class: section.category-boxes-with-topics.with-logos
 // Belangrijk: category-logo zit BINNEN a.parent-box-link, samen met h3
+// ASANA-INSPIRED: Clean, ruim, moderne proporties
 // =============================================
 
-// === GRID LAYOUT ===
+// CRITICAL: Overschrijf ALLE oude CSS voor categories-list pagina
+body.categories-list section.category-boxes-with-topics.with-logos {
+  // Forceer deze CSS boven ALLE andere regels
+}
+
+// === GRID LAYOUT — ASANA STIJL ===
 section.category-boxes-with-topics.with-logos {
   display: grid !important;
   grid-template-columns: repeat(3, 1fr) !important;
-  gap: 24px !important;
-  padding: 30px 20px !important;
+  gap: 32px !important;
+  padding: 40px 24px !important;
   max-width: 1200px !important;
   margin: 0 auto !important;
 }
 
-// === CATEGORY BOX ===
+// === CATEGORY BOX — ASANA STIJL ===
 section.category-boxes-with-topics.with-logos .category-box {
-  border: 2px solid #e0e0e0 !important;
-  border-radius: 16px !important;
+  border: 1px solid #e0e0e0 !important;
+  border-radius: 12px !important;
   overflow: hidden !important;
   background: #fff !important;
-  transition: all 0.3s ease !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
   width: 100% !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
 }
 
 section.category-boxes-with-topics.with-logos .category-box:hover {
-  transform: translateY(-4px) !important;
-  box-shadow: 0 12px 32px rgba(0, 188, 212, 0.18) !important;
+  transform: translateY(-2px) !important;
+  box-shadow: 0 8px 24px rgba(0, 188, 212, 0.12) !important;
   border-color: #00bcd4 !important;
 }
 
-// === INNER ===
+// === INNER CONTAINER ===
 section.category-boxes-with-topics.with-logos .category-box-inner {
   display: flex !important;
   flex-direction: column !important;
@@ -2147,9 +2154,10 @@ section.category-boxes-with-topics.with-logos a.parent-box-link {
   display: flex !important;
   flex-direction: column !important;
   text-decoration: none !important;
+  width: 100% !important;
 }
 
-// === AFBEELDING ===
+// === AFBEELDING — GROOT EN MOOI ===
 section.category-boxes-with-topics.with-logos .category-logo,
 section.category-boxes-with-topics.with-logos .category-logo.aspect-image {
   width: 100% !important;
@@ -2158,104 +2166,238 @@ section.category-boxes-with-topics.with-logos .category-logo.aspect-image {
   margin: 0 !important;
   overflow: hidden !important;
   order: -1 !important;
+  flex-shrink: 0 !important;
 }
 
 section.category-boxes-with-topics.with-logos .category-logo img,
 section.category-boxes-with-topics.with-logos .category-logo.aspect-image img {
   width: 100% !important;
-  height: 180px !important;
+  height: 200px !important;
   max-width: none !important;
   max-height: none !important;
-  min-height: 180px !important;
+  min-height: 200px !important;
   object-fit: cover !important;
   display: block !important;
   padding: 0 !important;
   margin: 0 !important;
   border-radius: 0 !important;
-  transition: transform 0.3s ease !important;
+  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 section.category-boxes-with-topics.with-logos .category-box:hover .category-logo img {
-  transform: scale(1.05) !important;
+  transform: scale(1.03) !important;
 }
 
-// === TITEL H3 — NIET AFBREKEN ===
-section.category-boxes-with-topics.with-logos h3 {
-  padding: 14px 16px 4px !important;
+// === TITEL H3 — ASANA STIJL: KLEINER, MEER RUIMTE, GEEN AFBREKING ===
+section.category-boxes-with-topics.with-logos h3,
+section.category-boxes-with-topics.with-logos .category-box-heading h3,
+section.category-boxes-with-topics.with-logos .category-box h3 {
+  padding: 20px 24px 8px !important;
   margin: 0 !important;
-  font-size: 1rem !important;
-  font-weight: 700 !important;
-  line-height: 1.35 !important;
-  color: #222 !important;
+  font-size: 0.9rem !important;
+  font-weight: 600 !important;
+  line-height: 1.5 !important;
+  color: #1a1a1a !important;
   text-align: left !important;
-
-  // GEEN woordafbreking
-  word-break: keep-all !important;
-  overflow-wrap: normal !important;
-  word-wrap: normal !important;
+  font-family: 'DM Sans', sans-serif !important;
+  
+  // GEEN woordafbreking — ASANA STIJL: alleen op woordgrenzen
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
   hyphens: none !important;
   -webkit-hyphens: none !important;
   -moz-hyphens: none !important;
+  -ms-hyphens: none !important;
   white-space: normal !important;
   overflow: visible !important;
   text-overflow: unset !important;
+  max-width: 100% !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
+  min-height: auto !important;
+  height: auto !important;
 }
 
-section.category-boxes-with-topics.with-logos h3 .badge-category__name {
+// Badge category name — GEEN AFBREKING MIDDEN IN WOORDEN
+section.category-boxes-with-topics.with-logos h3 .badge-category__name,
+section.category-boxes-with-topics.with-logos h3 .badge-category__name span,
+section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__name,
+section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__name span {
   white-space: normal !important;
-  word-break: keep-all !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  word-wrap: break-word !important;
   hyphens: none !important;
   -webkit-hyphens: none !important;
+  -moz-hyphens: none !important;
   overflow: visible !important;
   text-overflow: unset !important;
+  display: inline !important;
+  max-width: 100% !important;
+  line-height: inherit !important;
 }
 
-// Badge wrapper (gekleurde vierkantjes + lock icoon)
-section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper {
+// Badge wrapper — GEEN AFBREKING MIDDEN IN WOORDEN
+section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper,
+section.category-boxes-with-topics.with-logos h3 .badge-category__wrapper,
+section.category-boxes-with-topics.with-logos .category-box-heading .badge-category_wrapper,
+section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__wrapper {
   display: inline !important;
   white-space: normal !important;
-  word-break: keep-all !important;
+  word-break: normal !important;
+  overflow-wrap: break-word !important;
+  max-width: 100% !important;
+  line-height: inherit !important;
 }
 
 // Lock icoon kleiner
 section.category-boxes-with-topics.with-logos h3 .d-icon {
   width: 0.7em !important;
   height: 0.7em !important;
+  margin-right: 4px !important;
 }
 
-// === BESCHRIJVING (in featured-topics of description div) ===
+// === BESCHRIJVING — ASANA STIJL ===
 section.category-boxes-with-topics.with-logos .description {
   color: #666 !important;
   font-size: 0.875rem !important;
   line-height: 1.5 !important;
-  padding: 4px 16px 16px !important;
+  padding: 0 24px 24px !important;
   margin: 0 !important;
+  font-family: 'DM Sans', sans-serif !important;
 }
 
 // === FEATURED TOPICS — compact ===
 section.category-boxes-with-topics.with-logos .featured-topics {
-  padding: 0 16px 12px !important;
+  padding: 0 24px 20px !important;
   font-size: 0.8rem !important;
   color: #888 !important;
 }
 
-// === RESPONSIVE ===
+// === RESPONSIVE — ASANA STIJL ===
 @media (max-width: 900px) {
   section.category-boxes-with-topics.with-logos {
     grid-template-columns: repeat(2, 1fr) !important;
-    gap: 16px !important;
+    gap: 24px !important;
+    padding: 32px 20px !important;
+  }
+  
+  section.category-boxes-with-topics.with-logos .category-logo img {
+    height: 180px !important;
+    min-height: 180px !important;
   }
 }
 
 @media (max-width: 600px) {
   section.category-boxes-with-topics.with-logos {
     grid-template-columns: 1fr !important;
-    gap: 14px !important;
+    gap: 20px !important;
+    padding: 24px 16px !important;
   }
 
   section.category-boxes-with-topics.with-logos .category-logo img {
-    height: 140px !important;
-    min-height: 140px !important;
+    height: 160px !important;
+    min-height: 160px !important;
+  }
+  
+  section.category-boxes-with-topics.with-logos h3 {
+    padding: 16px 20px 6px !important;
+    font-size: 0.9rem !important;
+  }
+  
+  section.category-boxes-with-topics.with-logos .description {
+    padding: 0 20px 20px !important;
+  }
+}
+
+// =============================================
+// AGRESSIEVE OVERRIDES — OVERSCHRIJF ALLE OUDE CSS
+// =============================================
+// Deze regels zorgen ervoor dat ALLE oude conflicterende CSS wordt overschreven
+section.category-boxes-with-topics.with-logos .category-box {
+  // Overschrijf ALLE oude border/padding regels
+  border: 1px solid #e0e0e0 !important;
+  border-left: 1px solid #e0e0e0 !important;
+  border-radius: 12px !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  
+  // Overschrijf ALLE oude inner regels
+  .category-box-inner {
+    display: flex !important;
+    flex-direction: column !important;
+    padding: 0 !important;
+    gap: 0 !important;
+  }
+  
+  // Overschrijf ALLE oude logo regels
+  .category-logo,
+  .logo,
+  .logo.aspect-image {
+    width: 100% !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    order: -1 !important;
+    
+    img {
+      width: 100% !important;
+      height: 200px !important;
+      min-height: 200px !important;
+      max-width: none !important;
+      max-height: none !important;
+      object-fit: cover !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+  }
+  
+  // Overschrijf ALLE oude titel regels
+  h3,
+  .category-box-heading,
+  .category-box-heading h3,
+  .category-name,
+  .badge-category,
+  .badge-category__name,
+  .badge-category__wrapper {
+    padding: 20px 24px 8px !important;
+    margin: 0 !important;
+    font-size: 0.95rem !important;
+    font-weight: 600 !important;
+    line-height: 1.4 !important;
+    color: #1a1a1a !important;
+    text-align: left !important;
+    font-family: 'DM Sans', sans-serif !important;
+    word-break: keep-all !important;
+    overflow-wrap: break-word !important;
+    hyphens: none !important;
+    -webkit-hyphens: none !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    
+    a,
+    span,
+    .badge-category__name {
+      word-break: keep-all !important;
+      overflow-wrap: break-word !important;
+      hyphens: none !important;
+      white-space: normal !important;
+      display: inline !important;
+    }
+  }
+  
+  // Overschrijf ALLE oude beschrijving regels
+  .description,
+  .category-description {
+    padding: 0 24px 24px !important;
+    margin: 0 !important;
+    font-size: 0.875rem !important;
+    line-height: 1.5 !important;
+    color: #666 !important;
   }
 }
 
