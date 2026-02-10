@@ -79,4 +79,48 @@
     mo.observe(outlet, { childList: true, subtree: true });
   }
 })();
+
+// Hero banner voor categories list page
+(function() {
+  function addCategoriesHero() {
+    if (!document.body.classList.contains("categories-list")) return;
+    var hero = document.querySelector(".stripinfo-categories-hero");
+    if (hero) return; // Al toegevoegd
+    
+    var mainOutlet = document.querySelector("#main-outlet");
+    if (!mainOutlet) return;
+    
+    var heroDiv = document.createElement("div");
+    heroDiv.className = "stripinfo-categories-hero";
+    heroDiv.innerHTML = 
+      '<div class="hero-content">' +
+        '<h1 class="hero-title">WELKOM OP HET STRIPINFO FORUM</h1>' +
+        '<p class="hero-subtitle">Ontdek alle categorieën en start je eigen discussie</p>' +
+        '<a href="/new-topic" class="hero-cta-btn">Nieuw Topic Starten</a>' +
+      '</div>';
+    
+    var categoryList = mainOutlet.querySelector(".category-list, .categories-list");
+    if (categoryList && categoryList.parentNode) {
+      categoryList.parentNode.insertBefore(heroDiv, categoryList);
+    } else {
+      mainOutlet.insertBefore(heroDiv, mainOutlet.firstChild);
+    }
+  }
+  
+  function runHero() {
+    setTimeout(addCategoriesHero, 300);
+  }
+  
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", runHero);
+  } else {
+    runHero();
+  }
+  
+  var outlet = document.querySelector("#main-outlet");
+  if (outlet) {
+    var mo = new MutationObserver(function() { addCategoriesHero(); });
+    mo.observe(outlet, { childList: true, subtree: true });
+  }
+})();
 </script>
