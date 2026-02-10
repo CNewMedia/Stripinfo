@@ -2556,6 +2556,37 @@ section.category-boxes-with-topics.with-logos .category-box {
   }
 }
 
+// CRITICAL: Voor categories-list pagina met section.category-boxes-with-topics.with-logos: CENTER alignment
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-wrapper,
+section.category-boxes-with-topics.with-logos .category-box .badge-wrapper {
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  
+  .badge-category,
+  .badge-category__name,
+  .badge-category__wrapper {
+    text-align: center !important;
+  }
+}
+
+// CRITICAL FIX: Overschrijf badge-wrapper voor categories-list pagina — CENTER alignment
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-wrapper,
+section.category-boxes-with-topics.with-logos .category-box .badge-wrapper {
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  width: 100% !important;
+  
+  .badge-category,
+  .badge-category__name,
+  .badge-category__wrapper {
+    text-align: center !important;
+    display: block !important;
+  }
+}
+
 // ============================================
 // CATEGORIE-KAARTEN — GELIJKE HOOGTE & NETTE SPACING
 // ============================================
@@ -2806,6 +2837,61 @@ section.category-boxes-with-topics.with-logos .category-box {
   hyphens: none !important;
   -webkit-hyphens: none !important;
   -ms-hyphens: none !important;
+}
+
+// CRITICAL: Voor categories-list pagina met section.category-boxes-with-topics.with-logos: CENTER alignment
+body.categories-list section.category-boxes-with-topics.with-logos .category-box h3,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .category-box-heading h3,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-category,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .category-name,
+section.category-boxes-with-topics.with-logos .category-box h3,
+section.category-boxes-with-topics.with-logos .category-box .category-box-heading h3,
+section.category-boxes-with-topics.with-logos .category-box .badge-category,
+section.category-boxes-with-topics.with-logos .category-box .category-name {
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+// CRITICAL FIX: Overschrijf text-align voor categories-list pagina — CENTER alignment
+// Deze regels moeten ALLE conflicterende regels overschrijven, inclusief die op regel 2793
+body.categories-list section.category-boxes-with-topics.with-logos .category-box h3,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .category-box-heading h3,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-category,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .category-name,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-wrapper,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-wrapper .badge-category,
+section.category-boxes-with-topics.with-logos .category-box h3,
+section.category-boxes-with-topics.with-logos .category-box .category-box-heading h3,
+section.category-boxes-with-topics.with-logos .category-box .badge-category,
+section.category-boxes-with-topics.with-logos .category-box .category-name,
+section.category-boxes-with-topics.with-logos .category-box .badge-wrapper,
+section.category-boxes-with-topics.with-logos .category-box .badge-wrapper .badge-category,
+// Overschrijf ook de algemene .categories-list regels
+body.categories-list section.category-boxes-with-topics.with-logos .categories-list .category-box h3,
+body.categories-list section.category-boxes-with-topics.with-logos .categories-list .category-box .category-box-heading h3 {
+  text-align: center !important;
+  text-align-last: center !important;
+}
+
+// ============================================
+// ULTIMATE OVERRIDE — ALLEEN VOOR CATEGORIES-LIST PAGINA
+// Deze regel staat helemaal onderaan om ALLE conflicterende regels te overschrijven
+// ============================================
+body.categories-list section.category-boxes-with-topics.with-logos .category-box h3,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .category-box-heading h3,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .category-box-heading .parent-box-link h3,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-wrapper,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-wrapper .badge-category,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-wrapper .badge-category__name,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-wrapper .badge-category__wrapper,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-category,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-category__name,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-category__wrapper,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .category-name {
+  text-align: center !important;
+  text-align-last: center !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 .categories-list .category-box .category-description,
@@ -3814,6 +3900,27 @@ select {
       height: 48px;
     }
   }
+}
+
+// ============================================
+// ULTIMATE OVERRIDE — ALLEEN VOOR CATEGORIES-LIST PAGINA
+// Deze regel staat helemaal onderaan om ALLE conflicterende regels te overschrijven
+// ============================================
+body.categories-list section.category-boxes-with-topics.with-logos .category-box h3,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .category-box-heading h3,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .category-box-heading .parent-box-link h3,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-wrapper,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-wrapper .badge-category,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-wrapper .badge-category__name,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-wrapper .badge-category__wrapper,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-category,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-category__name,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .badge-category__wrapper,
+body.categories-list section.category-boxes-with-topics.with-logos .category-box .category-name {
+  text-align: center !important;
+  text-align-last: center !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 // Verberg system gebruiker in topic lists
