@@ -1171,52 +1171,83 @@ body.categories-list {
   }
   
   // Transformeer tabel naar grid layout — ASANA-STIJL
-  .category-list {
+  // Forceer grid op zowel .category-list als table.category-list
+  .category-list,
+  table.category-list {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
-    gap: 20px !important;
-    padding: 30px 20px !important;
+    gap: 24px !important;
+    padding: 30px !important;
     max-width: 1400px !important;
     margin: 0 auto !important;
     border: none !important;
+    border-spacing: 0 !important;
     background: transparent !important;
-    
-    // Tabel structuur transformeren naar grid items
-    tbody {
-      display: contents !important;
-      border: none !important;
-    }
-    
-    tr {
-      display: contents !important;
-    }
-    
-    td {
-      display: contents !important;
-    }
+  }
+  
+  // Verberg tabel headers indien aanwezig
+  .category-list thead {
+    display: none !important;
+  }
+  
+  // Tabel structuur transformeren naar grid items
+  .category-list tbody {
+    display: contents !important;
+    border: none !important;
+  }
+  
+  .category-list tr {
+    display: flex !important;
+    align-items: center !important;
+    gap: 16px !important;
+  }
+  
+  .category-list td {
+    display: block !important;
+    border: none !important;
+    padding: 0 !important;
+  }
+  
+  // Verberg kolommen die we niet nodig hebben
+  .category-list .topics,
+  .category-list .posts,
+  .category-list .age,
+  .category-list .latest {
+    display: none !important;
+  }
     
     // Clean cards — HORIZONTALE LAYOUT zoals Asana (icoon links, tekst rechts)
     .category,
-    .category-list-item {
+    .category-list-item,
+    tbody tr,
+    tbody tr td.category {
       background: #fff !important;
-      border: 1px solid #e8e8e8 !important;
+      border: 1px solid #e0e0e0 !important;
+      border-left: 4px solid #00bcd4 !important;
       border-radius: 12px !important;
-      padding: 28px 24px !important;
+      padding: 24px !important;
       margin: 0 !important;
       display: flex !important;
       flex-direction: row !important;
       align-items: center !important;
       gap: 20px !important;
-      transition: all 0.2s ease !important;
+      transition: all 0.25s ease !important;
       box-shadow: none !important;
       overflow: visible !important;
       position: relative !important;
       min-height: auto !important;
+      cursor: pointer !important;
       
       &:hover {
         border-color: #00bcd4 !important;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08) !important;
-        transform: translateY(-2px) !important;
+        border-left-color: #00bcd4 !important;
+        box-shadow: 0 8px 24px rgba(0, 188, 212, 0.15) !important;
+        transform: translateY(-3px) !important;
+      }
+      
+      &:hover .logo img,
+      &:hover .category-logo img {
+        transform: scale(1.1) !important;
       }
     }
     
@@ -1233,75 +1264,212 @@ body.categories-list {
       width: 100% !important;
     }
     
-    // GROTE PROMINENTE ICONEN — 100-120px met zachte achtergrondcirkel (ASANA-STIJL)
+    // ============================================
+    // NUCLEAIRE OPTIE — ICONEN ECHT GROOT MAKEN (100px+)
+    // Gebruik ALLE mogelijke selectors om zeker te zijn dat het werkt
+    // ============================================
+    
+    // Target ALLE mogelijke logo/icon containers
     .category-logo,
     .logo,
-    .logo.aspect-image {
+    .logo.aspect-image,
+    .category-logo-wrapper,
+    .logo-wrapper,
+    td.category .logo,
+    td.category .category-logo,
+    .category .logo,
+    .category .category-logo,
+    .category-box .logo,
+    .category-box .category-logo,
+    table.category-list .logo,
+    table.category-list .category-logo,
+    .category-list tbody tr td .logo,
+    .category-list tbody tr td .category-logo,
+    .category-list .category img[class*="logo"],
+    .category-list img[src*="logo"],
+    .category-list img[alt*="category"] {
       width: 100px !important;
       height: 100px !important;
       min-width: 100px !important;
       min-height: 100px !important;
+      max-width: 100px !important;
+      max-height: 100px !important;
       flex-shrink: 0 !important;
       position: relative !important;
       margin: 0 !important;
-      
-      img {
-        width: 100% !important;
-        height: 100% !important;
-        min-width: 100px !important;
-        min-height: 100px !important;
-        object-fit: contain !important;
-        display: block !important;
-        background: #f0f7f8 !important;
-        border-radius: 50% !important;
-        padding: 18px !important;
-        border: none !important;
-        box-shadow: none !important;
-        transition: transform 0.3s ease, background 0.3s ease !important;
-        box-sizing: border-box !important;
-      }
+      display: block !important;
+    }
+    
+    // Target ALLE mogelijke img tags binnen category logos
+    .category-logo img,
+    .logo img,
+    .logo.aspect-image img,
+    .category-logo-wrapper img,
+    .logo-wrapper img,
+    td.category .logo img,
+    td.category .category-logo img,
+    .category .logo img,
+    .category .category-logo img,
+    .category-box .logo img,
+    .category-box .category-logo img,
+    table.category-list .logo img,
+    table.category-list .category-logo img,
+    .category-list tbody tr td .logo img,
+    .category-list tbody tr td .category-logo img,
+    .category-list .category img[class*="logo"],
+    .category-list img[src*="logo"],
+    .category-list img[alt*="category"],
+    .category-list .category img {
+      width: 100px !important;
+      height: 100px !important;
+      min-width: 100px !important;
+      min-height: 100px !important;
+      max-width: 100px !important;
+      max-height: 100px !important;
+      object-fit: contain !important;
+      display: block !important;
+      background: #e0f7fa !important;
+      border-radius: 50% !important;
+      padding: 15px !important;
+      border: 2px solid #b2ebf2 !important;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
+      transition: transform 0.3s ease, background 0.3s ease !important;
+      box-sizing: border-box !important;
+      // Verwijder eventuele donkere achtergronden
+      background-color: #e0f7fa !important;
+      background-image: none !important;
     }
     
     // Gekleurde achtergrondcirkels per categorie — zachte tinten zoals Asana
+    // Gebruik zowel nth-child op tr als op .category voor maximale compatibiliteit
+    tbody tr:nth-child(1) .logo img,
+    tbody tr:nth-child(1) .category-logo img,
     .category:nth-child(1) .logo img,
-    .category:nth-child(1) .category-logo img { background: #e3f2fd !important; } // Licht blauw
+    .category:nth-child(1) .category-logo img,
+    .category-list-item:nth-child(1) .logo img,
+    .category-list-item:nth-child(1) .category-logo img {
+      background: #e3f2fd !important;
+      border-color: #90caf9 !important;
+    }
+    
+    tbody tr:nth-child(2) .logo img,
+    tbody tr:nth-child(2) .category-logo img,
     .category:nth-child(2) .logo img,
-    .category:nth-child(2) .category-logo img { background: #e8f5e9 !important; } // Licht groen
+    .category:nth-child(2) .category-logo img,
+    .category-list-item:nth-child(2) .logo img,
+    .category-list-item:nth-child(2) .category-logo img {
+      background: #e8f5e9 !important;
+      border-color: #a5d6a7 !important;
+    }
+    
+    tbody tr:nth-child(3) .logo img,
+    tbody tr:nth-child(3) .category-logo img,
     .category:nth-child(3) .logo img,
-    .category:nth-child(3) .category-logo img { background: #fff8e1 !important; } // Licht geel
+    .category:nth-child(3) .category-logo img,
+    .category-list-item:nth-child(3) .logo img,
+    .category-list-item:nth-child(3) .category-logo img {
+      background: #fff8e1 !important;
+      border-color: #ffe082 !important;
+    }
+    
+    tbody tr:nth-child(4) .logo img,
+    tbody tr:nth-child(4) .category-logo img,
     .category:nth-child(4) .logo img,
-    .category:nth-child(4) .category-logo img { background: #fce4ec !important; } // Licht rood/roze
+    .category:nth-child(4) .category-logo img,
+    .category-list-item:nth-child(4) .logo img,
+    .category-list-item:nth-child(4) .category-logo img {
+      background: #fce4ec !important;
+      border-color: #f48fb1 !important;
+    }
+    
+    tbody tr:nth-child(5) .logo img,
+    tbody tr:nth-child(5) .category-logo img,
     .category:nth-child(5) .logo img,
-    .category:nth-child(5) .category-logo img { background: #f3e5f5 !important; } // Licht paars
+    .category:nth-child(5) .category-logo img,
+    .category-list-item:nth-child(5) .logo img,
+    .category-list-item:nth-child(5) .category-logo img {
+      background: #f3e5f5 !important;
+      border-color: #ce93d8 !important;
+    }
+    
+    tbody tr:nth-child(6) .logo img,
+    tbody tr:nth-child(6) .category-logo img,
     .category:nth-child(6) .logo img,
-    .category:nth-child(6) .category-logo img { background: #fff3e0 !important; } // Licht oranje
+    .category:nth-child(6) .category-logo img,
+    .category-list-item:nth-child(6) .logo img,
+    .category-list-item:nth-child(6) .category-logo img {
+      background: #fff3e0 !important;
+      border-color: #ffcc80 !important;
+    }
+    
+    tbody tr:nth-child(7) .logo img,
+    tbody tr:nth-child(7) .category-logo img,
     .category:nth-child(7) .logo img,
-    .category:nth-child(7) .category-logo img { background: #e0f2f1 !important; } // Licht turquoise
+    .category:nth-child(7) .category-logo img,
+    .category-list-item:nth-child(7) .logo img,
+    .category-list-item:nth-child(7) .category-logo img {
+      background: #e0f2f1 !important;
+      border-color: #80deea !important;
+    }
+    
+    tbody tr:nth-child(8) .logo img,
+    tbody tr:nth-child(8) .category-logo img,
     .category:nth-child(8) .logo img,
-    .category:nth-child(8) .category-logo img { background: #f1f8e9 !important; } // Licht lime
+    .category:nth-child(8) .category-logo img,
+    .category-list-item:nth-child(8) .logo img,
+    .category-list-item:nth-child(8) .category-logo img {
+      background: #f1f8e9 !important;
+      border-color: #c5e1a5 !important;
+    }
     
     // Hover: icoon wordt groter en achtergrond iets donkerder
     .category:hover .category-logo img,
     .category:hover .logo img,
     .category-list-item:hover .category-logo img,
-    .category-list-item:hover .logo img {
+    .category-list-item:hover .logo img,
+    tbody tr:hover .logo img,
+    tbody tr:hover .category-logo img {
       transform: scale(1.1) !important;
     }
     
+    // Hover achtergrondkleuren
+    tbody tr:nth-child(1):hover .logo img,
+    tbody tr:nth-child(1):hover .category-logo img,
     .category:nth-child(1):hover .logo img,
     .category:nth-child(1):hover .category-logo img { background: #bbdefb !important; }
+    
+    tbody tr:nth-child(2):hover .logo img,
+    tbody tr:nth-child(2):hover .category-logo img,
     .category:nth-child(2):hover .logo img,
     .category:nth-child(2):hover .category-logo img { background: #c8e6c9 !important; }
+    
+    tbody tr:nth-child(3):hover .logo img,
+    tbody tr:nth-child(3):hover .category-logo img,
     .category:nth-child(3):hover .logo img,
     .category:nth-child(3):hover .category-logo img { background: #fff9c4 !important; }
+    
+    tbody tr:nth-child(4):hover .logo img,
+    tbody tr:nth-child(4):hover .category-logo img,
     .category:nth-child(4):hover .logo img,
     .category:nth-child(4):hover .category-logo img { background: #f8bbd0 !important; }
+    
+    tbody tr:nth-child(5):hover .logo img,
+    tbody tr:nth-child(5):hover .category-logo img,
     .category:nth-child(5):hover .logo img,
     .category:nth-child(5):hover .category-logo img { background: #e1bee7 !important; }
+    
+    tbody tr:nth-child(6):hover .logo img,
+    tbody tr:nth-child(6):hover .category-logo img,
     .category:nth-child(6):hover .logo img,
     .category:nth-child(6):hover .category-logo img { background: #ffe0b2 !important; }
+    
+    tbody tr:nth-child(7):hover .logo img,
+    tbody tr:nth-child(7):hover .category-logo img,
     .category:nth-child(7):hover .logo img,
     .category:nth-child(7):hover .category-logo img { background: #b2dfdb !important; }
+    
+    tbody tr:nth-child(8):hover .logo img,
+    tbody tr:nth-child(8):hover .category-logo img,
     .category:nth-child(8):hover .logo img,
     .category:nth-child(8):hover .category-logo img { background: #dcedc8 !important; }
     
@@ -1328,11 +1496,21 @@ body.categories-list {
     }
     
     // Category naam — VOLLEDIG TONEN (niet afgekapt), links uitgelijnd
+    // Gebruik ALLE mogelijke selectors om afkappen te voorkomen
     .category-name,
     h3.category-name,
     h3,
     .badge-category,
-    .badge-wrapper .badge-category {
+    .badge-wrapper .badge-category,
+    .category-name a,
+    .category-text-title,
+    .category-text-title a,
+    td.category h3,
+    td.category h3 a,
+    .category-box-heading,
+    .category-box-heading a,
+    .category-name span,
+    span.category-name {
       font-family: 'DM Sans', sans-serif !important;
       font-size: 18px !important;
       font-weight: 700 !important;
@@ -1344,18 +1522,36 @@ body.categories-list {
       white-space: normal !important;
       overflow: visible !important;
       text-overflow: unset !important;
+      text-overflow: clip !important;
       word-wrap: break-word !important;
       hyphens: auto !important;
+      max-width: none !important;
+      width: auto !important;
       
       a {
         color: #222 !important;
         text-decoration: none !important;
         display: block !important;
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        max-width: none !important;
+        width: auto !important;
         
         &:hover {
           color: #00bcd4 !important;
         }
       }
+    }
+    
+    // Verwijder max-width op parent containers die titels afkappen
+    .category-name-container,
+    td.category,
+    .category-text,
+    .category-box-heading {
+      max-width: none !important;
+      overflow: visible !important;
+      width: auto !important;
     }
     
     // Beschrijving — links uitgelijnd, max 2 regels
@@ -1401,6 +1597,40 @@ body.categories-list {
     .badge-category-bg {
       display: none !important;
     }
+  }
+  
+  // ============================================
+  // FINALE OVERRIDE — ZORG DAT ICONEN ECHT 100px ZIJN
+  // Deze regels hebben de hoogste priority en overschrijven ALLES
+  // ============================================
+  .category-list img,
+  .category-list .logo,
+  .category-list .category-logo,
+  .category-list .logo img,
+  .category-list .category-logo img,
+  table.category-list img,
+  table.category-list .logo,
+  table.category-list .category-logo,
+  table.category-list .logo img,
+  table.category-list .category-logo img {
+    width: 100px !important;
+    height: 100px !important;
+    min-width: 100px !important;
+    min-height: 100px !important;
+    max-width: 100px !important;
+    max-height: 100px !important;
+  }
+  
+  .category-list .logo img,
+  .category-list .category-logo img,
+  table.category-list .logo img,
+  table.category-list .category-logo img {
+    background-color: #e0f7fa !important;
+    background-image: none !important;
+    border-radius: 50% !important;
+    padding: 15px !important;
+    border: 2px solid #b2ebf2 !important;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.06) !important;
   }
   
   // "Meer tonen +" knop styling
