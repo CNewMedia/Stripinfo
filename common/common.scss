@@ -857,10 +857,10 @@ body.navigation-categories {
 
     .category-box-inner {
       display: flex !important;
-      flex-direction: row !important;
-      align-items: flex-start !important;
-      padding: 28px 24px !important;
-      gap: 20px !important;
+      flex-direction: column !important;  // VERTICAAL: icoon BOVEN tekst
+      align-items: stretch !important;
+      padding: 0 !important;
+      gap: 0 !important;
       border: none !important;
       border-left: none !important;
       min-height: auto !important;
@@ -870,43 +870,81 @@ body.navigation-categories {
     }
 
     .category-logo,
-    .category-box-inner .category-logo {
+    .category-box-inner .category-logo,
+    .logo,
+    .logo.aspect-image {
       flex-shrink: 0 !important;
-      width: 72px !important;
-      height: 72px !important;
+      width: 100% !important;
+      height: auto !important;
+      max-width: none !important;
+      max-height: none !important;
+      overflow: hidden !important;
+      order: -1 !important;  // Forceer bovenaan
+      margin: 0 !important;
+      padding: 0 !important;
+      border-radius: 0 !important;
 
       img {
-        width: 72px !important;
-        height: 72px !important;
-        object-fit: contain !important;
-        border-radius: 14px !important;
-        filter: drop-shadow(0 2px 6px rgba(26, 26, 46, 0.1)) !important;
+        width: 100% !important;
+        height: 180px !important;
+        min-height: 180px !important;
+        max-width: none !important;
+        max-height: none !important;
+        object-fit: cover !important;
+        display: block !important;
+        border-radius: 0 !important;
+        filter: none !important;
+        padding: 0 !important;
+        margin: 0 !important;
       }
     }
 
     .category-name,
     h3,
+    .category-box-heading,
     .category-box-heading h3,
-    .badge-category {
-      font-family: 'Bangers', cursive !important;
-      font-size: 1.25rem !important;
-      font-weight: 400 !important;
+    .badge-category,
+    .badge-category__name,
+    .badge-category__wrapper {
+      font-family: 'DM Sans', sans-serif !important;
+      font-size: 18px !important;
+      font-weight: 700 !important;
       color: #1A1A2E !important;
-      margin: 0 0 8px 0 !important;
+      margin: 0 !important;
+      padding: 16px 20px 4px !important;
       text-align: left !important;
-      line-height: 1.2 !important;
-      letter-spacing: 0.5px !important;
+      line-height: 1.3 !important;
+      letter-spacing: 0 !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: unset !important;
+      max-width: none !important;
+      word-wrap: break-word !important;
+      
+      a,
+      span {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        max-width: none !important;
+        display: block !important;
+        word-wrap: break-word !important;
+      }
     }
 
     .category-description,
     .category-box-description,
     .description {
       font-family: 'DM Sans', sans-serif !important;
-      font-size: 0.85rem !important;
+      font-size: 14px !important;
       color: #666 !important;
-      line-height: 1.55 !important;
+      line-height: 1.5 !important;
       text-align: left !important;
       margin: 0 !important;
+      padding: 4px 20px 20px !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      max-height: none !important;
 
       a.read-more {
         display: none !important;
@@ -2092,54 +2130,173 @@ body.categories-list {
   }
 
   .category-box-inner {
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 16px;
-    padding: 24px;
-    width: 100%;
+    display: flex !important;
+    flex-direction: column !important;  // VERTICAAL: icoon BOVEN tekst
+    align-items: stretch !important;
+    gap: 0 !important;
+    padding: 0 !important;
+    width: 100% !important;
   }
 }
 
 .categories-list .category-boxes .category-box .logo.aspect-image,
-.navigation-categories .category-boxes .category-box .logo.aspect-image {
-  flex-shrink: 0;
-  width: 64px;
-  height: 64px;
+.navigation-categories .category-boxes .category-box .logo.aspect-image,
+.categories-list .category-boxes .category-box .category-logo,
+.navigation-categories .category-boxes .category-box .category-logo {
+  flex-shrink: 0 !important;
+  width: 100% !important;
+  height: auto !important;
+  max-width: none !important;
+  max-height: none !important;
+  overflow: hidden !important;
+  order: -1 !important;  // Forceer bovenaan
+  margin: 0 !important;
+  padding: 0 !important;
+  border-radius: 0 !important;
 
   img {
-    width: 64px;
-    height: 64px;
-    object-fit: contain;
-    border-radius: 8px;
+    width: 100% !important;
+    height: 180px !important;
+    min-height: 180px !important;
+    max-width: none !important;
+    max-height: none !important;
+    object-fit: cover !important;
+    display: block !important;
+    border-radius: 0 !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 }
 
 .categories-list .category-boxes .category-box .category-box-heading,
-.navigation-categories .category-boxes .category-box .category-box-heading {
-  font-size: 1.1rem;
-  font-weight: 700;
-  color: $si-dark;
-  margin: 0 0 4px 0;
+.navigation-categories .category-boxes .category-box .category-box-heading,
+.categories-list .category-boxes .category-box h3,
+.navigation-categories .category-boxes .category-box h3,
+.categories-list .category-boxes .category-box .badge-category,
+.navigation-categories .category-boxes .category-box .badge-category,
+.categories-list .category-boxes .category-box .badge-category__name,
+.navigation-categories .category-boxes .category-box .badge-category__name {
+  font-size: 18px !important;
+  font-weight: 700 !important;
+  color: $si-dark !important;
+  margin: 0 !important;
+  padding: 16px 20px 4px !important;
+  text-align: left !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  text-overflow: unset !important;
+  max-width: none !important;
+  word-wrap: break-word !important;
 
-  a {
-    color: $si-dark;
-    text-decoration: none;
+  a,
+  span {
+    color: $si-dark !important;
+    text-decoration: none !important;
+    white-space: normal !important;
+    overflow: visible !important;
+    text-overflow: unset !important;
+    max-width: none !important;
+    display: block !important;
+    word-wrap: break-word !important;
   }
 }
 
 .categories-list .category-boxes .category-box .description,
-.navigation-categories .category-boxes .category-box .description {
-  font-size: 0.9rem;
-  color: $grijs-tekst;
-  line-height: 1.4;
-  margin: 0;
-  text-align: left;
+.navigation-categories .category-boxes .category-box .description,
+.categories-list .category-boxes .category-box .category-description,
+.navigation-categories .category-boxes .category-box .category-description {
+  font-size: 14px !important;
+  color: $grijs-tekst !important;
+  line-height: 1.5 !important;
+  margin: 0 !important;
+  padding: 4px 20px 20px !important;
+  text-align: left !important;
+  white-space: normal !important;
+  overflow: visible !important;
+  max-height: none !important;
 }
 
 .categories-list .category-boxes .category-box .stat,
 .navigation-categories .category-boxes .category-box .stat {
   display: none;
+}
+
+// ============================================
+// ALGEMENE CATEGORY BOXES FIX — Werkt voor ALLE pagina's
+// ============================================
+// Deze regels zorgen ervoor dat category boxes altijd grote iconen hebben,
+// verticale layout (icoon boven tekst), en titels niet afgekapt worden
+.category-boxes,
+.category-boxes-with-topics {
+  .category-box {
+    .category-box-inner {
+      display: flex !important;
+      flex-direction: column !important;  // VERTICAAL
+      align-items: stretch !important;
+      padding: 0 !important;
+      gap: 0 !important;
+    }
+    
+    .category-logo,
+    .logo,
+    .logo.aspect-image {
+      width: 100% !important;
+      height: auto !important;
+      max-width: none !important;
+      max-height: none !important;
+      flex-shrink: 0 !important;
+      order: -1 !important;
+      margin: 0 !important;
+      padding: 0 !important;
+      overflow: hidden !important;
+      
+      img {
+        width: 100% !important;
+        height: 180px !important;
+        min-height: 180px !important;
+        max-width: none !important;
+        max-height: none !important;
+        object-fit: cover !important;
+        display: block !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+      }
+    }
+    
+    .category-box-heading,
+    h3,
+    .badge-category,
+    .badge-category__name,
+    .badge-category__wrapper {
+      padding: 16px 20px 4px !important;
+      margin: 0 !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      text-overflow: unset !important;
+      max-width: none !important;
+      word-wrap: break-word !important;
+      
+      a,
+      span {
+        white-space: normal !important;
+        overflow: visible !important;
+        text-overflow: unset !important;
+        max-width: none !important;
+        display: block !important;
+        word-wrap: break-word !important;
+      }
+    }
+    
+    .description,
+    .category-description {
+      padding: 4px 20px 20px !important;
+      margin: 0 !important;
+      white-space: normal !important;
+      overflow: visible !important;
+      max-height: none !important;
+    }
+  }
 }
 
 // ============================================
