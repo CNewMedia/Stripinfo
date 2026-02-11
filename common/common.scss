@@ -54,9 +54,10 @@ body {
 // ============================================
 // GLOBALE TYPOGRAFIE — DM SANS + BANGERS
 // ============================================
-body,
-.d-header,
-#main-outlet {
+// Admin sidebar gebruikt standaard Discourse font (geen custom font) - wordt uitgesloten
+body:not([class*="route-admin"]):not(.admin-interface),
+body:not([class*="route-admin"]):not(.admin-interface) .d-header,
+body:not([class*="route-admin"]):not(.admin-interface) #main-outlet {
   font-family: 'DM Sans', sans-serif !important;
 }
 
@@ -212,6 +213,60 @@ body.admin-interface {
   .stripinfo-top-banner,
   .stripinfo-nav-bar {
     display: none !important;
+  }
+
+  // CRITICAL: Admin sidebar gebruikt standaard Discourse font (geen custom font)
+  .admin-sidebar,
+  .sidebar-wrapper,
+  #d-sidebar,
+  [class*="admin-sidebar"],
+  nav.sidebar-wrapper,
+  .admin-nav,
+  nav[role="navigation"],
+  #main-outlet-wrapper > nav,
+  #main-outlet-wrapper > .sidebar-wrapper,
+  .wrap > nav,
+  .wrap > .sidebar-wrapper,
+  .sidebar-nav,
+  .sidebar-nav a,
+  .sidebar-nav li,
+  .admin-sidebar-nav,
+  .admin-sidebar-nav a,
+  .admin-sidebar-nav li {
+    font-family: inherit !important; // Gebruik standaard Discourse font
+  }
+
+  // CRITICAL: Logo positioning in admin sectie - voorkom overlap met "Terug" link
+  .d-header .title,
+  .d-header .logo-wrapper,
+  .d-header a.title,
+  .d-header .site-logo,
+  .d-header .title a {
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    padding-top: 8px !important;
+    padding-bottom: 8px !important;
+    line-height: 1.2 !important;
+    display: block !important;
+  }
+
+  // CRITICAL: Zorg voor voldoende ruimte tussen "Terug" link en logo
+  .admin-content-wrapper,
+  .admin-main-content,
+  #main-outlet .admin-content,
+  .contents .admin-content {
+    padding-top: 16px !important;
+  }
+
+  // CRITICAL: "Terug" link spacing
+  .admin-content-wrapper .back-link,
+  .admin-main-content .back-link,
+  #main-outlet .back-link,
+  .contents .back-link,
+  a[href*="themes"]:contains("Terug"),
+  .admin-content a:first-child {
+    margin-bottom: 12px !important;
+    display: block !important;
   }
 
   // CRITICAL: #main-outlet-wrapper moet flex container zijn voor sidebar + content
