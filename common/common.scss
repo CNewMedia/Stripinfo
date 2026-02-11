@@ -139,6 +139,7 @@ body:not([class*="route-admin"]):not(.admin-interface) #main-outlet {
   padding: 0;
   position: relative;
   z-index: 5;
+  margin-bottom: 0 !important; // CRITICAL: Geen extra margin tussen nav en header
 
   .stripinfo-nav-inner {
     max-width: 1200px;
@@ -151,6 +152,7 @@ body:not([class*="route-admin"]):not(.admin-interface) #main-outlet {
     position: relative;
     min-height: 48px;
   }
+}
 
   .nav-item {
     color: $si-white;
@@ -681,6 +683,7 @@ body.navigation-categories .categories-list {
   position: relative !important;
   z-index: 10 !important;
   overflow: visible !important;
+  min-height: 80px !important; // CRITICAL: Genoeg ruimte voor logo + tagline
 
   .wrap {
     max-width: 1200px !important;
@@ -693,6 +696,7 @@ body.navigation-categories .categories-list {
     justify-content: space-between !important;
     position: relative !important;
     overflow: visible !important;
+    min-height: 80px !important; // CRITICAL: Genoeg ruimte voor logo + tagline
   }
 
   .contents {
@@ -701,9 +705,38 @@ body.navigation-categories .categories-list {
     justify-content: space-between !important;
     width: 100% !important;
     gap: 16px !important;
-    padding: 8px 0 !important;
+    padding: 16px 0 !important; // CRITICAL: Meer verticale ruimte (was 8px)
     position: relative !important;
     overflow: visible !important;
+    min-height: 80px !important; // CRITICAL: Genoeg ruimte voor logo + tagline
+  }
+  
+  // Logo container - extra ruimte voor logo en tagline
+  .title,
+  .logo-wrapper,
+  a.title {
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: flex-start !important;
+    padding: 12px 0 !important; // CRITICAL: Extra padding boven en onder logo
+    margin: 0 !important;
+    line-height: 1.3 !important;
+    
+    // Logo tekst zelf
+    .site-logo,
+    img {
+      margin-bottom: 4px !important; // Ruimte tussen logo en tagline
+    }
+    
+    // Tagline onder logo
+    .site-tagline,
+    .tagline {
+      font-size: 0.75rem !important;
+      color: #666 !important;
+      margin-top: 2px !important;
+      line-height: 1.2 !important;
+    }
   }
 }
 
