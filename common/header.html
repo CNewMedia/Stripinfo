@@ -123,49 +123,4 @@
     mo.observe(outlet, { childList: true, subtree: true });
   }
 })();
-
-// #region agent log
-// DEBUG: Log welke CSS regels worden toegepast op category titels
-(function() {
-  function logCategoryTitleStyles() {
-    if (!document.body.classList.contains("categories-list")) return;
-    
-    var titles = document.querySelectorAll("section.category-boxes-with-topics.with-logos h3, section.category-boxes-with-topics.with-logos .badge-category__name");
-    if (titles.length === 0) return;
-    
-    titles.forEach(function(title, index) {
-      if (index >= 3) return; // Log alleen eerste 3
-      
-      var computed = window.getComputedStyle(title);
-      var textAlign = computed.textAlign;
-      var parent = title.parentElement;
-      var parentTextAlign = parent ? window.getComputedStyle(parent).textAlign : "N/A";
-      
-      fetch('http://127.0.0.1:7242/ingest/5e0ce524-8b4f-43bd-89a5-f04cb14e2111', {
-        method: 'POST',
-        headers: {'Content-Type': 'application/json'},
-        body: JSON.stringify({
-          location: 'header.html:DEBUG',
-          message: 'Category title CSS check',
-          data: {
-            element: title.tagName + (title.className ? '.' + title.className.split(' ').join('.') : ''),
-            textAlign: textAlign,
-            parentTextAlign: parentTextAlign,
-            textContent: title.textContent.trim().substring(0, 30),
-            allClasses: title.className
-          },
-          timestamp: Date.now(),
-          runId: 'css-debug-1',
-          hypothesisId: 'A'
-        })
-      }).catch(function() {});
-    });
-  }
-  
-  setTimeout(logCategoryTitleStyles, 1000);
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function() { setTimeout(logCategoryTitleStyles, 1000); });
-  }
-})();
-// #endregion
 </script>
