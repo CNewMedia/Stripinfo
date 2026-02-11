@@ -2299,7 +2299,7 @@ section.category-boxes-with-topics.with-logos .category-box:hover .category-logo
 
 // === TITEL H3 — PERFECT UX: PERFECT GECENTREERD BINNEN HET CATEGORY BOX ===
 // CRITICAL: De tekst moet gecentreerd zijn binnen het HELE category box (het witte blokje)
-// De h3 moet de volledige breedte hebben en text-align: center gebruiken
+// Elke regel moet individueel gecentreerd zijn, niet alleen het hele blok
 body.categories-list section.category-boxes-with-topics.with-logos h3,
 section.category-boxes-with-topics.with-logos h3,
 body.categories-list section.category-boxes-with-topics.with-logos .category-box-heading h3,
@@ -2317,14 +2317,13 @@ section.category-boxes-with-topics.with-logos .category-name {
   line-height: 1.5 !important;
   color: #1a1a1a !important;
   
-  // CRITICAL: Forceer CENTER alignment voor ALLE regels binnen het category box
-  // De h3 heeft de volledige breedte van het box, dus text-align: center centreert binnen het box
+  // CRITICAL: Forceer CENTER alignment voor ELKE REGEL individueel
   text-align: center !important;
   text-align-last: center !important;
   
   font-family: 'DM Sans', sans-serif !important;
   
-  // BLOCK LAYOUT — tekst breekt natuurlijk af, maar ALLE regels blijven gecentreerd
+  // BLOCK LAYOUT — tekst breekt natuurlijk af, maar ELKE REGEL blijft gecentreerd
   display: block !important;
   
   // PERFECTE WOORD AFBREKING: alleen op natuurlijke woordgrenzen, NOOIT midden in woorden
@@ -2350,8 +2349,7 @@ section.category-boxes-with-topics.with-logos .category-name {
 }
 
 // Badge wrapper — PERFECT GECENTREERD binnen het category box
-// CRITICAL: De wrapper moet block zijn met width: 100% zodat het de volledige breedte heeft
-// EN text-align: center binnen de wrapper werkt voor meerdere regels
+// CRITICAL: De wrapper moet block zijn met width: 100% zodat ELKE REGEL individueel gecentreerd wordt
 body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper,
 body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category__wrapper,
 section.category-boxes-with-topics.with-logos h3 .badge-category_wrapper,
@@ -2361,21 +2359,21 @@ body.categories-list section.category-boxes-with-topics.with-logos .category-box
 section.category-boxes-with-topics.with-logos .category-box-heading .badge-category_wrapper,
 section.category-boxes-with-topics.with-logos .category-box-heading .badge-category__wrapper,
 section.category-boxes-with-topics.with-logos h3 .badge-wrapper {
-  display: block !important; // CRITICAL: block met width: 100% zodat text-align: center werkt voor meerdere regels
+  display: block !important; // CRITICAL: block zodat elke regel individueel gecentreerd wordt
   white-space: normal !important;
   word-break: normal !important;
   overflow-wrap: break-word !important;
   max-width: 100% !important;
   line-height: 1.5 !important;
-  width: 100% !important; // CRITICAL: Volledige breedte zodat tekst gecentreerd is binnen het category box
-  text-align: center !important; // CRITICAL: Centreer alle regels binnen de wrapper
+  width: 100% !important; // CRITICAL: Volledige breedte zodat elke regel gecentreerd is
+  text-align: center !important; // CRITICAL: Centreer ELKE REGEL individueel binnen de wrapper
   text-align-last: center !important;
   box-sizing: border-box !important;
+  margin: 0 auto !important; // CRITICAL: Centreer de wrapper zelf binnen h3
 }
 
 // Badge category name — PERFECT GECENTREERD, PERFECTE AFBREKING
-// CRITICAL: Zorg dat tekst gecentreerd blijft bij meerdere regels
-// De naam moet inline zijn binnen de badge-wrapper zodat text-align: center werkt
+// CRITICAL: Zorg dat ELKE REGEL individueel gecentreerd is bij meerdere regels
 body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category__name,
 body.categories-list section.category-boxes-with-topics.with-logos h3 .badge-category__name span,
 section.category-boxes-with-topics.with-logos h3 .badge-category__name,
@@ -2394,10 +2392,13 @@ section.category-boxes-with-topics.with-logos h3 .badge-category__name a {
   -moz-hyphens: none !important;
   overflow: visible !important;
   text-overflow: unset !important;
-  display: inline !important; // CRITICAL: inline zodat text-align: center van parent werkt voor meerdere regels
+  display: block !important; // CRITICAL: block zodat elke regel individueel gecentreerd wordt binnen de wrapper
   max-width: 100% !important;
   line-height: 1.5 !important;
-  // text-align wordt geërfd van parent badge-wrapper die inline-block is met text-align: center
+  text-align: center !important; // CRITICAL: Centreer elke regel individueel
+  text-align-last: center !important;
+  width: 100% !important; // CRITICAL: Volledige breedte zodat elke regel gecentreerd is binnen de wrapper
+  box-sizing: border-box !important;
 }
 
 // Lock icoon — PERFECT UITGELIJND met tekst
