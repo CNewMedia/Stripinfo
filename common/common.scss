@@ -1130,7 +1130,7 @@ body.navigation-categories {
       padding: 0 !important;
       border-radius: 0 !important;
       position: relative !important;
-      background: #f8f9fa !important; // Consistente lichte achtergrond voor alle iconen
+      background: transparent !important; // GEEN achtergrondkleur
       display: flex !important;
       justify-content: center !important;
       align-items: center !important;
@@ -1157,7 +1157,7 @@ body.navigation-categories {
         display: block !important;
         border-radius: 0 !important;
         filter: none !important;
-        padding: 16px !important; // Iets minder padding zodat visuals groter lijken
+        padding: 0 !important; // GEEN padding zodat icoon volledige ruimte inneemt
         margin: 0 !important;
         background: transparent !important;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -1310,23 +1310,23 @@ body.navigation-categories {
     display: none !important;
   }
   
-  // Zorg voor consistente achtergrondkleuren voor alle category logo's
+  // GEEN achtergrondkleur voor category logo's - iconen nemen volledige ruimte in
   .category-box .category-logo,
   .category-box .logo {
-    background: #f8f9fa !important; // Consistente lichte achtergrond
+    background: transparent !important; // GEEN achtergrondkleur
     
     // Overschrijf eventuele inline styles of andere achtergrondkleuren
     &[style*="background"] {
-      background: #f8f9fa !important;
+      background: transparent !important;
     }
   }
   
-  // Zorg dat afbeeldingen binnen logo containers een consistente achtergrond hebben
+  // Zorg dat afbeeldingen binnen logo containers geen achtergrond hebben
   .category-box .category-logo img,
   .category-box .logo img {
     background-color: transparent !important;
     
-    // Als de afbeelding zelf een achtergrond heeft, maak deze transparant of consistent
+    // Als de afbeelding zelf een achtergrond heeft, maak deze transparant
     &[style*="background"] {
       background-color: transparent !important;
     }
@@ -2534,7 +2534,7 @@ section.category-boxes-with-topics.with-logos .category-logo.aspect-image {
   order: -1 !important;
   flex-shrink: 0 !important;
   position: relative !important;
-  background: #f8f9fa !important; // Consistente lichte achtergrond voor alle iconen
+  background: transparent !important; // GEEN achtergrondkleur
   
   // Verberg alle secundaire iconen
   .d-icon-lock,
@@ -2558,7 +2558,7 @@ section.category-boxes-with-topics.with-logos .category-logo.aspect-image img {
   object-fit: contain !important; // Changed naar contain voor consistente weergave
   object-position: center !important;
   display: block !important;
-  padding: 16px !important; // Iets minder padding zodat visuals groter lijken
+  padding: 0 !important; // GEEN padding zodat icoon volledige ruimte inneemt
   margin: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
