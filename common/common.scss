@@ -710,9 +710,9 @@ body.navigation-categories .categories-list {
 .d-header-icons {
   display: flex !important;
   align-items: center !important;
-  gap: 4px !important;
+  gap: 8px !important;
   flex-shrink: 0 !important;
-  padding: 4px 6px !important;
+  padding: 4px 8px !important;
   background: rgba(0, 131, 143, 0.15) !important;
   border-radius: 12px !important;
   backdrop-filter: blur(8px) !important;
@@ -763,6 +763,117 @@ body.navigation-categories .categories-list {
     &:active {
       transform: translateY(0) scale(1) !important;
     }
+  }
+}
+
+// ============================================
+// UX OPTIMALISATIE: LOGIN/AANMELDEN BUTTON
+// ============================================
+// Vanuit UX perspectief: goede contrast, duidelijk zichtbaar, maar niet te dominant
+.d-header .login-button,
+.d-header a.login-button,
+.d-header .sign-in-button,
+.d-header a[href*="/login"],
+.d-header .header-dropdown-toggle:not(.current-user),
+.d-header-icons .header-dropdown-toggle:not(.current-user),
+.d-header .btn.login-button,
+.d-header .btn[href*="/login"],
+.d-header .header-dropdown-toggle .d-button-label,
+.d-header-icons .header-dropdown-toggle .d-button-label {
+  color: #333 !important; // Donkere tekst voor goede leesbaarheid
+  font-weight: 600 !important;
+  font-size: 0.9rem !important;
+  padding: 8px 16px !important;
+  border-radius: 8px !important;
+  background: rgba(255, 255, 255, 0.95) !important; // Subtiele witte achtergrond
+  border: 1.5px solid rgba(0, 131, 143, 0.25) !important; // Subtiele teal border
+  transition: all 0.2s ease !important;
+  text-decoration: none !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+  
+  .d-icon,
+  .d-icon-user {
+    color: #00838F !important; // Teal icon voor visuele connectie met thema
+    font-size: 1rem !important;
+    opacity: 1 !important;
+  }
+  
+  &:hover {
+    background: #00838F !important; // Teal achtergrond bij hover
+    color: #fff !important; // Witte tekst bij hover
+    border-color: #00838F !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 8px rgba(0, 131, 143, 0.25) !important;
+    
+    .d-icon,
+    .d-icon-user {
+      color: #fff !important;
+      opacity: 1 !important;
+    }
+  }
+  
+  &:active {
+    transform: translateY(0) !important;
+    box-shadow: 0 2px 4px rgba(0, 131, 143, 0.2) !important;
+  }
+  
+  // Focus state voor toegankelijkheid
+  &:focus {
+    outline: 2px solid rgba(0, 131, 143, 0.5) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+// ============================================
+// UX OPTIMALISATIE: HAMBURGER MENU BUTTON
+// ============================================
+// Vanuit UX perspectief: duidelijk zichtbaar, goede contrast, visueel aantrekkelijk
+.d-header-icons .hamburger-dropdown,
+.d-header-icons .header-sidebar-toggle,
+.d-header-icons button.sidebar-toggle,
+.d-header-icons .btn-sidebar-toggle {
+  width: 40px !important;
+  height: 40px !important;
+  min-width: 40px !important;
+  min-height: 40px !important;
+  background: #00838F !important; // Teal achtergrond voor goede zichtbaarheid
+  border: 2px solid #00838F !important;
+  border-radius: 10px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.2s ease !important;
+  box-shadow: 0 2px 6px rgba(0, 131, 143, 0.25) !important;
+  
+  .d-icon {
+    color: #fff !important; // Witte iconen voor perfect contrast
+    font-size: 18px !important;
+    font-weight: 600 !important;
+  }
+  
+  &:hover {
+    background: #006B75 !important; // Donkerder teal bij hover
+    border-color: #006B75 !important;
+    transform: translateY(-2px) scale(1.05) !important;
+    box-shadow: 0 4px 12px rgba(0, 131, 143, 0.35) !important;
+    
+    .d-icon {
+      color: #fff !important;
+    }
+  }
+  
+  &:active {
+    transform: translateY(0) scale(1) !important;
+    box-shadow: 0 2px 4px rgba(0, 131, 143, 0.2) !important;
+  }
+  
+  // Focus state voor toegankelijkheid
+  &:focus {
+    outline: 2px solid rgba(0, 131, 143, 0.5) !important;
+    outline-offset: 2px !important;
   }
 }
 
