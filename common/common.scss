@@ -208,6 +208,12 @@ body,
 
 body[class*="route-admin"],
 body.admin-interface {
+  // CRITICAL: Verberg custom header banners op admin pagina's
+  .stripinfo-top-banner,
+  .stripinfo-nav-bar {
+    display: none !important;
+  }
+
   // CRITICAL: #main-outlet-wrapper moet flex container zijn voor sidebar + content
   #main-outlet-wrapper {
     display: flex !important;
