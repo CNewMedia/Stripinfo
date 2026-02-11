@@ -1176,7 +1176,7 @@ body.navigation-categories {
       font-weight: 700 !important;
       color: #222 !important;
       margin: 0 auto !important; // Centreer de tekst horizontaal
-      padding: 16px 20px 4px !important; // Verminderde padding: 16px top (was 20px), 4px bottom (was 8px)
+      padding: 8px 12px 4px !important; // Veel kleinere padding: 8px top (was 16px), 12px horizontaal (was 20px)
       text-align: center !important; // CENTREER de tekst
       line-height: 1.4 !important;
       letter-spacing: -0.01em !important;
@@ -1235,7 +1235,7 @@ body.navigation-categories {
       line-height: 1.5 !important; // Iets compacter
       text-align: center !important; // CENTREER de beschrijving
       margin: 0 auto !important; // Centreer horizontaal
-      padding: 0 20px 16px !important; // Verminderde bottom padding: 16px (was 20px)
+      padding: 0 12px 12px !important; // Veel kleinere padding: 12px horizontaal (was 20px), 12px bottom (was 16px)
       white-space: normal !important;
       overflow: visible !important;
       max-height: none !important;
@@ -2582,7 +2582,7 @@ body.categories-list section.category-boxes-with-topics.with-logos .category-box
 section.category-boxes-with-topics.with-logos .category-box-heading,
 body.categories-list section.category-boxes-with-topics.with-logos .category-name,
 section.category-boxes-with-topics.with-logos .category-name {
-  padding: 16px 12px 8px !important; // Verminderde padding: 16px top (was 24px), 8px bottom (was 12px)
+  padding: 8px 12px 8px !important; // Veel kleinere padding: 8px top (was 16px)
   margin: 0 !important;
   font-size: 0.95rem !important;
   font-weight: 600 !important;
@@ -2693,7 +2693,7 @@ section.category-boxes-with-topics.with-logos .description {
   color: #666 !important;
   font-size: 0.875rem !important;
   line-height: 1.5 !important;
-  padding: 0 24px 16px !important; // Verminderde bottom padding: 16px (was 24px)
+  padding: 0 12px 12px !important; // Veel kleinere padding: 12px horizontaal (was 24px), 12px bottom (was 16px)
   margin: 0 !important;
   font-family: 'DM Sans', sans-serif !important;
 }
@@ -2749,12 +2749,12 @@ section.category-boxes-with-topics.with-logos .featured-topics {
   }
   
   section.category-boxes-with-topics.with-logos h3 {
-    padding: 16px 20px 6px !important;
+    padding: 8px 12px 6px !important; // Veel kleinere padding
     font-size: 0.9rem !important;
   }
   
   section.category-boxes-with-topics.with-logos .description {
-    padding: 0 20px 20px !important;
+    padding: 0 12px 12px !important; // Veel kleinere padding
   }
 }
 
@@ -3115,6 +3115,7 @@ section.category-boxes-with-topics.with-logos .featured-topics {
   margin: 0 auto !important; // Centreer horizontaal
   width: 100% !important;
   box-sizing: border-box !important;
+  padding: 0 12px 12px !important; // Veel kleinere padding voor kleinere witte border
 
   a.read-more {
     display: none !important;
