@@ -1008,17 +1008,27 @@ body.navigation-categories {
     padding-top: 0 !important; // Geen top padding voor navigation-categories
   }
   
-  // Alleen voor navigation-categories: hero banner en category boxes moeten perfect uitgelijnd zijn
+  // CRITICAL: Voor navigation-categories en categories-list: hero banner en category boxes moeten perfect uitgelijnd zijn
+  // Zorg dat #main-outlet GEEN padding/margin heeft die de uitlijning verstoort
   body.navigation-categories #main-outlet,
   body.categories-list #main-outlet {
     padding-top: 0 !important;
     padding-bottom: 0 !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
+    padding: 0 !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
 
   // CRITICAL: Overschrijf Discourse container padding voor perfecte uitlijning
   // Gebruik hoge specificiteit om alle Discourse defaults te overschrijven
+  // Zorg dat ALLE containers GEEN extra padding/margin hebben die de uitlijning verstoort
   body.navigation-categories .container.list-container.--categories,
   body.categories-list .container.list-container.--categories,
   body.navigation-categories .container.list-container.categories,
@@ -1028,7 +1038,11 @@ body.navigation-categories {
   body.navigation-categories #main-outlet .container,
   body.categories-list #main-outlet .container,
   body.navigation-categories #main-outlet .container.list-container,
-  body.categories-list #main-outlet .container.list-container {
+  body.categories-list #main-outlet .container.list-container,
+  body.navigation-categories #main-outlet .container.list-container.--categories,
+  body.categories-list #main-outlet .container.list-container.--categories,
+  body.navigation-categories #main-outlet .container.list-container.categories,
+  body.categories-list #main-outlet .container.list-container.categories {
     max-width: 100% !important;
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -1037,9 +1051,12 @@ body.navigation-categories {
     padding: 0 !important;
     margin-left: 0 !important;
     margin-right: 0 !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     margin: 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    position: relative !important;
   }
 
   // CRITICAL: Zorg dat row containers ook geen extra padding hebben
@@ -1074,23 +1091,37 @@ body.navigation-categories {
   }
 
   // CRITICAL: Category boxes styling voor BEIDE navigation-categories EN categories-list
+  // PERFECTE UITLIJNING: Category boxes gebruiken EXACT dezelfde max-width en padding als hero banner
   body.navigation-categories .category-boxes,
   body.categories-list .category-boxes,
   body.navigation-categories .category-list,
   body.categories-list .category-list,
   body.navigation-categories #categories-wrapper,
   body.categories-list #categories-wrapper,
+  body.navigation-categories #main-outlet .category-boxes,
+  body.categories-list #main-outlet .category-boxes,
+  body.navigation-categories #main-outlet .category-list,
+  body.categories-list #main-outlet .category-list,
   .category-boxes,
   .category-list,
   #categories-wrapper {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 24px !important;
-    max-width: 1200px !important;
+    max-width: 1200px !important; // EXACT ZELFDE als hero-content
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     margin: 0 auto !important;
+    padding-left: 32px !important; // EXACT ZELFDE padding als hero-content
+    padding-right: 32px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
     padding: 0 32px !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    position: relative !important;
 
     @media (max-width: 900px) {
       grid-template-columns: repeat(2, 1fr) !important;
@@ -1652,26 +1683,46 @@ body:not(.navigation-categories):not([class*="route-admin"]) {
 // CATEGORIES LIST PAGE — ASANA-STIJL MET GROTE ICONEN
 // ============================================
 // CRITICAL: Hero banner styling voor BEIDE categories-list EN navigation-categories
+// PERFECTE UITLIJNING: Hero banner gebruikt EXACT dezelfde max-width en padding als category-boxes
 body.categories-list .stripinfo-categories-hero,
 body.navigation-categories .stripinfo-categories-hero,
+body.navigation-categories #main-outlet .stripinfo-categories-hero,
+body.categories-list #main-outlet .stripinfo-categories-hero,
 .stripinfo-categories-hero {
   background: linear-gradient(135deg, #00838f 0%, #00acc1 100%) !important;
   background-color: #00838f !important;
   color: #fff !important;
   padding: 60px 0 !important; // Geen horizontale padding - wordt door wrapper gedaan
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 40px !important;
   margin: 0 0 40px 0 !important;
   text-align: center !important;
   border-bottom: 6px solid #222 !important;
   box-shadow: 0 8px 0px rgba(0,0,0,0.1) !important;
   width: 100% !important;
+  max-width: 100% !important; // Zorg dat hero banner zelf geen max-width heeft
   box-sizing: border-box !important;
+  position: relative !important;
+  left: 0 !important;
+  right: 0 !important;
   
   .hero-content {
-    max-width: 1200px !important; // ZELFDE als category-boxes voor perfecte uitlijning
+    max-width: 1200px !important; // EXACT ZELFDE als category-boxes
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     margin: 0 auto !important;
-    padding: 0 32px !important; // ZELFDE padding als category-boxes (32px)
+    padding-left: 32px !important; // EXACT ZELFDE padding als category-boxes
+    padding-right: 32px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding: 0 32px !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    position: relative !important;
     
     .hero-title {
       font-family: 'Bangers', cursive !important;
@@ -1759,14 +1810,23 @@ body.categories-list {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 24px !important;
+    padding-left: 32px !important; // EXACT ZELFDE als hero-content en category-boxes
+    padding-right: 32px !important;
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
     padding: 0 32px !important; // ZELFDE als hero banner en category-boxes (32px)
     max-width: 1200px !important; // ZELFDE als hero banner en category-boxes (1200px)
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 0 !important;
+    margin-bottom: 0 !important;
     margin: 0 auto !important;
     border: none !important;
     border-spacing: 0 !important;
     background: transparent !important;
     width: 100% !important;
     box-sizing: border-box !important;
+    position: relative !important;
   }
   
   // Verberg tabel headers indien aanwezig
