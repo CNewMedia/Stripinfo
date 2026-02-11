@@ -1005,7 +1005,54 @@ body.navigation-categories {
   // HOMEPAGE CATEGORIE-KAARTEN — STRIP COMMUNITY STIJL (Comic Magazine)
   // ============================================
   #main-outlet {
-    padding-top: 32px !important;
+    padding-top: 0 !important; // Geen top padding voor navigation-categories
+  }
+  
+  // Alleen voor navigation-categories: hero banner en category boxes moeten perfect uitgelijnd zijn
+  body.navigation-categories #main-outlet,
+  body.categories-list #main-outlet {
+    padding-top: 0 !important;
+    padding-bottom: 0 !important;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+
+  // CRITICAL: Overschrijf Discourse container padding voor perfecte uitlijning
+  .container.list-container.--categories,
+  .container.list-container.categories,
+  body.navigation-categories .container.list-container,
+  body.categories-list .container.list-container,
+  body.navigation-categories .container,
+  body.categories-list .container {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+
+  // CRITICAL: Zorg dat row containers ook geen extra padding hebben
+  .container.list-container.--categories .row,
+  .container.list-container.categories .row,
+  body.navigation-categories .container.list-container .row,
+  body.categories-list .container.list-container .row,
+  body.navigation-categories .container .row,
+  body.categories-list .container .row,
+  .row.full-width {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+  }
+  
+  // CRITICAL: Zorg dat alle Discourse wrappers geen extra padding/margin hebben
+  body.navigation-categories #main-outlet-wrapper,
+  body.categories-list #main-outlet-wrapper {
+    padding: 0 !important;
+    margin: 0 !important;
+    max-width: 100% !important;
+    width: 100% !important;
   }
 
   .category-boxes,
@@ -1383,6 +1430,16 @@ body:not([class*="route-admin"]) #main-outlet {
   padding: 30px 15px;
   max-width: 1200px;
   margin: 0 auto;
+}
+
+// CRITICAL: Voor navigation-categories pagina's: geen extra padding op #main-outlet
+body.navigation-categories #main-outlet,
+body.categories-list #main-outlet {
+  padding: 0 !important; // Geen padding zodat hero en category boxes perfect uitgelijnd zijn
+  max-width: 100% !important; // Volledige breedte
+  margin: 0 !important;
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 // ============================================
