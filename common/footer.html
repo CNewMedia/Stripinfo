@@ -105,7 +105,8 @@
 
     container.dataset.siLoaded = "true";
 
-    fetch("/directory_items.json?period=monthly&order=post_count&limit=5")
+    var url = (window.location.origin || "") + "/directory_items.json?period=monthly&order=post_count&limit=5";
+    fetch(url, { credentials: "same-origin" })
       .then(function(res) {
         if (!res.ok) throw new Error("API " + res.status);
         return res.json();
@@ -199,9 +200,11 @@
 
   if (document.readyState === "loading") {
     document.addEventListener("DOMContentLoaded", onReady);
+    window.addEventListener("load", scheduleLoad);
   } else {
     onReady();
   }
+  window.addEventListener("load", scheduleLoad);
 
   var outlet = document.querySelector("#main-outlet");
   if (outlet) {
