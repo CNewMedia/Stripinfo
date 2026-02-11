@@ -1148,8 +1148,8 @@ body.navigation-categories {
 
       img {
         width: 100% !important;
-        height: 140px !important; // Verkleind van 160px voor betere proporties
-        min-height: 140px !important;
+        height: 200px !important; // Vergroot voor grotere visuals
+        min-height: 200px !important;
         max-width: none !important;
         max-height: none !important;
         object-fit: contain !important; // Changed van cover naar contain voor consistente weergave
@@ -1157,7 +1157,7 @@ body.navigation-categories {
         display: block !important;
         border-radius: 0 !important;
         filter: none !important;
-        padding: 20px !important; // Padding binnen de afbeelding voor ademruimte
+        padding: 16px !important; // Iets minder padding zodat visuals groter lijken
         margin: 0 !important;
         background: transparent !important;
         transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
@@ -2551,14 +2551,14 @@ section.category-boxes-with-topics.with-logos .category-logo.aspect-image {
 section.category-boxes-with-topics.with-logos .category-logo img,
 section.category-boxes-with-topics.with-logos .category-logo.aspect-image img {
   width: 100% !important;
-  height: 180px !important; // Iets kleiner voor betere proporties
+  height: 220px !important; // Vergroot voor grotere visuals
   max-width: none !important;
   max-height: none !important;
-  min-height: 180px !important;
+  min-height: 220px !important;
   object-fit: contain !important; // Changed naar contain voor consistente weergave
   object-position: center !important;
   display: block !important;
-  padding: 20px !important; // Padding voor ademruimte
+  padding: 16px !important; // Iets minder padding zodat visuals groter lijken
   margin: 0 !important;
   border-radius: 0 !important;
   background: transparent !important;
@@ -2731,8 +2731,8 @@ section.category-boxes-with-topics.with-logos .featured-topics {
   }
   
   section.category-boxes-with-topics.with-logos .category-logo img {
-    height: 180px !important;
-    min-height: 180px !important;
+    height: 200px !important; // Groter gehouden
+    min-height: 200px !important;
   }
 }
 
@@ -2744,8 +2744,8 @@ section.category-boxes-with-topics.with-logos .featured-topics {
   }
 
   section.category-boxes-with-topics.with-logos .category-logo img {
-    height: 160px !important;
-    min-height: 160px !important;
+    height: 180px !important; // Groter gehouden
+    min-height: 180px !important;
   }
   
   section.category-boxes-with-topics.with-logos h3 {
