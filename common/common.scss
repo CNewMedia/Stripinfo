@@ -1672,7 +1672,6 @@ body.navigation-categories .stripinfo-categories-hero,
     padding: 0 32px !important; // ZELFDE padding als category-boxes (32px)
     width: 100% !important;
     box-sizing: border-box !important;
-  }
     
     .hero-title {
       font-family: 'Bangers', cursive !important;
@@ -1716,6 +1715,7 @@ body.navigation-categories .stripinfo-categories-hero,
         background: #c0392b !important;
       }
     }
+  }
     
   @media (max-width: 900px) {
     padding: 40px 0 !important; // Geen horizontale padding
@@ -1746,20 +1746,27 @@ body.navigation-categories .stripinfo-categories-hero,
     }
   }
 }
-  
+
+// ============================================
+// CATEGORIES LIST PAGE — CATEGORY LIST STYLING
+// ============================================
+body.categories-list {
   // Transformeer tabel naar grid layout — ASANA-STIJL
   // Forceer grid op zowel .category-list als table.category-list
+  // CRITICAL: Zelfde max-width en padding als hero banner voor perfecte uitlijning
   .category-list,
   table.category-list {
     display: grid !important;
     grid-template-columns: repeat(3, 1fr) !important;
     gap: 24px !important;
-    padding: 30px !important;
-    max-width: 1400px !important;
+    padding: 0 32px !important; // ZELFDE als hero banner en category-boxes (32px)
+    max-width: 1200px !important; // ZELFDE als hero banner en category-boxes (1200px)
     margin: 0 auto !important;
     border: none !important;
     border-spacing: 0 !important;
     background: transparent !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
   }
   
   // Verberg tabel headers indien aanwezig
@@ -2249,18 +2256,20 @@ body.navigation-categories .stripinfo-categories-hero,
   
   // Responsive grid — ASANA-STIJL
   @media (max-width: 900px) {
-    .category-list {
+    .category-list,
+    table.category-list {
       grid-template-columns: repeat(2, 1fr) !important;
       gap: 16px !important;
-      padding: 20px 15px !important;
+      padding: 0 16px !important; // ZELFDE als hero banner en category-boxes responsive (16px)
     }
   }
   
   @media (max-width: 600px) {
-    .category-list {
+    .category-list,
+    table.category-list {
       grid-template-columns: 1fr !important;
       gap: 12px !important;
-      padding: 15px 10px !important;
+      padding: 0 16px !important; // ZELFDE als hero banner en category-boxes responsive (16px)
     }
     
     .category-list .category .category-logo,
