@@ -1072,7 +1072,7 @@ body.navigation-categories {
     margin: 0 !important;
     width: 100% !important;
     box-sizing: border-box !important;
-    transition: all 0.3s ease !important;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     overflow: hidden !important;
     position: relative !important;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08) !important;
@@ -1093,6 +1093,10 @@ body.navigation-categories {
       transform: translateY(-4px) !important;
       box-shadow: 0 8px 24px rgba(0, 188, 212, 0.15) !important;
       border-color: #00bcd4 !important;
+      
+      .category-logo img {
+        transform: scale(1.05) !important;
+      }
     }
 
     .category-box-inner {
@@ -1123,19 +1127,35 @@ body.navigation-categories {
       margin: 0 !important;
       padding: 0 !important;
       border-radius: 0 !important;
+      position: relative !important;
+      background: #f8f9fa !important; // Consistente lichte achtergrond voor alle iconen
+
+      // Verberg alle secundaire iconen die rondom het hoofdicoon zweven
+      .d-icon-lock,
+      .d-icon-check,
+      .d-icon-question,
+      .d-icon-heart,
+      .d-icon-exclamation,
+      [class*="icon-"],
+      svg:not(.category-logo img svg) {
+        display: none !important;
+      }
 
       img {
         width: 100% !important;
-        height: 160px !important;
-        min-height: 160px !important;
+        height: 140px !important; // Verkleind van 160px voor betere proporties
+        min-height: 140px !important;
         max-width: none !important;
         max-height: none !important;
-        object-fit: cover !important;
+        object-fit: contain !important; // Changed van cover naar contain voor consistente weergave
+        object-position: center !important;
         display: block !important;
         border-radius: 0 !important;
         filter: none !important;
-        padding: 0 !important;
+        padding: 20px !important; // Padding binnen de afbeelding voor ademruimte
         margin: 0 !important;
+        background: transparent !important;
+        transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
       }
     }
 
@@ -1147,11 +1167,11 @@ body.navigation-categories {
     .badge-category__name,
     .badge-category__wrapper {
       font-family: 'DM Sans', sans-serif !important;
-      font-size: 18px !important;
+      font-size: 17px !important; // Iets kleiner voor betere balans
       font-weight: 700 !important;
       color: #222 !important;
       margin: 0 !important;
-      padding: 20px 20px 8px !important;
+      padding: 16px 20px 4px !important; // Verminderde padding: 16px top (was 20px), 4px bottom (was 8px)
       text-align: left !important;
       line-height: 1.4 !important;
       letter-spacing: -0.01em !important;
@@ -1171,6 +1191,11 @@ body.navigation-categories {
         word-wrap: break-word !important;
         color: #222 !important;
         text-decoration: none !important;
+        transition: color 0.2s ease !important;
+      }
+      
+      a:hover {
+        color: #00bcd4 !important;
       }
     }
 
@@ -1178,12 +1203,12 @@ body.navigation-categories {
     .category-box-description,
     .description {
       font-family: 'DM Sans', sans-serif !important;
-      font-size: 14px !important;
+      font-size: 13px !important; // Iets kleiner
       color: #666 !important;
-      line-height: 1.6 !important;
+      line-height: 1.5 !important; // Iets compacter
       text-align: left !important;
       margin: 0 !important;
-      padding: 0 20px 20px !important;
+      padding: 0 20px 16px !important; // Verminderde bottom padding: 16px (was 20px)
       white-space: normal !important;
       overflow: visible !important;
       max-height: none !important;
@@ -1193,6 +1218,7 @@ body.navigation-categories {
       }
     }
 
+    // Verberg alle secundaire iconen en statistieken voor clean look
     .category-statistic,
     .topics-count,
     .category-box-inner .subcategories,
@@ -1200,7 +1226,14 @@ body.navigation-categories {
     .category-box-count,
     .topic-count,
     .stat,
-    .subcategories {
+    .subcategories,
+    .d-icon-lock,
+    .d-icon-check,
+    .d-icon-question,
+    .d-icon-heart,
+    .d-icon-exclamation,
+    [class*="badge-new"],
+    [class*="new-tag"] {
       display: none !important;
     }
   }
@@ -1214,14 +1247,60 @@ body.navigation-categories {
     }
   }
 
-  // Verberg kleur-badges (■) en lock-icoon op homepage
+  // Verberg kleur-badges (■) en alle secundaire iconen op homepage
   .category-box .badge-category-bg,
   .category-box .badge-wrapper .badge-category-bg {
     display: none !important;
   }
 
-  .category-box .d-icon-lock {
+  // Verberg alle secundaire iconen die de visuele hiërarchie verstoren
+  .category-box .d-icon-lock,
+  .category-box .d-icon-check,
+  .category-box .d-icon-question,
+  .category-box .d-icon-heart,
+  .category-box .d-icon-exclamation,
+  .category-box [class*="icon-"]:not(.category-logo),
+  .category-box .category-logo .d-icon,
+  .category-box .category-logo svg:not(img svg),
+  .category-box .category-box-heading .d-icon,
+  .category-box .badge-wrapper .d-icon,
+  .category-box .category-box-inner .d-icon,
+  .category-box a .d-icon {
     display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
+  
+  // Verberg "NEW" tags en andere badges die de kaart verstoren
+  .category-box [class*="new"],
+  .category-box [class*="badge-new"],
+  .category-box .new-tag,
+  .category-box .category-box-inner > [class*="badge"]:not(.badge-category),
+  .category-box::before,
+  .category-box::after {
+    display: none !important;
+  }
+  
+  // Zorg voor consistente achtergrondkleuren voor alle category logo's
+  .category-box .category-logo,
+  .category-box .logo {
+    background: #f8f9fa !important; // Consistente lichte achtergrond
+    
+    // Overschrijf eventuele inline styles of andere achtergrondkleuren
+    &[style*="background"] {
+      background: #f8f9fa !important;
+    }
+  }
+  
+  // Zorg dat afbeeldingen binnen logo containers een consistente achtergrond hebben
+  .category-box .category-logo img,
+  .category-box .logo img {
+    background-color: transparent !important;
+    
+    // Als de afbeelding zelf een achtergrond heeft, maak deze transparant of consistent
+    &[style*="background"] {
+      background-color: transparent !important;
+    }
   }
 }
 
@@ -2419,25 +2498,40 @@ section.category-boxes-with-topics.with-logos .category-logo.aspect-image {
   overflow: hidden !important;
   order: -1 !important;
   flex-shrink: 0 !important;
+  position: relative !important;
+  background: #f8f9fa !important; // Consistente lichte achtergrond voor alle iconen
+  
+  // Verberg alle secundaire iconen
+  .d-icon-lock,
+  .d-icon-check,
+  .d-icon-question,
+  .d-icon-heart,
+  .d-icon-exclamation,
+  [class*="icon-"],
+  svg:not(img svg) {
+    display: none !important;
+  }
 }
 
 section.category-boxes-with-topics.with-logos .category-logo img,
 section.category-boxes-with-topics.with-logos .category-logo.aspect-image img {
   width: 100% !important;
-  height: 200px !important;
+  height: 180px !important; // Iets kleiner voor betere proporties
   max-width: none !important;
   max-height: none !important;
-  min-height: 200px !important;
-  object-fit: cover !important;
+  min-height: 180px !important;
+  object-fit: contain !important; // Changed naar contain voor consistente weergave
+  object-position: center !important;
   display: block !important;
-  padding: 0 !important;
+  padding: 20px !important; // Padding voor ademruimte
   margin: 0 !important;
   border-radius: 0 !important;
+  background: transparent !important;
   transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
 }
 
 section.category-boxes-with-topics.with-logos .category-box:hover .category-logo img {
-  transform: scale(1.03) !important;
+  transform: scale(1.05) !important;
 }
 
 // === TITEL H3 — PERFECT UX: PERFECT GECENTREERD BINNEN HET CATEGORY BOX ===
@@ -2453,7 +2547,7 @@ body.categories-list section.category-boxes-with-topics.with-logos .category-box
 section.category-boxes-with-topics.with-logos .category-box-heading,
 body.categories-list section.category-boxes-with-topics.with-logos .category-name,
 section.category-boxes-with-topics.with-logos .category-name {
-  padding: 24px 12px 12px !important; // CRITICAL: Gelijk padding links en rechts voor perfecte centering
+  padding: 16px 12px 8px !important; // Verminderde padding: 16px top (was 24px), 8px bottom (was 12px)
   margin: 0 !important;
   font-size: 0.95rem !important;
   font-weight: 600 !important;
@@ -2564,9 +2658,26 @@ section.category-boxes-with-topics.with-logos .description {
   color: #666 !important;
   font-size: 0.875rem !important;
   line-height: 1.5 !important;
-  padding: 0 24px 24px !important;
+  padding: 0 24px 16px !important; // Verminderde bottom padding: 16px (was 24px)
   margin: 0 !important;
   font-family: 'DM Sans', sans-serif !important;
+}
+
+// Verberg secundaire iconen in category-boxes-with-topics
+section.category-boxes-with-topics.with-logos .category-box {
+  .d-icon-lock,
+  .d-icon-check,
+  .d-icon-question,
+  .d-icon-heart,
+  .d-icon-exclamation,
+  [class*="badge-new"],
+  [class*="new-tag"],
+  .category-box-heading .d-icon,
+  .badge-wrapper .d-icon {
+    display: none !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+  }
 }
 
 // === FEATURED TOPICS — compact ===
