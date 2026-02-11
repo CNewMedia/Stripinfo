@@ -92,22 +92,17 @@
 <script>
 (function() {
   function isHomepage() {
-    return document.body.classList.contains("navigation-categories") ||
-           document.body.classList.contains("categories-list") ||
-           document.body.classList.contains("discovery-categories");
+    return document.body && (
+      document.body.classList.contains("navigation-categories") ||
+      document.body.classList.contains("categories-list") ||
+      document.body.classList.contains("discovery-categories")
+    );
   }
 
-  function loadTopContributors() {
-    var container = document.getElementById("si-contributors-list");
-    if (!container) return;
+  function doLoad(container) {
+    if (!container || !isHomepage()) return false;
+    if (container.dataset.siLoaded === "true") return true;
 
-    // Reset siLoaded wanneer we niet op homepage zijn, zodat we bij terugkeer opnieuw laden
-    if (!isHomepage()) {
-      delete container.dataset.siLoaded;
-      return;
-    }
-
-    if (container.dataset.siLoaded === "true") return;
     container.dataset.siLoaded = "true";
 
     fetch("/directory_items.json?period=monthly&order=post_count&limit=5")
@@ -155,26 +150,65 @@
         container.dataset.siLoaded = "";
         container.innerHTML = "<p class=\"si-no-contributors\">Kon bijdragers niet laden.</p>";
       });
+    return true;
+  }
+
+  function loadTopContributors() {
+    var container = document.getElementById("si-contributors-list");
+    if (!container) return;
+
+    if (!isHomepage()) {
+      delete container.dataset.siLoaded;
+      return;
+    }
+
+    doLoad(container);
   }
 
   function scheduleLoad() {
-    setTimeout(loadTopContributors, 100);
+    var container = document.getElementById("si-contributors-list");
+    if (container) {
+      loadTopContributors();
+      return;
+    }
+    // Container nog niet in DOM (Ember rendert asynchroon) — retry
+    var attempts = 0;
+    var maxAttempts = 50;
+    var interval = setInterval(function() {
+      attempts++;
+      container = document.getElementById("si-contributors-list");
+      if (container && isHomepage()) {
+        clearInterval(interval);
+        loadTopContributors();
+      } else if (attempts >= maxAttempts) {
+        clearInterval(interval);
+      }
+    }, 200);
+  }
+
+  function onReady() {
+    scheduleLoad();
+    // Observeer DOM: container kan later verschijnen (Ember)
+    var watch = new MutationObserver(function() {
+      if (document.getElementById("si-contributors-list") && isHomepage()) {
+        loadTopContributors();
+      }
+    });
+    watch.observe(document.body, { childList: true, subtree: true });
   }
 
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", scheduleLoad);
+    document.addEventListener("DOMContentLoaded", onReady);
   } else {
-    scheduleLoad();
+    onReady();
   }
 
-  // Herlaad bij Discourse SPA-navigatie
   var outlet = document.querySelector("#main-outlet");
   if (outlet) {
     var mo = new MutationObserver(scheduleLoad);
     mo.observe(outlet, { childList: true, subtree: true });
   }
 
-  // Extra: observeer body class wijzigingen (Ember kan body classes dynamisch updaten)
   if (document.body) {
     var bodyMo = new MutationObserver(function(mutations) {
       mutations.forEach(function(m) {
