@@ -200,53 +200,91 @@ body,
 // ============================================
 
 // ============================================
+// ============================================
 // ADMIN SIDEBAR — LAYOUT FIX: CONTENT NAAST SIDEBAR
 // ============================================
-// Alleen #main-outlet-wrapper als flex container (niet .wrap of hoger:
-// die kunnen header + main bevatten; flex daarop zet content rechts van header = wit vlak).
+// CRITICAL: Zorg dat sidebar en content naast elkaar staan, niet onder elkaar
+// Discourse admin gebruikt #main-outlet-wrapper als container voor sidebar + content
 
 body[class*="route-admin"],
 body.admin-interface {
-  // Alleen de directe container van sidebar + content — NIET .wrap.body-page (bevat vaak header)
+  // CRITICAL: #main-outlet-wrapper moet flex container zijn voor sidebar + content
   #main-outlet-wrapper {
     display: flex !important;
     flex-direction: row !important;
     flex-wrap: nowrap !important;
     width: 100% !important;
     max-width: 100% !important;
-    margin-left: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
     align-items: flex-start !important;
+    gap: 0 !important;
+    box-sizing: border-box !important;
   }
 
-  // Sidebar: vaste breedte, niet laten krimpen
+  // CRITICAL: .wrap container moet ook flex zijn om sidebar en content naast elkaar te houden
+  // Maar alleen als het binnen #main-outlet-wrapper zit
+  #main-outlet-wrapper .wrap,
+  .wrap.body-page {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    align-items: flex-start !important;
+    gap: 0 !important;
+    box-sizing: border-box !important;
+  }
+
+  // Sidebar: vaste breedte links, niet laten krimpen
   .admin-sidebar,
   .sidebar-wrapper,
   #d-sidebar,
   [class*="admin-sidebar"],
-  nav.sidebar-wrapper {
+  nav.sidebar-wrapper,
+  .admin-nav,
+  nav[role="navigation"],
+  #main-outlet-wrapper > nav,
+  #main-outlet-wrapper > .sidebar-wrapper,
+  .wrap > nav,
+  .wrap > .sidebar-wrapper {
     position: relative !important;
     transform: none !important;
-    width: auto !important;
-    min-width: 220px !important;
-    max-width: none !important;
+    width: 240px !important;
+    min-width: 240px !important;
+    max-width: 240px !important;
     flex-shrink: 0 !important;
-    display: flex !important;
+    flex-grow: 0 !important;
+    display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+    order: 1 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    float: none !important;
   }
 
-  // Content: neemt rest van de ruimte, start bovenaan (geen stretch = geen grote lege ruimte)
+  // Content: neemt rest van de ruimte rechts van sidebar
   #main-outlet,
-  .admin-main-content {
+  .admin-main-content,
+  .admin-content,
+  .contents,
+  #main-outlet-wrapper > #main-outlet,
+  .wrap > #main-outlet,
+  .wrap > .contents {
     flex: 1 1 auto !important;
     min-width: 0 !important;
     width: auto !important;
     max-width: none !important;
-    margin-left: 0 !important;
-    margin-top: 0 !important;
-    padding-top: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
     display: block !important;
+    order: 2 !important;
     align-self: flex-start !important;
+    float: none !important;
+    clear: none !important;
   }
 }
 
@@ -264,7 +302,7 @@ body.admin-interface {
 // --- D. Content NOOIT verschuiven (alleen forum, NIET admin) ---
 // Op admin-pagina's (Beheer) gebruikt Discourse een andere layout; deze regels
 // uitsluiten voorkomt een leeg wit scherm. Body krijgt bv. class route-admin-dashboard.
-body:not([class*="route-admin"]) {
+body:not([class*="route-admin"]):not(.admin-interface) {
   #main-outlet-wrapper,
   #main-outlet,
   .wrap,
