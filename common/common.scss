@@ -1102,7 +1102,8 @@ body.navigation-categories {
     .category-box-inner {
       display: flex !important;
       flex-direction: column !important;  // VERTICAAL: icoon BOVEN tekst
-      align-items: stretch !important;
+      align-items: center !important; // CENTREER alles horizontaal binnen het blok
+      justify-content: flex-start !important;
       padding: 0 !important;
       gap: 0 !important;
       border: none !important;
@@ -1111,6 +1112,7 @@ body.navigation-categories {
       height: 100% !important;
       box-sizing: border-box !important;
       background: transparent !important;
+      width: 100% !important; // Zorg dat inner de volledige breedte gebruikt
     }
 
     .category-logo,
@@ -1120,15 +1122,18 @@ body.navigation-categories {
       flex-shrink: 0 !important;
       width: 100% !important;
       height: auto !important;
-      max-width: none !important;
+      max-width: 100% !important;
       max-height: none !important;
       overflow: hidden !important;
       order: -1 !important;  // Forceer bovenaan
-      margin: 0 !important;
+      margin: 0 auto !important; // Centreer het logo horizontaal
       padding: 0 !important;
       border-radius: 0 !important;
       position: relative !important;
       background: #f8f9fa !important; // Consistente lichte achtergrond voor alle iconen
+      display: flex !important;
+      justify-content: center !important;
+      align-items: center !important;
 
       // Verberg alle secundaire iconen die rondom het hoofdicoon zweven
       .d-icon-lock,
@@ -1170,32 +1175,54 @@ body.navigation-categories {
       font-size: 17px !important; // Iets kleiner voor betere balans
       font-weight: 700 !important;
       color: #222 !important;
-      margin: 0 !important;
+      margin: 0 auto !important; // Centreer de tekst horizontaal
       padding: 16px 20px 4px !important; // Verminderde padding: 16px top (was 20px), 4px bottom (was 8px)
-      text-align: left !important;
+      text-align: center !important; // CENTREER de tekst
       line-height: 1.4 !important;
       letter-spacing: -0.01em !important;
       white-space: normal !important;
       overflow: visible !important;
       text-overflow: unset !important;
-      max-width: none !important;
+      max-width: 100% !important;
+      width: 100% !important; // Volledige breedte voor centering
       word-wrap: break-word !important;
+      box-sizing: border-box !important;
       
       a,
       span {
         white-space: normal !important;
         overflow: visible !important;
         text-overflow: unset !important;
-        max-width: none !important;
+        max-width: 100% !important;
         display: block !important;
         word-wrap: break-word !important;
         color: #222 !important;
         text-decoration: none !important;
         transition: color 0.2s ease !important;
+        text-align: center !important; // Centreer tekst binnen links
+        width: 100% !important;
+        box-sizing: border-box !important;
       }
       
       a:hover {
         color: #00bcd4 !important;
+      }
+    }
+    
+    // Centreer badge-wrapper binnen category-box
+    .badge-wrapper {
+      display: flex !important;
+      justify-content: center !important; // Centreer horizontaal
+      align-items: center !important;
+      text-align: center !important;
+      width: 100% !important;
+      margin: 0 auto !important;
+      padding: 0 !important;
+      
+      .badge-category {
+        text-align: center !important;
+        display: block !important;
+        width: 100% !important;
       }
     }
 
@@ -1206,12 +1233,14 @@ body.navigation-categories {
       font-size: 13px !important; // Iets kleiner
       color: #666 !important;
       line-height: 1.5 !important; // Iets compacter
-      text-align: left !important;
-      margin: 0 !important;
+      text-align: center !important; // CENTREER de beschrijving
+      margin: 0 auto !important; // Centreer horizontaal
       padding: 0 20px 16px !important; // Verminderde bottom padding: 16px (was 20px)
       white-space: normal !important;
       overflow: visible !important;
       max-height: none !important;
+      width: 100% !important; // Volledige breedte voor centering
+      box-sizing: border-box !important;
 
       a.read-more {
         display: none !important;
@@ -2470,7 +2499,11 @@ section.category-boxes-with-topics.with-logos .category-box-inner {
 // === LINK WRAPPER — VERTICAAL ===
 section.category-boxes-with-topics.with-logos .category-box-heading {
   padding: 0 !important;
-  margin: 0 !important;
+  margin: 0 auto !important; // Centreer horizontaal
+  width: 100% !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
 }
 
 section.category-boxes-with-topics.with-logos a.parent-box-link {
@@ -2478,8 +2511,10 @@ section.category-boxes-with-topics.with-logos a.parent-box-link {
   flex-direction: column !important;
   text-decoration: none !important;
   width: 100% !important;
-  align-items: center !important;
+  align-items: center !important; // Centreer alle items horizontaal
+  justify-content: flex-start !important;
   text-align: center !important;
+  margin: 0 auto !important;
 }
 
 // CRITICAL: Zorg dat de h3 container ALLE tekst centreert, ook bij meerdere regels
@@ -2758,18 +2793,22 @@ section.category-boxes-with-topics.with-logos .featured-topics {
   color: $si-dark !important;
   font-size: 1.05rem !important;
   font-weight: 700 !important;
-  margin-bottom: 8px !important;
+  margin: 0 auto 8px auto !important; // Centreer horizontaal
   font-family: $sans-stack !important;
   text-transform: none !important;
   letter-spacing: normal !important;
+  text-align: center !important; // CENTREER tekst
+  width: 100% !important;
+  box-sizing: border-box !important;
 }
 
 .category-box .badge-wrapper {
   display: flex !important;
-  justify-content: flex-start !important;
-  align-items: flex-start !important;
-  text-align: left !important;
+  justify-content: center !important; // CENTREER horizontaal
+  align-items: center !important;
+  text-align: center !important;
   width: 100% !important;
+  margin: 0 auto !important;
 
   .badge-category {
     display: block !important;
@@ -2778,21 +2817,25 @@ section.category-boxes-with-topics.with-logos .featured-topics {
     font-size: 1.05rem !important;
     font-weight: 700 !important;
     font-family: $sans-stack !important;
-    text-align: left !important;
+    text-align: center !important; // CENTREER tekst
+    width: 100% !important;
   }
 }
 
-// Specifiek voor category-boxes: badge-wrapper links uitlijnen
-.category-boxes .category-box .badge-wrapper {
+// Specifiek voor category-boxes: badge-wrapper CENTREREN
+.category-boxes .category-box .badge-wrapper,
+.navigation-categories .category-box .badge-wrapper {
   display: flex !important;
-  justify-content: flex-start !important;
-  align-items: flex-start !important;
-  text-align: left !important;
+  justify-content: center !important; // CENTREER horizontaal
+  align-items: center !important;
+  text-align: center !important;
   width: 100% !important;
+  margin: 0 auto !important;
   
   .badge-category {
-    text-align: left !important;
+    text-align: center !important; // CENTREER tekst
     display: block !important;
+    width: 100% !important;
   }
 }
 
@@ -3011,6 +3054,11 @@ section.category-boxes-with-topics.with-logos .featured-topics {
 .category-box .category-box-inner > div:not(.category-logo):not(.logo) {
   flex: 1 !important;
   min-width: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important; // Centreer horizontaal
+  justify-content: flex-start !important;
+  width: 100% !important;
 }
 
 .categories-list .category-box .category-name,
@@ -3031,8 +3079,8 @@ section.category-boxes-with-topics.with-logos .featured-topics {
   font-size: 1.1rem !important;
   font-weight: 700 !important;
   color: #222 !important;
-  margin: 0 0 8px 0 !important;
-  text-align: left !important;
+  margin: 0 auto 8px auto !important; // Centreer horizontaal
+  text-align: center !important; // CENTREER tekst
   line-height: 1.4 !important;
   font-family: 'DM Sans', sans-serif !important;
   white-space: normal !important;
@@ -3040,6 +3088,7 @@ section.category-boxes-with-topics.with-logos .featured-topics {
   text-overflow: unset !important;
   display: block !important;
   width: 100% !important;
+  box-sizing: border-box !important;
   
   // VOORKOM WOORDEN MIDDENIN TE BREKEN
   word-break: keep-all !important;
@@ -3062,8 +3111,10 @@ section.category-boxes-with-topics.with-logos .featured-topics {
   font-size: 0.85rem !important;
   color: $grijs-tekst !important;
   line-height: 1.5 !important;
-  text-align: left !important;
-  margin: 0 !important;
+  text-align: center !important; // CENTREER beschrijving
+  margin: 0 auto !important; // Centreer horizontaal
+  width: 100% !important;
+  box-sizing: border-box !important;
 
   a.read-more {
     display: none !important;
