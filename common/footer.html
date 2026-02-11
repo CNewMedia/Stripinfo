@@ -91,18 +91,34 @@
 
 <script>
 (function() {
+  function isHomepage() {
+    return document.body.classList.contains("navigation-categories") ||
+           document.body.classList.contains("categories-list") ||
+           document.body.classList.contains("discovery-categories");
+  }
+
   function loadTopContributors() {
     var container = document.getElementById("si-contributors-list");
-    if (!container || container.dataset.siLoaded === "true") return;
-    if (!document.body.classList.contains("navigation-categories")) return;
+    if (!container) return;
+
+    // Reset siLoaded wanneer we niet op homepage zijn, zodat we bij terugkeer opnieuw laden
+    if (!isHomepage()) {
+      delete container.dataset.siLoaded;
+      return;
+    }
+
+    if (container.dataset.siLoaded === "true") return;
     container.dataset.siLoaded = "true";
 
-    fetch("/directory_items.json?period=monthly&order=post_count")
-      .then(function(res) { return res.json(); })
+    fetch("/directory_items.json?period=monthly&order=post_count&limit=5")
+      .then(function(res) {
+        if (!res.ok) throw new Error("API " + res.status);
+        return res.json();
+      })
       .then(function(data) {
         var items = (data.directory_items || []).slice(0, 5);
         if (items.length === 0) {
-          container.innerHTML = "<p style=\"color:#999;font-size:0.85rem;padding:12px 0;\">Nog geen activiteit deze maand.</p>";
+          container.innerHTML = "<p class=\"si-no-contributors\">Nog geen activiteit deze maand.</p>";
           return;
         }
         container.innerHTML = items.map(function(item) {
@@ -110,11 +126,11 @@
           var username = u.username || "";
           var avatar = (u.avatar_template || "").replace(/\{size\}/g, "48");
           if (avatar && avatar.indexOf("/") === 0) {
-            var base = window.location.origin || "";
-            avatar = base + avatar;
+            avatar = (window.location.origin || "") + avatar;
           }
           var name = u.name || username;
-          var postCount = item.post_count != null ? item.post_count : 0;
+          var postCount = (item.post_count != null ? item.post_count : 0) +
+                         (item.topic_count != null ? item.topic_count : 0);
           return (
             "<div class=\"si-contributor\">" +
               "<div class=\"si-contributor-info\">" +
@@ -128,26 +144,44 @@
               "</div>" +
               "<div class=\"si-contributor-stat\">" +
                 "<span class=\"si-stat-number\">" + postCount + "</span>" +
-                "<span class=\"si-stat-label\">Posts</span>" +
+                "<span class=\"si-stat-label\">berichten</span>" +
               "</div>" +
             "</div>"
           );
         }).join("");
       })
-      .catch(function() {
-        container.innerHTML = "<p style=\"color:#999;font-size:0.85rem;\">Kon bijdragers niet laden.</p>";
+      .catch(function(err) {
+        console.error("Top bijdragers laden mislukt:", err);
+        container.dataset.siLoaded = "";
+        container.innerHTML = "<p class=\"si-no-contributors\">Kon bijdragers niet laden.</p>";
       });
   }
 
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", function() { setTimeout(loadTopContributors, 300); });
-  } else {
-    setTimeout(loadTopContributors, 300);
+  function scheduleLoad() {
+    setTimeout(loadTopContributors, 100);
   }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", scheduleLoad);
+  } else {
+    scheduleLoad();
+  }
+
+  // Herlaad bij Discourse SPA-navigatie
   var outlet = document.querySelector("#main-outlet");
   if (outlet) {
-    var mo = new MutationObserver(function() { loadTopContributors(); });
+    var mo = new MutationObserver(scheduleLoad);
     mo.observe(outlet, { childList: true, subtree: true });
+  }
+
+  // Extra: observeer body class wijzigingen (Ember kan body classes dynamisch updaten)
+  if (document.body) {
+    var bodyMo = new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        if (m.attributeName === "class") scheduleLoad();
+      });
+    });
+    bodyMo.observe(document.body, { attributes: true, attributeFilter: ["class"] });
   }
 })();
 </script>
