@@ -3620,6 +3620,20 @@ select {
       border-color: $cyaan;
     }
   }
+
+  // Antwoorden/create-knoppen: nooit wit — altijd duidelijk zichtbaar
+  &.btn-default.create,
+  &.create.btn-default {
+    background: $si-teal !important;
+    color: $wit !important;
+    border-color: $si-teal !important;
+
+    &:hover {
+      background: #00697A !important;
+      border-color: #00697A !important;
+      color: $wit !important;
+    }
+  }
   
   &.btn-icon-text {
     border: none;
@@ -3939,10 +3953,18 @@ select {
 
 // ============================================
 // ANTWOORDEN KNOP — PRIMAIRE ACTIE STYLING
+// Altijd duidelijk zichtbaar (niet wit) — geen verwarring over waar te klikken
 // ============================================
 
 #topic-footer-buttons .btn.create,
-#topic-footer-buttons button.create {
+#topic-footer-buttons button.create,
+.topic-footer-main-buttons .btn.create,
+.topic-footer-main-buttons button.create,
+.d-editor-button-bar + .submit-panel .btn-primary,
+#reply-control .submit-panel .btn-primary,
+#reply-control .btn.create,
+.composer-fields .btn-primary,
+.d-editor .submit-panel .btn-primary {
   background: $si-teal !important;
   color: $wit !important;
   border: none !important;
@@ -3950,10 +3972,13 @@ select {
   padding: 10px 24px !important;
   font-weight: 600 !important;
   font-size: 0.9rem !important;
-  transition: background 0.15s ease !important;
+  transition: background 0.15s ease, transform 0.15s ease !important;
+  box-shadow: 0 2px 6px rgba(0, 131, 143, 0.3) !important;
 
   &:hover {
     background: #00697A !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 10px rgba(0, 131, 143, 0.4) !important;
   }
 
   .d-icon {
@@ -4087,6 +4112,19 @@ select {
   .d-editor-textarea-wrapper {
     border: 2px solid $grijs-border;
     border-radius: 8px;
+  }
+
+  // Antwoorden/post-knop in composer: altijd teal, nooit wit
+  .submit-panel .btn-primary,
+  .submit-panel .btn.create,
+  .submit-panel button.create {
+    background: $si-teal !important;
+    color: $wit !important;
+    border: none !important;
+
+    &:hover {
+      background: #00697A !important;
+    }
   }
 }
 
