@@ -939,7 +939,8 @@
     const name = landNames[selectedLand] || 'België';
     const adres = landAdressen[selectedLand] || landAdressen['be'];
     const verzend = zones[zone] || 0;
-    const totaal = artikelPrijs + verzend;
+    const aangKost = (aangetekendActief && koperKiestAangetekend) ? (aangetekendZones[zone] || 0) : 0;
+    const totaal = artikelPrijs + verzend + aangKost;
 
     if (document.getElementById('escrow-totaal')) document.getElementById('escrow-totaal').textContent = totaal.toFixed(2).replace('.',',');
     if (document.getElementById('mail-artikel')) document.getElementById('mail-artikel').textContent = artikelPrijs.toFixed(2).replace('.',',');
@@ -984,4 +985,28 @@
     document.getElementById('isbn-result').style.display = 'none';
     document.getElementById('tracking-filled').style.display = 'none';
     document.getElementById('tracking-missing').style.display = 'flex';
-    document.getElemen
+    document.getElementById('artikel-prijs').value = 24;
+    document.getElementById('koper-land').value = 'be';
+    document.getElementById('land-flag').textContent = '🇧🇪';
+    document.querySelectorAll('input[name="koper-verzend"]')[0].checked = true;
+    document.getElementById('ov-aang-row').style.display = 'none';
+    document.getElementById('buiten-wrap').style.opacity = '1';
+    document.getElementById('buiten-wrap').style.pointerEvents = 'auto';
+    document.getElementById('verzekering-warning').style.display = 'none';
+    document.getElementById('world-na-notice').style.display = 'none';
+    document.getElementById('betaal-overzicht').style.display = 'block';
+    document.querySelectorAll('.grade-btn').forEach(b => b.classList.remove('selected'));
+    document.querySelectorAll('.grade-btn')[1].classList.add('selected');
+    document.querySelectorAll('.formaat-btn').forEach(b => b.classList.remove('selected'));
+    document.querySelectorAll('.formaat-btn')[1].classList.add('selected');
+    updateKoperLand();
+    updateUitbetaling();
+    goToStep(1);
+  }
+
+  // Init
+  updateKoperLand();
+  updateUitbetaling();
+</script>
+</body>
+</html>
