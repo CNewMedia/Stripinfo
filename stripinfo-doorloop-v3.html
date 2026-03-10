@@ -493,13 +493,24 @@
       </div>
 
       <div class="divider"></div>
-      <div class="section-label">Stap 3 — Verzekering</div>
-      <div id="verzekering-warning" class="notice warning" style="display:none;"><span class="notice-icon">⚠️</span><span><strong>Artikel boven €75:</strong> Overweeg verzekerde verzending. Bij verlies zonder verzekering draagt de verkoper het risico.</span></div>
+      <div class="section-label">Stap 3 — Aangetekend / Verzekerd <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--muted);"> — optioneel</span></div>
+      <div id="verzekering-warning" class="notice warning" style="display:none;"><span class="notice-icon">⚠️</span><span><strong>Artikel boven €75:</strong> Overweeg aangetekende verzending aan te bieden. Bij verlies zonder verzekering draagt de verkoper het risico.</span></div>
       <div class="verzekering-box">
-        <div class="verzekering-header">Verzendverzekering</div>
-        <div class="verzekering-option"><input type="radio" name="verzekering" value="geen" checked><div><div class="vo-title">Geen <span class="vo-badge" style="background:#f0f0f0;color:#666;">Gratis</span></div><div class="vo-sub">Eigen risico bij verlies of schade.</div></div></div>
-        <div class="verzekering-option"><input type="radio" name="verzekering" value="basis"><div><div class="vo-title">Basis — tot €150 <span class="vo-badge badge-aanbevolen">Aanbevolen</span></div><div class="vo-sub">Via Bpost aangetekend of getrackt pakket.</div></div></div>
-        <div class="verzekering-option"><input type="radio" name="verzekering" value="extra"><div><div class="vo-title">Extra — tot €500 <span class="vo-badge badge-verplicht">Sterk aanbevolen boven €75</span></div><div class="vo-sub">Voor zeldzame strips en eerste drukken.</div></div></div>
+        <div class="verzekering-header">Bied je aangetekend / verzekerd aan als optie voor de koper?</div>
+        <div class="verzekering-option" style="align-items:center;">
+          <input type="checkbox" id="aangetekend-toggle" style="width:18px;height:18px;accent-color:var(--rood);flex-shrink:0;" onchange="toggleAangetekend()">
+          <div>
+            <div class="vo-title">Ja — koper kan aangetekend/verzekerd kiezen bij afrekenen</div>
+            <div class="vo-sub">Jij regelt dit zelf bij de vervoerder. De meerkost die jij hieronder instelt wordt doorgerekend aan de koper.</div>
+          </div>
+        </div>
+        <div id="aangetekend-zones" style="display:none; border-top:1px solid var(--border);">
+          <div class="zone-row header"><span>Zone</span><span>Meerkost aangetekend</span></div>
+          <div class="zone-row"><div class="zone-info"><span class="zone-flag">🇧🇪</span><div><div class="zone-name">België</div></div></div><div class="zone-input-wrap"><span class="eur">+€</span><input type="number" class="aang-price" data-zone="be" value="7.50" step="0.50" min="0" oninput="updateAangetekend()"></div></div>
+          <div class="zone-row"><div class="zone-info"><span class="zone-flag">🇳🇱</span><div><div class="zone-name">Nederland</div></div></div><div class="zone-input-wrap"><span class="eur">+€</span><input type="number" class="aang-price" data-zone="nl" value="9.00" step="0.50" min="0" oninput="updateAangetekend()"></div></div>
+          <div class="zone-row"><div class="zone-info"><span class="zone-flag">🇪🇺</span><div><div class="zone-name">Rest Europa</div></div></div><div class="zone-input-wrap"><span class="eur">+€</span><input type="number" class="aang-price" data-zone="eu" value="12.00" step="0.50" min="0" oninput="updateAangetekend()"></div></div>
+          <div class="zone-row"><div class="zone-info"><span class="zone-flag">🌍</span><div><div class="zone-name">Buiten Europa</div></div></div><div class="zone-input-wrap"><span class="eur">+€</span><input type="number" class="aang-price" data-zone="world" value="18.00" step="0.50" min="0" oninput="updateAangetekend()"></div></div>
+        </div>
       </div>
 
       <div class="btn-row">
@@ -550,10 +561,24 @@
       <div id="world-na-notice" class="notice warning" style="display:none;"><span class="notice-icon">🚫</span><span><strong>Verkoper verzendt niet naar dit land.</strong> Neem contact op met de verkoper.</span></div>
 
       <div id="betaal-overzicht">
+        <div id="aangetekend-koper-wrap" style="display:none; margin-bottom:1rem;">
+          <div class="section-label">Verzendoptie</div>
+          <div class="verzekering-box">
+            <div class="verzekering-option" style="align-items:center;">
+              <input type="radio" name="koper-verzend" value="standaard" checked onchange="updateKoperVerzendkeuze()">
+              <div><div class="vo-title">Standaard verzending</div><div class="vo-sub" id="koper-standaard-prijs">€ 5,00 — zoals opgegeven door verkoper</div></div>
+            </div>
+            <div class="verzekering-option" style="align-items:center;">
+              <input type="radio" name="koper-verzend" value="aangetekend" onchange="updateKoperVerzendkeuze()">
+              <div><div class="vo-title">Aangetekend / Verzekerd <span class="vo-badge badge-aanbevolen">Aanbevolen</span></div><div class="vo-sub" id="koper-aang-prijs">+€ 7,50 — beschermt jou én de verkoper bij verlies of schade</div></div>
+            </div>
+          </div>
+        </div>
         <div class="section-label">Betalingsoverzicht</div>
         <div class="overzicht" style="margin-bottom:1rem;">
           <div class="overzicht-row"><span class="lbl">Artikel</span><span class="val">€ <span id="ov-artikel">24,00</span></span></div>
           <div class="overzicht-row"><span class="lbl">Verzending (<span id="ov-zone">België</span>)</span><span class="val">€ <span id="ov-verzend">5,00</span></span></div>
+          <div class="overzicht-row" id="ov-aang-row" style="display:none;"><span class="lbl">Aangetekend/verzekerd</span><span class="val">+€ <span id="ov-aang">7,50</span></span></div>
           <div class="overzicht-row total"><span>Totaal</span><span class="val">€ <span id="ov-totaal">29,00</span></span></div>
         </div>
         <div class="notice info"><span class="notice-icon">🔒</span><span><strong>Veilig via Stripe.</strong> Geld wordt pas vrijgegeven aan de verkoper na jouw bevestiging — of automatisch na 5 dagen.</span></div>
@@ -594,8 +619,8 @@
       <div class="section-label">📧 E-mail die de verkoper ontvangt</div>
       <div class="email-sim">
         <div class="email-header">
-          <div><strong>Van:</strong> noreply@marktplaats.stripinfo.be</div>
-          <div><strong>Aan:</strong> wiske_fan_82@gmail.com</div>
+          <div><strong>Van:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="6806071a0d1804112805091a031c180409091c1b461b1c1a011801060e07460a0d">[email&#160;protected]</a></div>
+          <div><strong>Aan:</strong> <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="710618021a142e17101f2e494331161c10181d5f121e1c">[email&#160;protected]</a></div>
           <div><strong>Onderwerp:</strong> 🎉 Je hebt een verkoop! — Suske en Wiske dl. 38</div>
         </div>
         <div class="email-body">
@@ -770,11 +795,14 @@
 
 </div>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
   let currentStep = 1;
   let artikelPrijs = 24;
   let worldNA = false;
   let selectedLand = 'be';
+  let aangetekendActief = false;
+  let koperKiestAangetekend = false;
+  const aangetekendZones = { be: 7.50, nl: 9.00, eu: 12.00, world: 18.00 };
 
   const zones = { be: 5.00, nl: 7.00, eu: 12.00, world: 22.00 };
   const landZone = { be:'be', nl:'nl', eu_fr:'eu', eu_de:'eu', eu_other:'eu', world_us:'world', world_au:'world', world_jp:'world', world_other:'world' };
@@ -805,6 +833,25 @@
     window.scrollTo({ top: 0, behavior: 'smooth' });
     if (step === 4 || step === 5) updateVerkoperInfo();
     if (step === 7) updateUitbetaling();
+  }
+
+  function toggleAangetekend() {
+    aangetekendActief = document.getElementById('aangetekend-toggle').checked;
+    document.getElementById('aangetekend-zones').style.display = aangetekendActief ? 'block' : 'none';
+    koperKiestAangetekend = false;
+    updateKoperLand();
+  }
+
+  function updateAangetekend() {
+    document.querySelectorAll('.aang-price').forEach(inp => {
+      aangetekendZones[inp.dataset.zone] = parseFloat(inp.value) || 0;
+    });
+    updateKoperLand();
+  }
+
+  function updateKoperVerzendkeuze() {
+    koperKiestAangetekend = document.querySelector('input[name="koper-verzend"]:checked').value === 'aangetekend';
+    updateKoperLand();
   }
 
   function mockISBN() { document.getElementById('isbn-result').style.display = 'block'; }
@@ -856,6 +903,19 @@
     const betaalBtn = document.getElementById('betaal-btn');
     const zoneNames = { be:'België', nl:'Nederland', eu:'Europa', world:'Buiten Europa' };
 
+    // Toon/verberg aangetekend optie voor koper
+    const aangWrap = document.getElementById('aangetekend-koper-wrap');
+    aangWrap.style.display = (aangetekendActief && !(zone === 'world' && worldNA)) ? 'block' : 'none';
+    if (aangetekendActief) {
+      const aangKost = aangetekendZones[zone] || 0;
+      const standaardKost = zones[zone] || 0;
+      document.getElementById('koper-standaard-prijs').textContent = '€ ' + standaardKost.toFixed(2).replace('.',',') + ' — zoals opgegeven door verkoper';
+      document.getElementById('koper-aang-prijs').textContent = '+€ ' + aangKost.toFixed(2).replace('.',',') + ' — beschermt jou én de verkoper bij verlies of schade';
+      document.getElementById('ov-aang').textContent = aangKost.toFixed(2).replace('.',',');
+    }
+    const aangRow = document.getElementById('ov-aang-row');
+    aangRow.style.display = (aangetekendActief && koperKiestAangetekend) ? 'flex' : 'none';
+
     if (zone === 'world' && worldNA) {
       naNotice.style.display = 'flex';
       betaalOverzicht.style.display = 'none';
@@ -863,7 +923,8 @@
       naNotice.style.display = 'none';
       betaalOverzicht.style.display = 'block';
       const verzend = zones[zone] || 0;
-      const totaal = artikelPrijs + verzend;
+      const aangKost = (aangetekendActief && koperKiestAangetekend) ? (aangetekendZones[zone] || 0) : 0;
+      const totaal = artikelPrijs + verzend + aangKost;
       document.getElementById('koper-artikel-prijs').textContent = artikelPrijs.toFixed(2).replace('.',',');
       document.getElementById('ov-artikel').textContent = artikelPrijs.toFixed(2).replace('.',',');
       document.getElementById('ov-zone').textContent = zoneNames[zone];
@@ -913,22 +974,14 @@
     selectedLand = 'be';
     worldNA = false;
     artikelPrijs = 24;
+    aangetekendActief = false;
+    koperKiestAangetekend = false;
+    document.getElementById('aangetekend-toggle').checked = false;
+    document.getElementById('aangetekend-zones').style.display = 'none';
+    document.getElementById('aangetekend-koper-wrap').style.display = 'none';
     document.getElementById('world-na').checked = false;
     document.getElementById('tracking-input').value = '';
     document.getElementById('isbn-result').style.display = 'none';
     document.getElementById('tracking-filled').style.display = 'none';
     document.getElementById('tracking-missing').style.display = 'flex';
-    document.getElementById('koper-land').value = 'be';
-    document.getElementById('buiten-wrap').style.opacity = '1';
-    document.getElementById('buiten-wrap').style.pointerEvents = 'auto';
-    document.getElementById('artikel-prijs').value = 24;
-    updateKoperLand();
-    updateUitbetaling();
-    goToStep(1);
-  }
-
-  updateKoperLand();
-  updateUitbetaling();
-</script>
-</body>
-</html>
+    document.getElemen
